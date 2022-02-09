@@ -48,17 +48,17 @@ You can also chain on an and to user stories/scenarios
 1.eg. Given that I am logged in, when I click favourite on a post, then it is added to my favourites and the 
 save icon will change to indicate success. Be more vague, not too specific.-->
 1. Scene 1:
-  1. Given that I am not logged in, when I view the page, then I should see a login form.
-  1. Given that I am logged in, when I view the page, then I should see a random flashcard.
-  1. Given that I see a flashcard, when I reveal the card, I should see the back of the card.
-  1. Given that I see the back of the card, when I arro the card, I should see the next card.
-  1. Given that I see a flashcard, when I click add, I should have that card added to my collection.
-  1. Given that I see a flashcard, when I click remove, I should have that card removed from my collection.
-  1. Given that I see a flashcard, when I click like, I should have that card liked.
-  1. Given that I see a flashcard, when I click comments, then I should see the comments on the card.
+    1. Given that I am not logged in, when I view the page, then I should see a login form.
+    1. Given that I am logged in, when I view the page, then I should see a random flashcard.
+    1. Given that I see a flashcard, when I reveal the card, I should see the back of the card.
+    1. Given that I see the back of the card, when I arro the card, I should see the next card.
+    1. Given that I see a flashcard, when I click add, I should have that card added to my collection.
+    1. Given that I see a flashcard, when I click remove, I should have that card removed from my collection.
+    1. Given that I see a flashcard, when I click like, I should have that card liked.
+    1. Given that I see a flashcard, when I click comments, then I should see the comments on the card.
       1. Given that I see the comments on the card, when I click click comment, then I should see a comment form.
       1. Given that I see the comment form, when I enter a comment, then I should see the comment on the card.
-  1. Given that I see a flashcard, when I click share, then I should see a share the card.
+    1. Given that I see a flashcard, when I click share, then I should see a share the card.
 1. Scene 2: 
    1. Given that I am logged in, when I view the navbar, then I should see a search bar.
    1. Given that I see a search bar, when I type in a search term, then i should be able to search by tag, flashcard or profile.
