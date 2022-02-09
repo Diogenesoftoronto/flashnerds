@@ -56,8 +56,8 @@ save icon will change to indicate success. Be more vague, not too specific.-->
   1. Given that I see a flashcard, when I click remove, I should have that card removed from my collection.
   1. Given that I see a flashcard, when I click like, I should have that card liked.
   1. Given that I see a flashcard, when I click comments, then I should see the comments on the card.
-    1. Given that I see the comments on the card, when I click click comment, then I should see a comment form.
-    1. Given that I see the comment form, when I enter a comment, then I should see the comment on the card.
+      1. Given that I see the comments on the card, when I click click comment, then I should see a comment form.
+      1. Given that I see the comment form, when I enter a comment, then I should see the comment on the card.
   1. Given that I see a flashcard, when I click share, then I should see a share the card.
 1. Scene 2: 
    1. Given that I am logged in, when I view the navbar, then I should see a search bar.
