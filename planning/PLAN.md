@@ -65,8 +65,8 @@ save icon will change to indicate success. Be more vague, not too specific.-->
    1. Given that I search for my desired flashcard, tag or profile, when I click on the result, then I should be able to view the flashcard, tag or profile. 
 1. Scene 3:
     1. Given that I am logged in, when I view the navbar, then I should see a profile icon.
-      1. Given that I see that I see a profile, when I click on the flashcard icon, then I should be able to view my collections.
-      1. Given that I see my collections, when I click on the edit button, then I should be able to edit my collection.
+      1. Given that I see that I see a profile, when I click on the flashcard icon, then I should be able to view my deck.
+      1. Given that I see my deck, when I click on the edit button, then I should be able to edit my collection.
       1. Given that I see a collection, when I click on the delete button, then I should be able to delete my collection.
     1. Given that I see a profile icon, when I click on the profile icon, then I should be able to view my profile.
     1. Given that I see a profile, when I click on the edit profile button, then I should be able to edit my profile.
@@ -82,5 +82,22 @@ save icon will change to indicate success. Be more vague, not too specific.-->
     1. Given that I create a flashcard, when I view the page, then I should see the flashcard.
 
 ## Routes
-
+<!-- full RESTful compliance -->
+* Browse 
+  ** get: /, user/:id, /login, /register
+* Read
+  ** get: /deck/:id, /flashcard/:id, /comments_section/:id 
+* Edit 
+  ** put: /deck/:id
+  ** patch: /comments_section/:id/comment/:id
+  ** patch: /flashcard/:id
+* Add 
+  ** post: user/:id/deck/:id 
+  ** post: deck/:id/flashcard/:id
+  ** post: user/:id/comments_section/:id/comment/:id
+* Delete 
+  ** DELETE: /deck/:id
+  ** DELETE: /flashcard/:id
+  ** DELETE: /comments_section/:id/comment/:id 
+  ** DELETE: /user/:id
 
