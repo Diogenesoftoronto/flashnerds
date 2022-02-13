@@ -121,27 +121,27 @@ save icon will change to indicate success. Be more vague, not too specific.-->
   ** DELETE: /user/:id
 
 This is an explanation of what each route does: 
-GET / - is the view home route.
-GET /user/:id - is the view profile route.
-GET /login - is the view login route.
-GET /register - is the view registration route.
-GET /deck/:id - is the view deck route.
-GET /flashcard/:id - is the view flashcard route.
-GET /comments_section/:id - is the view comments section route.
+*  GET / - is the view home route.
+*  GET /user/:id - is the view profile route.
+*  GET /login - is the view login route.
+*  GET /register - is the view registration route.
+*  GET /deck/:id - is the view deck route.
+*  GET /flashcard/:id - is the view flashcard route.
+*  GET /comments_section/:id - is the view comments section route.
 
-PUT /deck/:id - is the edit deck route.
+*  PUT /deck/:id - is the edit deck route.
 
-PATCH /comments_section/:id/comment/:id - is the edit comment route.
-PATCH /flashcard/:id - is the edit flashcard route.
-PATCH /login - is the submit login route.
+*  PATCH /comments_section/:id/comment/:id - is the edit comment route.
+*  PATCH /flashcard/:id - is the edit flashcard route.
+*  PATCH /login - is the submit login route.
 
-POST /user/:id/deck/:id - is the add flashcard route.
-POST /deck/:id/flashcard/:id - is the add flashcard route.
-POST comments_section/:id/comment/:id - is the add comment route.
-POST /register - is the create user route.
+*  POST /user/:id/deck/:id - is the add flashcard route.
+*  POST /deck/:id/flashcard/:id - is the add flashcard route.
+*  POST comments_section/:id/comment/:id - is the add comment route.
+*  POST /register - is the create user route.
 
-DELETE /deck/:id - is the delete deck route.
-DELETE /flashcard/:id - is the delete flashcard route.
-DELETE /comments_section/:id/comment/:id - is the delete comment route.
-DELETE /user/:id - is the delete user route.
+*  DELETE /deck/:id - is the delete deck route.
+*  DELETE /flashcard/:id - is the delete flashcard route.
+*  DELETE /comments_section/:id/comment/:id - is the delete comment route.
+*  DELETE /user/:id - is the delete user route.
 
