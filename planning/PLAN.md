@@ -154,6 +154,8 @@ Backend
 | edit   | PUT api/comment/:id    | PUT api/user/:id    | PUT api/deck/:id    | PUT api/tag:id     | PUT api/flashcard:id     |
 | add    | POST api/comment/:id   | POST api/user/:id   | POST api/deck/:id   | PATCH api/tag/:id  | PATCH api/flashcard/:id  |
 | delete | DELETE api/comment/:id | DELETE api/user/:id | DELETE api/deck/:id | DELETE api/tag/:id | DELETE api/flashcard/:id |
+
+
 Frontend
 | BREAD  | comments               | users               | decks               | tags               | flashcards               |
 |--------|------------------------|---------------------|---------------------|--------------------|--------------------------|
