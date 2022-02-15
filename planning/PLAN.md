@@ -145,3 +145,17 @@ This is an explanation of what each route does:
 *  DELETE /comments_section/:id/comment/:id - is the delete comment route.
 *  DELETE /user/:id - is the delete user route.
 
+## Routes Table
+Backend
+| BREAD  | comments               | users               | decks               | tags               | flashcards               |
+|--------|------------------------|---------------------|---------------------|--------------------|--------------------------|
+| Browse | GET api/comment        | GET api/user        | GET api/deck        | GET api/tag        | GET api/flashcard        |
+| Read   | GET api/comment/:id    | GET api/user/:id    | GET api/deck/:id    | GET api/tag/:id    | GET api/flashard/:id     |
+| edit   | PUT api/comment/:id    | PUT api/user/:id    | PUT api/deck/:id    | PUT api/tag:id     | PUT api/flashcard:id     |
+| add    | POST api/comment/:id   | POST api/user/:id   | POST api/deck/:id   | PATCH api/tag/:id  | PATCH api/flashcard/:id  |
+| delete | DELETE api/comment/:id | DELETE api/user/:id | DELETE api/deck/:id | DELETE api/tag/:id | DELETE api/flashcard/:id |
+Frontend
+| BREAD  | comments               | users               | decks               | tags               | flashcards               |
+|--------|------------------------|---------------------|---------------------|--------------------|--------------------------|
+| Browse | GET comments           | GET user             | GET deck             | GET tag             | GET flashcard             |
+| Read   | GET comments/:id       | GET user/:id         | GET deck/:id         |N/A| GET flashcard/:id          |
