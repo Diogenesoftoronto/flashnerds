@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
-import index.scss;
+import "index.scss";
 
 import Button from "./Button"
 import Deck from "components/Deck"
@@ -27,7 +27,22 @@ storiesOf("flashcard", module)
     <Flashcard />
   })
 
-  storiesOf("Deck", module)
-    .addParameter({
-      backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-    })
+storiesOf("Deck", module)
+  .addParameter({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+  })
+  .add("Edit", () => (
+    <Edit 
+      name="Spanish"
+      onSave={(name) => action("onSave")(name)} 
+    />
+  ))
+  .add("Create", () => (
+    <Create
+      onSave={(name) => action("onSave")(name)} 
+    />
+  ))
+  .add("Delete", () => (
+    <Delete onClick={action("onCDelete")}/>
+  ))
+  
