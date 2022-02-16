@@ -6,6 +6,7 @@ import { action } from "@storybook/addon-actions";
 import index.scss;
 
 import Button from "./Button"
+import Deck from "components/Deck"
 
 defaultValues = { 
   text: "Hello World",
@@ -30,4 +31,3 @@ storiesOf("flashcard", module)
     .addParameter({
       backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
     })
-    
