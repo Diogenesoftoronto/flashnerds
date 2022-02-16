@@ -43,6 +43,6 @@ storiesOf("Deck", module)
     />
   ))
   .add("Delete", () => (
-    <Delete onClick={action("onCDelete")}/>
+    <Delete onClick={action("onDelete")}/>
   ))
   
