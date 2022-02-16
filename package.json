@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/Diogenesoftoronto/flashnerds/issues"
   },
-  "homepage": "https://github.com/Diogenesoftoronto/flashnerds#readme"
+  "homepage": "https://github.com/Diogenesoftoronto/flashnerds#readme",
+  "dependencies": {
+    "sass": "^1.49.7"
+  }
 }
