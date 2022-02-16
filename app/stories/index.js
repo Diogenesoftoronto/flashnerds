@@ -25,3 +25,9 @@ storiesOf("flashcard", module)
   .add("Empty", () => {
     <Flashcard />
   })
+
+  storiesOf("Deck", module)
+    .addParameter({
+      backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+    })
+    
