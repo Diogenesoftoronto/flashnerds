@@ -25,7 +25,7 @@ function AuthProvider({ children }) {
   }, [isAuth])
 
   function register(email, password){
-    const URL_PRODUCTS_API = '/api/auth/register';
+    const URL_PRODUCTS_API = 'http://localhost:3001/api/auth/registar';
     return axios
       .post(URL_PRODUCTS_API, { email, password })
       .then(response => response.data.user)
@@ -33,7 +33,7 @@ function AuthProvider({ children }) {
   }
 
   function login(email, password){
-    const URL_PRODUCTS_API = '/api/auth/login';
+    const URL_PRODUCTS_API = 'http://localhost:3001/api/auth/login';
     return axios
       .post(URL_PRODUCTS_API, { email, password })
       .then(response => {
