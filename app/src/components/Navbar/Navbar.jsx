@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
-function Navbar() {
+function Search() {
  return (
   <header>
     <nav>
@@ -16,4 +16,4 @@ function Navbar() {
  )
 }
 
-export default Navbar
+export default Search
