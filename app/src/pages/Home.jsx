@@ -1,11 +1,11 @@
 import React from 'react';
 
-function MyLibrary () {
+function Home () {
   return (
     <div>
-      My Library
+      Home
     </div>
   )
 }
 
-export default MyLibrary
+export default Home
