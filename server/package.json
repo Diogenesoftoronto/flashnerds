@@ -1,4 +1,7 @@
-{
+{ "name": "flashnerds-api",
+  "version": "0.0.1",
+  "description": "server for flashnerds",
+  "main": "index.js",
   "dependencies": {
     "bindings": "^1.5.0",
     "chalk": "^5.0.0",
@@ -7,6 +10,12 @@
     "morgan": "^1.10.0",
     "node-gyp": "^8.4.1",
     "pg": "^8.7.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "local": "./node_modules/.bin/nodemon -L --ignore public/",
+    "db:reset": "node bin/resetdb.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
