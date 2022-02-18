@@ -1,9 +1,3 @@
-create table decks (
-	id INT,
-	name VARCHAR(50),
-	user_id INT,
-	image VARCHAR(50)
-);
 insert into decks (id, name, user_id, image) values (1, 'Anteater, australian spiny', 1, 'http://dummyimage.com/x100.png/dddddd/000000');
 insert into decks (id, name, user_id, image) values (2, 'Oystercatcher, blackish', 2, 'http://dummyimage.com/x100.png/ff4444/ffffff');
 insert into decks (id, name, user_id, image) values (3, 'Asiatic jackal', 3, 'http://dummyimage.com/x100.png/dddddd/000000');
