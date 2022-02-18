@@ -8,7 +8,7 @@ router.get("/api/flashcards", (request, response) => {
     return;
   }
 
-  db.query(`DELETE FROM interviews WHERE appointment_id = $1::integer`, [
+  db.query(`SELECT * FROM flashcards WHERE decks_id = $1`, [
     request.params.id
   ]).then(() => {
     setTimeout(() => {
@@ -23,7 +23,7 @@ router.get("/api/flashcards/:id", (request, response) => {
     return;
   }
 
-  db.query(`DELETE FROM interviews WHERE appointment_id = $1::integer`, [
+  db.query(`SELECT * FROM flashcards WHERE id = $1`, [
     request.params.id
   ]).then(() => {
     setTimeout(() => {
@@ -38,7 +38,7 @@ router.put("/api/flashcards/:id", (request, response) => {
     return;
   }
 
-  db.query(`DELETE FROM interviews WHERE appointment_id = $1::integer`, [
+  db.query(`UPDATE  WHERE id = $1::integer`, [
     request.params.id
   ]).then(() => {
     setTimeout(() => {
