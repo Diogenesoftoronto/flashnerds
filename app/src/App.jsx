@@ -18,8 +18,9 @@ import DeckCreate from "./pages/DeckCreate";
 
 function App() {  
   return (
+    <AuthProvider>
     <Router>
-        <Navbar />
+      <Navbar />
       <Routes>
         <Route path="/" element={ <Home /> } />
         <Route path="/mylibrary" element={ <MyLibrary /> } />
@@ -27,6 +28,8 @@ function App() {
         <Route path="/login" element={ <Login /> } />
       </Routes>
     </Router>
+    </AuthProvider>
+
   // <AuthProvider>
   //   <Router>
   //       <Routes>
