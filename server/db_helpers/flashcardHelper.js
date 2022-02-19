@@ -1,3 +1,10 @@
+const getAllFlashcards = function(db) {
+  return db
+    .query(`SELECT * FROM flashcards;`)
+    .then(data => data.rows)
+    .catch(console.error("Error running query to get all flashcards from database"));
+};
+
 const getFlashcardsByDeckId = function (db, deckId) {
   let flashcardValues = [deckId];
   let queryString = `SELECT * FROM flashcards
@@ -60,6 +67,7 @@ const deleteFlashcard = function (db, flashcardId) {
     .catch((err) => console.log(err));
 };
 module.exports = {
+  getAllFlashcards,
   getFlashcardsByDeckId,
   getFlashcardByFlashcardId,
   addFlashcard,
