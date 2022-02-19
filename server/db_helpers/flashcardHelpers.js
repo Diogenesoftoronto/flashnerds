@@ -1,10 +1,10 @@
-const getFlashcardByMapId = function(db, mapID) {
-  let mapValues = [mapID];
-  let queryString = `SELECT * FROM maps
-                        WHERE maps.id = $1`;
+const getFlashcardByFlashcardId = function(db, flashcardID) {
+  let flashcardValues = [flashcardID];
+  let queryString = `SELECT * FROM flashcards
+                        WHERE flashcards.id = $1`;
   return (
     db
-      .query(queryString, mapValues)
+      .query(queryString, flashcardValues)
       .then(res => {
         return res.rows;
       })
@@ -12,31 +12,37 @@ const getFlashcardByMapId = function(db, mapID) {
   );
 };
 
-const addMap = function(db, mapInfo) {
-  let mapValues = [mapInfo.userId, mapInfo.title];
-  let queryString = `INSERT INTO maps (user_id, title)
+const add = function(db, flashcardInfo) {
+  let flashcardValues = [flashcardInfo.deckId, flashcardInfo.];
+  let queryString = `INSERT INTO flashcards (decks_id, )
   VALUES ($1,$2) RETURNING *;`;
   return db
-    .query(queryString, mapValues)
+    .query(queryString, flashcardValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 
 };
 
-const editMap = function(db, mapInfo) {
-  let mapValues = [mapInfo.title,  mapInfo.mapId];
-  let queryString = `UPDATE maps SET title = $1
-  WHERE maps.id = $2 RETURNING *;`;
+const edit = function(db, flashcardInfo) {
+  let flashcardValues = [flashcardInfo.,  flashcardInfo.flashcardId];
+  let queryString = `UPDATE flashcards SET  = $1
+  WHERE flashcards.id = $2 RETURNING *;`;
   return db
-    .query(queryString, mapValues)
+    .query(queryString, flashcardValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 };
 const deleteFlashcard = function(db, flashcardInfo) {
-  let flashcardValues = [flashcardInfo.title,  flashcardInfo.flashcardId];
+  let flashcardValues = [flashcardInfo.,  flashcardInfo.flashcardId];
   let queryString = `DELETE FROM flashcards WHERE id = $1::integer;`;
   return db
     .query(queryString, flashcardValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
+};
+module.exports = {
+  getFlashcardByFlashcardId,
+  addFlashcard,
+  editFlashcard,
+  deleteFlashcard,
 };
