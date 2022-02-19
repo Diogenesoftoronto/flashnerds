@@ -1,3 +1,15 @@
+const getFlashcardsByDeckId = function (db, deckId) {
+  let flashcardValues = [deckId];
+  let queryString = `SELECT * FROM flashcards
+                        WHERE decks_id = $1;`;
+  return db
+    .query(queryString, flashcardValues)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
 const getFlashcardByFlashcardId = function (db, flashcardId) {
   let flashcardValues = [flashcardId];
   let queryString = `SELECT * FROM flashcards
@@ -48,6 +60,7 @@ const deleteFlashcard = function (db, flashcardId) {
     .catch((err) => console.log(err));
 };
 module.exports = {
+  getFlashcardsByDeckId,
   getFlashcardByFlashcardId,
   addFlashcard,
   editFlashcard,

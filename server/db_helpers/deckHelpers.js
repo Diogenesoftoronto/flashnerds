@@ -1,7 +1,7 @@
 const getDeckByDeckID = function(db, deckId) {
   let deckValues = [deckId];
   let queryString = `SELECT * FROM decks
-                        WHERE decks.id = $1`;
+                        WHERE decks.id = $1;`;
   return (
     db
       .query(queryString, deckValues)
@@ -14,7 +14,7 @@ const getDeckByDeckID = function(db, deckId) {
 
 const addDeck = function(db, deckInfo) {
   let deckValues = [deckInfo.userId, deckInfo.name,  deckInfo.image];
-  let queryString = `INSERT INTO decks (user_id, name, image)
+  let queryString = `INSERT INTO decks (users_id, name, image)
   VALUES ($1,$2,$3) RETURNING *;`;
   return db
     .query(queryString, deckValues)
@@ -25,7 +25,7 @@ const addDeck = function(db, deckInfo) {
 
 const editDeck = function(db, deckInfo) {
   let deckValues = [deckInfo.name,  deckInfo.userId, deckInfo.image, deckInfo.deckId];
-  let queryString = `UPDATE decks SET name = $1, user_id = $2, image = $3
+  let queryString = `UPDATE decks SET name = $1, users_id = $2, image = $3
   WHERE decks.id = $4 RETURNING *;`;
   return db
     .query(queryString, deckValues)

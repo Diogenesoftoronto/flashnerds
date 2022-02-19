@@ -1,7 +1,19 @@
-const getCommentByCommentId = function(db, commentID) {
-  let commentValues = [commentID];
+const getCommentsByFlashcardId = function (db, flashcardId) {
+  let commentValues = [flashcardId];
   let queryString = `SELECT * FROM comments
-                        WHERE comments.id = $1`;
+                        WHERE flashcards_id = $1;`;
+  return db
+    .query(queryString, flashcardValues)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+const getCommentByCommentId = function(db, commentId) {
+  let commentValues = [commentId];
+  let queryString = `SELECT * FROM comments
+                        WHERE comments.id = $1;`;
   return (
     db
       .query(queryString, commentValues)
@@ -13,9 +25,9 @@ const getCommentByCommentId = function(db, commentID) {
 };
 
 const addComment = function(db, commentInfo) {
-  let commentValues = [commentInfo.userId, commentInfo.title];
-  let queryString = `INSERT INTO comments (user_id, title)
-  VALUES ($1,$2) RETURNING *;`;
+  let commentValues = [commentInfo.content, commentInfo.timestamp, commentInfo.flashcardId];
+  let queryString = `INSERT INTO comments (content, timestamp, flashcard_id)
+  VALUES ($1, $2, $3) RETURNING *;`;
   return db
     .query(queryString, commentValues)
     .then(res => res.rows[0])
@@ -24,17 +36,17 @@ const addComment = function(db, commentInfo) {
 };
 
 const editComment = function(db, commentInfo) {
-  let commentValues = [commentInfo.title,  commentInfo.commentId];
-  let queryString = `UPDATE comments SET title = $1
-  WHERE comments.id = $2 RETURNING *;`;
+  let commentValues = [commentInfo.content, commentInfo.timestamp, commentInfo.flashcardId,  commentInfo.commentId];
+  let queryString = `UPDATE comments SET content = $1,timestamp = $2, flashcards_id = $3
+  WHERE comments.id = $4 RETURNING *;`;
   return db
     .query(queryString, commentValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 };
-const deleteComment = function(db, commentInfo) {
-  let commentValues = [commentInfo.title,  commentInfo.commentId];
-  let queryString = `DELETE FROM comments WHERE id = $1::integer;`;
+const deleteComment = function(db, commentId) {
+  let commentValues = [commentId];
+  let queryString = `DELETE FROM comments WHERE id = $1;`;
   return db
     .query(queryString, commentValues)
     .then(res => res.rows[0])

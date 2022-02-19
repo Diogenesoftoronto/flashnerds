@@ -1,7 +1,20 @@
+const getTagsByFlashcardId = function (db, flashcardId) {
+  let tagValues = [flashcardId];
+  let queryString = `SELECT * FROM tags
+                        WHERE flashcards_id = $1;`;
+  return db
+    .query(queryString, tagValues)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+
 const getTagByTagId = function (db, tagId) {
   let tagValues = [tagId];
   let queryString = `SELECT * FROM tags
-                        WHERE tags.id = $1`;
+                        WHERE tags.id = $1;`;
   return db
     .query(queryString, tagValues)
     .then((res) => {
@@ -38,8 +51,9 @@ const deleteTag = function (db, tagId) {
     .catch((err) => console.log(err));
 };
 module.exports = {
+  getTagsByFlashcardId,
   getTagByTagId,
   addTag,
   editTag,
-  deleteTag,
+  deleteTag
 };
