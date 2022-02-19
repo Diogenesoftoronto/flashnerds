@@ -1,4 +1,4 @@
-const getFlashcardByFlashcardId = function (db, flashcardID) {
+const getFlashcardByFlashcardId = function (db, flashcardId) {
   let flashcardValues = [flashcardId];
   let queryString = `SELECT * FROM flashcards
                         WHERE flashcards.id = $1;`;
@@ -39,7 +39,7 @@ const editFlashcard = function (db, flashcardInfo) {
     .then((res) => res.rows[0])
     .catch((err) => console.log(err));
 };
-const deleteFlashcard = function (db, flashcardInfo) {
+const deleteFlashcard = function (db, flashcardId) {
   let flashcardValues = [flashcardId];
   let queryString = `DELETE FROM flashcards WHERE id = $1;`;
   return db

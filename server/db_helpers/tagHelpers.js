@@ -1,5 +1,5 @@
-const getTagByTagId = function (db, tagID) {
-  let tagValues = [tagID];
+const getTagByTagId = function (db, tagId) {
+  let tagValues = [tagId];
   let queryString = `SELECT * FROM tags
                         WHERE tags.id = $1`;
   return db
@@ -29,8 +29,8 @@ const editTag = function (db, tagInfo) {
     .then((res) => res.rows[0])
     .catch((err) => console.log(err));
 };
-const deleteTag = function (db, tagInfo) {
-  let tagValues = [tagInfo.title, tagInfo.tagId];
+const deleteTag = function (db, tagId) {
+  let tagValues = [tagId];
   let queryString = `DELETE FROM tags WHERE id = $1::integer;`;
   return db
     .query(queryString, tagValues)
