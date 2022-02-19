@@ -74,11 +74,11 @@ module.exports = (db) => {
   });
   // add user route (register)
   router.post("/", (req, res) => {
-    const name = req.session.userId;
-    const email = req.body.title;
+    const name = req.session.name;
+    const email = req.body.email;
     const image = req.body.image;
     const description = req.body.description;
-    const password = req.body.latitude;
+    const password = req.body.password;
 
     const userInfo = {
       name,
@@ -101,11 +101,11 @@ module.exports = (db) => {
 
   router.put("/:id", (req, res) => {
     const userId = req.params.id;
-    const name = req.session.userId;
-    const email = req.body.title;
+    const name = req.session.name;
+    const email = req.body.email;
     const image = req.body.image;
     const description = req.body.description;
-    const password = req.body.latitude;
+    const password = req.body.password;
 
     const userInfo = {
       userId,
