@@ -1,44 +1,51 @@
-const getFlashcardByFlashcardId = function(db, flashcardID) {
-  let flashcardValues = [flashcardID];
+const getFlashcardByFlashcardId = function (db, flashcardID) {
+  let flashcardValues = [flashcardId];
   let queryString = `SELECT * FROM flashcards
-                        WHERE flashcards.id = $1`;
-  return (
-    db
-      .query(queryString, flashcardValues)
-      .then(res => {
-        return res.rows;
-      })
-      .catch(err => console.log(err))
-  );
-};
-
-const add = function(db, flashcardInfo) {
-  let flashcardValues = [flashcardInfo.deckId, flashcardInfo.];
-  let queryString = `INSERT INTO flashcards (decks_id, )
-  VALUES ($1,$2) RETURNING *;`;
+                        WHERE flashcards.id = $1;`;
   return db
     .query(queryString, flashcardValues)
-    .then(res => res.rows[0])
-    .catch(err => console.log(err));
-
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
 };
 
-const edit = function(db, flashcardInfo) {
-  let flashcardValues = [flashcardInfo.,  flashcardInfo.flashcardId];
-  let queryString = `UPDATE flashcards SET  = $1
-  WHERE flashcards.id = $2 RETURNING *;`;
+const addFlashcard = function (db, flashcardInfo) {
+  let flashcardValues = [
+    flashcardInfo.deckId,
+    flashcardInfo.question,
+    flashcardInfo.answer,
+  ];
+  let queryString = `INSERT INTO flashcards (decks_id, question, answer, likes)
+  VALUES($1, $2, $3, 0) RETURNING *;`;
   return db
     .query(queryString, flashcardValues)
-    .then(res => res.rows[0])
-    .catch(err => console.log(err));
+    .then((res) => res.rows[0])
+    .catch((err) => console.log(err));
 };
-const deleteFlashcard = function(db, flashcardInfo) {
-  let flashcardValues = [flashcardInfo.,  flashcardInfo.flashcardId];
-  let queryString = `DELETE FROM flashcards WHERE id = $1::integer;`;
+
+const editFlashcard = function (db, flashcardInfo) {
+  let flashcardValues = [
+    flashcardInfo.deckId,
+    flashcardInfo.question,
+    flashcardInfo.answer,
+    flashcardInfo.likes,
+    flashcardInfo.flashcardId,
+  ];
+  let queryString = `UPDATE flashcards SET decks_id = $1, question = $2, answer = $3, likes = $4
+  WHERE flashcards.id = $5 RETURNING *;`;
   return db
     .query(queryString, flashcardValues)
-    .then(res => res.rows[0])
-    .catch(err => console.log(err));
+    .then((res) => res.rows[0])
+    .catch((err) => console.log(err));
+};
+const deleteFlashcard = function (db, flashcardInfo) {
+  let flashcardValues = [flashcardId];
+  let queryString = `DELETE FROM flashcards WHERE id = $1;`;
+  return db
+    .query(queryString, flashcardValues)
+    .then((res) => res.rows[0])
+    .catch((err) => console.log(err));
 };
 module.exports = {
   getFlashcardByFlashcardId,
