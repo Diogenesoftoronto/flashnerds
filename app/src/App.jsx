@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 
 // import Register from "./pages/Register";
 import Login from "./pages/Login";
+import AuthTest from "./pages/AuthTest";
 // import Logout from "./pages/Logout";
 
 import MyLibrary from "./pages/MyLibrary";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/mylibrary" element={ <MyLibrary /> } />
         <Route path="/decks/create" element={ <DeckCreate /> } />
         <Route path="/login" element={ <Login /> } />
+        <Route path="/authTest" element={ <AuthTest /> } />
       </Routes>
     </Router>
     </AuthProvider>
