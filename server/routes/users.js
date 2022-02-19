@@ -8,18 +8,18 @@
 const express = require('express');
 const router  = express.Router();
 
-const userHelper = require('../db_service/db_helper');
+const userHelper = require('../db_helpers/userHelper');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
     userHelper.getAllUsers(db)
       .then(dbRes => {
-        res.render({ dbRes });
+        res.json({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .render({ error: err.message });
+          .json({ error: err.message });
       });
   });
 // handle with pedros middleware
@@ -30,7 +30,7 @@ module.exports = (db) => {
   //   // cookie-parser middleware
   //   res.cookie('userId', req.params.id);
 
-  //   // send the user somewhere
+  //   // json the user somewhere
   //   res.redirect('/');
   // });
 
@@ -38,54 +38,101 @@ module.exports = (db) => {
     let userId = req.params.id;
     userHelper.getUserNameById(db, userId)
       .then((dbRes) => {
-        res.render(dbRes);
+        res.json(dbRes);
       })
       .catch(err => {
         res
           .status(500)
-          .render({ error: err.message });
+          .json({ error: err.message });
       });
   });
 
-
-  router.get('/:id/favourites', (req, res) => {
+  router.get("/:id/credentials", (req, res) => {
     let userId = req.params.id;
-    userHelper.getUserFavouriteMaps(db, userId).then(dbRes => res.json(dbRes))
+    userHelper.getUserEmailNameAndPasswordById(db, userId)
+      .then((dbRes) => {
+        res.json(dbRes);
+      })
       .catch(err => {
         res
           .status(500)
-          .render({ error: err.message });
+          .json({ error: err.message });
       });
   });
 
-  router.post('/:id/favourites', (req, res) => {
+  router.get("/:id/profile", (req, res) => {
     let userId = req.params.id;
-    let dataObj = req.body;
+    userHelper.getUserProfileById(db, userId)
+      .then((dbRes) => {
+        res.json(dbRes);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  // add user route (register)
+  router.post("/", (req, res) => {
+    const name = req.session.userId;
+    const email = req.body.title;
+    const image = req.body.image;
+    const description = req.body.description;
+    const password = req.body.latitude;
 
-    let newObj = {
-      userId: userId,
-      dataObj: dataObj,
+    const userInfo = {
+      name,
+      email,
+      image,
+      description,
+      password
     };
 
-    userHelper.addUserFavouriteMap(db, newObj).then((dbRes) => {
-      res.render(dbRes);
-    });
+    usersHelper.addusers(db, userInfo)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
-  router.patch('/:id/favourites/:favId', (req, res) => {
-    let userId = req.params.id;
-    let favId = req.params.favId;
-    let dataObj = req.body;
-    let editObj = {
-      userId: userId,
-      favId: favId,
-      dataObj,
+  router.put("/:id", (req, res) => {
+    const userId = req.params.id;
+    const name = req.session.userId;
+    const email = req.body.title;
+    const image = req.body.image;
+    const description = req.body.description;
+    const password = req.body.latitude;
+
+    const userInfo = {
+      userId,
+      name,
+      email,
+      image,
+      description,
+      password
     };
-    console.log(editObj);
-    userHelper.editUserFavouriteMap(db, editObj).then((dbRes) => {
-      res.render(dbRes);
-    });
+    usersHelper.editUsers(db, userInfo)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
+
+
+  router.delete("/:id", (req, res) => {
+    const userId = req.params.id;
+    usersHelper.deleteuser(db, userId).then(() =>  res.json('Delete user by id success,bro!!'));
+  });
+
+  
 
   return router;
 };
