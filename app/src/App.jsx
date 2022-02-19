@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from "./pages/Home";
 
 // import Register from "./pages/Register";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
 // import Logout from "./pages/Logout";
 
 import MyLibrary from "./pages/MyLibrary";
@@ -24,6 +24,7 @@ function App() {
         <Route path="/" element={ <Home /> } />
         <Route path="/mylibrary" element={ <MyLibrary /> } />
         <Route path="/decks/create" element={ <DeckCreate /> } />
+        <Route path="/login" element={ <Login /> } />
       </Routes>
     </Router>
   // <AuthProvider>
@@ -31,7 +32,6 @@ function App() {
   //       <Routes>
   //         {/* AuthRoutes */}
   //         {/* <Route path="/register" element={ <Register /> } />
-  //         <Route path="/login" element={ <Login /> } />
   //         <Route path="/logout" element={ <Logout /> } />
 
 
