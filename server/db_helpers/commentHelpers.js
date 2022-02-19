@@ -1,10 +1,10 @@
-const getMapByMapId = function(db, mapID) {
-  let mapValues = [mapID];
-  let queryString = `SELECT * FROM maps
-                        WHERE maps.id = $1`;
+const getCommentByCommentId = function(db, commentID) {
+  let commentValues = [commentID];
+  let queryString = `SELECT * FROM comments
+                        WHERE comments.id = $1`;
   return (
     db
-      .query(queryString, mapValues)
+      .query(queryString, commentValues)
       .then(res => {
         return res.rows;
       })
@@ -12,37 +12,37 @@ const getMapByMapId = function(db, mapID) {
   );
 };
 
-const addMap = function(db, mapInfo) {
-  let mapValues = [mapInfo.userId, mapInfo.title];
-  let queryString = `INSERT INTO maps (user_id, title)
+const addComment = function(db, commentInfo) {
+  let commentValues = [commentInfo.userId, commentInfo.title];
+  let queryString = `INSERT INTO comments (user_id, title)
   VALUES ($1,$2) RETURNING *;`;
   return db
-    .query(queryString, mapValues)
+    .query(queryString, commentValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 
 };
 
-const editMap = function(db, mapInfo) {
-  let mapValues = [mapInfo.title,  mapInfo.mapId];
-  let queryString = `UPDATE maps SET title = $1
-  WHERE maps.id = $2 RETURNING *;`;
+const editComment = function(db, commentInfo) {
+  let commentValues = [commentInfo.title,  commentInfo.commentId];
+  let queryString = `UPDATE comments SET title = $1
+  WHERE comments.id = $2 RETURNING *;`;
   return db
-    .query(queryString, mapValues)
+    .query(queryString, commentValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 };
-const deleteFlashcard = function(db, flashcardInfo) {
-  let flashcardValues = [flashcardInfo.title,  flashcardInfo.flashcardId];
-  let queryString = `DELETE FROM flashcards WHERE id = $1::integer;`;
+const deleteComment = function(db, commentInfo) {
+  let commentValues = [commentInfo.title,  commentInfo.commentId];
+  let queryString = `DELETE FROM comments WHERE id = $1::integer;`;
   return db
-    .query(queryString, flashcardValues)
+    .query(queryString, commentValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 };
 module.exports = {
-  getTagByTagId,
-  addTag,
-  editTag,
-  deleteTag,
+  getCommentByCommentId,
+  addComment,
+  editComment,
+  deleteComment,
 };

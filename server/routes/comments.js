@@ -1,7 +1,7 @@
 //  all the routes for flashcards
 
 const router = require("express").Router();
-module.exports = (db) => {
+
   router.get("/flashcards", (request, response) => {
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
