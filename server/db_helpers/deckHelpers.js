@@ -24,9 +24,9 @@ const addDeck = function(db, deckInfo) {
 };
 
 const editDeck = function(db, deckInfo) {
-  let deckValues = [deckInfo.name,  deckInfo.deckIgetDeckBydeckID];
-  let queryString = `UPDATE decks SET name = $1
-  WHERE decks.id = $2 RETURNING *;`;
+  let deckValues = [deckInfo.name,  deckInfo.userId, deckInfo.image, deckInfo.deckId];
+  let queryString = `UPDATE decks SET name = $1, user_id = $2, image = $3
+  WHERE decks.id = $4 RETURNING *;`;
   return db
     .query(queryString, deckValues)
     .then(res => res.rows[0])
