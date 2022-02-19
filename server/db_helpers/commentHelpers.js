@@ -40,3 +40,9 @@ const deleteFlashcard = function(db, flashcardInfo) {
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 };
+module.exports = {
+  getTagByTagId,
+  addTag,
+  editTag,
+  deleteTag,
+};
