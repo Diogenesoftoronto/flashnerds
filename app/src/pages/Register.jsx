@@ -29,17 +29,20 @@ function Register(props) {
       <img src="/books.png" alt="logo" />
       <form onSubmit={handleSubmit} method="post">
       <div>
-          <input type="text" name="" id="" 
+          <label for="userName">Username: </label>
+          <input type="text" name="userName" id="userName" 
             defaultValue={userName} 
             onChange={(e) => setUserName(e.currentTarget.value)} />
         </div>
         <div>
-          <input type="email" name="" id="" 
+        <label for="email">Email: </label>
+          <input type="email" name="email" id="email" 
             defaultValue={email} 
             onChange={(e) => setEmail(e.currentTarget.value)} />
         </div>
         <div>
-          <input type="password" name="" id="" 
+        <label for="password">Password: </label>
+          <input type="password" name="password" id="password" 
             defaultValue={password} 
             onChange={(e) => setPassword(e.currentTarget.value)} />
         </div>
