@@ -1,79 +1,91 @@
-//  all the routes for flashcards
+/*
+ * All routes for Users are defined here
+ * Since this file is loaded in server.js into api/users,
+ *   these routes are mounted onto /users
+ * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+ */
 
-const router = require('express').Router();
+const express = require('express');
+const router  = express.Router();
 
-router.get("/api/flashcards", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
+const userHelper = require('../db_service/db_helper');
 
-  db.query(`SELECT * FROM flashcards WHERE decks_id = $1`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
+module.exports = (db) => {
+  router.get("/", (req, res) => {
+    userHelper.getAllUsers(db)
+      .then(dbRes => {
+        res.render({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .render({ error: err.message });
+      });
   });
-});
-router.get("/api/flashcards/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
+// handle with pedros middleware
+  // router.get('/login/:id', (req, res) => {
+  //   // cookie-session middleware
+  //   req.session.userId = req.params.id;
 
-  db.query(`SELECT * FROM flashcards WHERE id = $1`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
-  });
-});
-router.put("/api/flashcards/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
+  //   // cookie-parser middleware
+  //   res.cookie('userId', req.params.id);
 
-  db.query(`UPDATE flashcards SET  WHERE id = $1::integer`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
-  });
-});
-router.post("/api/flashcards/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
+  //   // send the user somewhere
+  //   res.redirect('/');
+  // });
 
-  db.query(`DELETE FROM interviews WHERE appointment_id = $1::integer`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
+  router.get("/:id", (req, res) => {
+    let userId = req.params.id;
+    userHelper.getUserNameById(db, userId)
+      .then((dbRes) => {
+        res.render(dbRes);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .render({ error: err.message });
+      });
   });
-});
-router.delete("/api/flashcards/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
 
-  db.query(`DELETE FROM flashcards WHERE id = $1::integer`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
+
+  router.get('/:id/favourites', (req, res) => {
+    let userId = req.params.id;
+    userHelper.getUserFavouriteMaps(db, userId).then(dbRes => res.json(dbRes))
+      .catch(err => {
+        res
+          .status(500)
+          .render({ error: err.message });
+      });
   });
-});
+
+  router.post('/:id/favourites', (req, res) => {
+    let userId = req.params.id;
+    let dataObj = req.body;
+
+    let newObj = {
+      userId: userId,
+      dataObj: dataObj,
+    };
+
+    userHelper.addUserFavouriteMap(db, newObj).then((dbRes) => {
+      res.render(dbRes);
+    });
+  });
+
+  router.patch('/:id/favourites/:favId', (req, res) => {
+    let userId = req.params.id;
+    let favId = req.params.favId;
+    let dataObj = req.body;
+    let editObj = {
+      userId: userId,
+      favId: favId,
+      dataObj,
+    };
+    console.log(editObj);
+    userHelper.editUserFavouriteMap(db, editObj).then((dbRes) => {
+      res.render(dbRes);
+    });
+  });
+
+  return router;
+};

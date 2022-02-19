@@ -1,79 +1,81 @@
-//  all the routes for flashcards
+/*
+ * All routes for Points are defined here
+ * Since this file is loaded in server.js into api/maps,
+ *   these routes are mounted onto /users
+ * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+ */
 
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
+const pointsHelper = require('../db_service/db_helper');
 
-router.get("/api/flashcards", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
 
-  db.query(`SELECT * FROM flashcards WHERE decks_id = $1`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
+module.exports = (db) => {
+
+  router.post("/:mapId", (req, res) => {
+    const user_id = req.session.userId;
+    const map_id = req.params.mapId;
+    const title = req.body.title;
+    const image = req.body.image;
+    const description = req.body.description;
+    const latitude = req.body.latitude;
+    const longitude = req.body.longitude;
+
+    const pointInfo = {
+      user_id,
+      map_id,
+      title,
+      image,
+      description,
+      latitude,
+      longitude
+    };
+
+    pointsHelper.addPoints(db, pointInfo)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
-});
-router.get("/api/flashcards/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
 
-  db.query(`SELECT * FROM flashcards WHERE id = $1`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
-  });
-});
-router.put("/api/flashcards/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
+  router.patch("/:id", (req, res) => {
+    const pointId = req.params.id;
 
-  db.query(`UPDATE  WHERE id = $1::integer`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
-  });
-});
-router.post("/api/flashcards/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
+    const map_id = req.params.mapId;
+    const title = req.body.title;
+    const image = req.body.image;
+    const description = req.body.description;
+    const latitude = req.body.latitude;
+    const longtitude = req.body.longtitude;
 
-  db.query(`DELETE FROM interviews WHERE appointment_id = $1::integer`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
+    const pointValues = {
+      map_id,
+      title,
+      image,
+      description,
+      latitude,
+      longtitude,
+      pointId
+    };
+    pointsHelper.editPoints(db, pointValues)
+      .then(dbRes => {
+        res.render({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .render({ error: err.message });
+      });
   });
-});
-router.delete("/api/flashcards/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
 
-  db.query(`DELETE FROM flashcards WHERE id = $1::integer`, [
-    request.params.id
-  ]).then(() => {
-    setTimeout(() => {
-      response.status(204).json({});
-      updateAppointment(Number(request.params.id), null);
-    }, 1000);
+
+  router.delete("/:id", (req, res) => {
+    const pointId = req.params.id;
+    pointsHelper.deletePoint(db, pointId).then(() =>  res.send('Delete Point by id success,bro!!'));
   });
-});
+  return router;
+};

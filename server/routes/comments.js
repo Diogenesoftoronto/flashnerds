@@ -1,77 +1,68 @@
-//  all the routes for flashcards
+/*
+ * All routes for Flags are defined here
+ * Since this file is loaded in server.js into api/maps,
+ *   these routes are mounted onto /users
+ * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+ */
 
-const router = require("express").Router();
+const express = require('express');
+const router  = express.Router();
 
-  router.get("/flashcards", (request, response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
-
-    db.query(`SELECT * FROM flashcards WHERE decks_id = $1`, [
-      request.params.id,
-    ]).then(() => {
-      setTimeout(() => {
-        response.status(204).json({});
-        updateFlashcards(Number(request.params.id), null);
-      }, 1000);
-    });
+const flagHelper = require('../db_service/db_helper');
+module.exports = (db) => {
+  router.get("/", (req, res) => {
+    flagHelper.getAllFlag(db)
+      .then(dbRes => {
+        res.render({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .render({ error: err.message });
+      });
   });
-  router.get("/flashcards/:id", (request, response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
 
-    db.query(`SELECT * FROM flashcards WHERE id = $1`, [
-      request.params.id,
-    ]).then(() => {
-      setTimeout(() => {
-        response.status(204).json({});
-        updateFlashcards(Number(request.params.id), null);
-      }, 1000);
-    });
-  });
-  router.put("/flashcards/:id", (request, response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
 
-    db.query(`UPDATE  WHERE id = $1::integer`, [request.params.id]).then(() => {
-      setTimeout(() => {
-        response.status(204).json({});
-        updateFlashcards(Number(request.params.id), null);
-      }, 1000);
-    });
-  });
-  router.post("/flashcards/:id", (request, response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
+  router.post("/:mapId", (req, res) => {
+    const mapId = req.params.mapId;
+    const description = req.body.description;
+    const user_id = req.session.userId;
+    const editFlagInfo = {
+      user_id,
+      mapId,
+      description
+    };
 
-    db.query(`DELETE FROM interviews WHERE flashcards_id = $1::integer`, [
-      request.params.id,
-    ]).then(() => {
-      setTimeout(() => {
-        response.status(204).json({});
-        updateFlashcards(Number(request.params.id), null);
-      }, 1000);
-    });
+    flagHelper.addFlagByMapId(db, editFlagInfo)
+      .then(dbRes => {
+        res.render({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .render({ error: err.message });
+      });
   });
-  router.delete("/flashcards/:id", (request, response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
 
-    db.query(`DELETE FROM flashcards WHERE id = $1::integer`, [
-      request.params.id,
-    ]).then(() => {
-      setTimeout(() => {
-        response.status(204).json({});
-        updateFlashcards(Number(request.params.id), null);
-      }, 1000);
-    });
+
+  router.patch("/:mapId", (req, res) => {
+    const mapId = req.params.mapId;
+    const description = req.body.description;
+    const flagInfo = {
+      mapId,
+      description
+    };
+
+    flagHelper.editFlagByMapId(db, flagInfo)
+      .then(dbRes => {
+        res.render({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .render({ error: err.message });
+      });
   });
+
+  return router;
+};
