@@ -16,7 +16,7 @@ function Login(props) {
     login(userName, password).then(response => {
         console.log(response);
         alert("login!");
-        navigate("/home");
+        navigate("/");
     }).catch(e => {
         console.error(e); alert('login failed');
     });
