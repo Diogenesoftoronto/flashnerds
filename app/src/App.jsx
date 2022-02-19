@@ -5,7 +5,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Home from "./pages/Home";
 
-// import Register from "./pages/Register";
+import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AuthTest from "./pages/AuthTest";
 // import Logout from "./pages/Logout";
@@ -28,6 +28,7 @@ function App() {
         <Route path="/decks/create" element={ <DeckCreate /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/authTest" element={ <AuthTest /> } />
+        <Route path="/register" element={ <Register /> } />
       </Routes>
     </Router>
     </AuthProvider>
