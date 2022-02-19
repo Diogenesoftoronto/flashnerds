@@ -24,10 +24,10 @@ function AuthProvider({ children }) {
     return token;
   }, [isAuth])
 
-  function register(email, password){
+  function register(userName, email, password){
     const URL_PRODUCTS_API = 'http://localhost:3001/api/auth/register';
     return axios
-      .post(URL_PRODUCTS_API, { email, password })
+      .post(URL_PRODUCTS_API, { userName, email, password })
       .then(response => response.data.user)
       .catch(error => error.message);
   }
