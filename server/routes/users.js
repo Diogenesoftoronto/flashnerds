@@ -129,7 +129,7 @@ module.exports = (db) => {
 
   router.delete("/:id", (req, res) => {
     const userId = req.params.id;
-    usersHelper.deleteuser(db, userId).then(() =>  res.json('Delete user by id success,bro!!'));
+    usersHelper.deleteUserById(db, userId).then(() =>  res.json('Delete user by id success,bro!!'));
   });
 
   
