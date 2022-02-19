@@ -1,37 +1,18 @@
 /*
- * All routes for Points are defined here
- * Since this file is loaded in server.js into api/maps,
- *   these routes are mounted onto /users
+ * All routes for decks are defined here
+ * Since this file is loaded in server.js into api/decks,
+ *   these routes are mounted onto /decks
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
 const express = require('express');
-const router = express.Router();
-const pointsHelper = require('../db_service/db_helper');
+const router  = express.Router();
 
+const deckHelper = require('../db_helpers/deckHelper');
 
 module.exports = (db) => {
-
-  router.post("/:mapId", (req, res) => {
-    const user_id = req.session.userId;
-    const map_id = req.params.mapId;
-    const title = req.body.title;
-    const image = req.body.image;
-    const description = req.body.description;
-    const latitude = req.body.latitude;
-    const longitude = req.body.longitude;
-
-    const pointInfo = {
-      user_id,
-      map_id,
-      title,
-      image,
-      description,
-      latitude,
-      longitude
-    };
-
-    pointsHelper.addPoints(db, pointInfo)
+  router.get("/", (req, res) => {
+    deckHelper.getAllDecks(db)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -42,40 +23,68 @@ module.exports = (db) => {
       });
   });
 
-  router.patch("/:id", (req, res) => {
-    const pointId = req.params.id;
-
-    const map_id = req.params.mapId;
-    const title = req.body.title;
-    const image = req.body.image;
-    const description = req.body.description;
-    const latitude = req.body.latitude;
-    const longtitude = req.body.longtitude;
-
-    const pointValues = {
-      map_id,
-      title,
-      image,
-      description,
-      latitude,
-      longtitude,
-      pointId
-    };
-    pointsHelper.editPoints(db, pointValues)
-      .then(dbRes => {
-        res.render({ dbRes });
+  router.get("/:id", (req, res) => {
+    let deckId = req.params.id;
+    deckHelper.getDeckByDeckId(db, deckId)
+      .then((dbRes) => {
+        res.json(dbRes);
       })
       .catch(err => {
         res
           .status(500)
-          .render({ error: err.message });
+          .json({ error: err.message });
+      });
+  });
+
+  // add deck route (register)
+  router.post("/", (req, res) => {
+    const userId = req.session.userId;
+    const name = req.body.name;
+    const image = req.body.image;
+
+    const deckInfo = {
+      userId, name, image
+    };
+
+    decksHelper.adddecks(db, deckInfo)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.put("/:id", (req, res) => {
+    const deckId = req.params.id;
+    const userId = req.session.userId;
+    const name = req.body.name;
+    const image = req.body.image;
+
+    const deckInfo = {
+      userId, name, image, deckId
+    };
+
+    decksHelper.editdecks(db, deckInfo)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
   });
 
 
   router.delete("/:id", (req, res) => {
-    const pointId = req.params.id;
-    pointsHelper.deletePoint(db, pointId).then(() =>  res.send('Delete Point by id success,bro!!'));
+    const deckId = req.params.id;
+    decksHelper.deletedeckById(db, deckId).then(() =>  res.json('Delete deck by id success,bro!!'));
   });
+
+  
+
   return router;
 };

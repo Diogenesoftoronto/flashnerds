@@ -12,7 +12,7 @@ const flashcardHelper = require('../db_helpers/flashcardHelper');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    flashcardHelper.getFlashcardsByDeckId(db)
+    flashcardHelper.getAllFlashcards(db)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -22,17 +22,20 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-// handle with pedros middleware
-  // router.get('/login/:id', (req, res) => {
-  //   // cookie-session middleware
-  //   req.session.flashcardId = req.params.id;
+  // which one you want deck or deck/:id??
+  router.get("/deck", (req, res) => {
+    let deckId = req.params.deckId;
+    flashcardHelper.getFlashcardsByDeckId(db, deckId)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
-  //   // cookie-parser middleware
-  //   res.cookie('flashcardId', req.params.id);
-
-  //   // json the flashcard somewhere
-  //   res.redirect('/');
-  // });
 
   router.get("/:id", (req, res) => {
     let flashcardId = req.params.id;
