@@ -1,37 +1,66 @@
 /*
- * All routes for Points are defined here
- * Since this file is loaded in server.js into api/maps,
- *   these routes are mounted onto /users
+ * All routes for flashcards are defined here
+ * Since this file is loaded in server.js into api/flashcards,
+ *   these routes are mounted onto /flashcards
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
 const express = require('express');
-const router = express.Router();
-const pointsHelper = require('../db_service/db_helper');
+const router  = express.Router();
 
+const flashcardHelper = require('../db_helpers/flashcardHelper');
 
 module.exports = (db) => {
+  router.get("/", (req, res) => {
+    flashcardHelper.getFlashcardsByDeckId(db)
+      .then(dbRes => {
+        res.json({ dbRes });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+// handle with pedros middleware
+  // router.get('/login/:id', (req, res) => {
+  //   // cookie-session middleware
+  //   req.session.flashcardId = req.params.id;
 
-  router.post("/:mapId", (req, res) => {
-    const user_id = req.session.userId;
-    const map_id = req.params.mapId;
-    const title = req.body.title;
-    const image = req.body.image;
-    const description = req.body.description;
-    const latitude = req.body.latitude;
-    const longitude = req.body.longitude;
+  //   // cookie-parser middleware
+  //   res.cookie('flashcardId', req.params.id);
 
-    const pointInfo = {
-      user_id,
-      map_id,
-      title,
-      image,
-      description,
-      latitude,
-      longitude
+  //   // json the flashcard somewhere
+  //   res.redirect('/');
+  // });
+
+  router.get("/:id", (req, res) => {
+    let flashcardId = req.params.id;
+    flashcardHelper.getFlashcardByFlashcardId(db, flashcardId)
+      .then((dbRes) => {
+        res.json(dbRes);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+ 
+  // add flashcard route (register)
+  router.post("/", (req, res) => {
+    const deckId = req.session.deckId;
+    const question = req.body.question;
+    const answer = req.body.answer;
+
+    const flashcardInfo = {
+    deckId,
+    question,
+    answer
     };
 
-    pointsHelper.addPoints(db, pointInfo)
+    flashcardsHelper.addFlashcard(db, flashcardInfo)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -42,40 +71,43 @@ module.exports = (db) => {
       });
   });
 
-  router.patch("/:id", (req, res) => {
-    const pointId = req.params.id;
+  router.put("/:id", (req, res) => {
+    const deckId = req.session.deckId;
+    const question = req.body.question;
+    const answer = req.body.answer;
+    const likes = req.body.likes;
+    const flashcardId = req.body.flashcardId;
 
-    const map_id = req.params.mapId;
-    const title = req.body.title;
-    const image = req.body.image;
-    const description = req.body.description;
-    const latitude = req.body.latitude;
-    const longtitude = req.body.longtitude;
-
-    const pointValues = {
-      map_id,
-      title,
-      image,
-      description,
-      latitude,
-      longtitude,
-      pointId
+    const flashcardInfo = {
+    deckId,
+    question,
+    answer,
+    likes,
+    flashcardId,
     };
-    pointsHelper.editPoints(db, pointValues)
+    flashcardsHelper.editFlashcard(db, flashcardInfo)
       .then(dbRes => {
-        res.render({ dbRes });
+        res.json({ dbRes });
       })
       .catch(err => {
         res
           .status(500)
-          .render({ error: err.message });
+          .json({ error: err.message });
       });
   });
 
 
   router.delete("/:id", (req, res) => {
-    const pointId = req.params.id;
-    pointsHelper.deletePoint(db, pointId).then(() =>  res.send('Delete Point by id success,bro!!'));
+    const flashcardId = req.params.id;
+    flashcardsHelper.deleteFlashcard(db, flashcardId).then(() =>  res.json('Delete flashcard by id success, bro!!'))
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });;
   });
+
+  
+
   return router;
 };
