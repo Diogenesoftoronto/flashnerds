@@ -21,9 +21,9 @@ const addTag = function (db, tagInfo) {
 };
 
 const editTag = function (db, tagInfo) {
-  let tagValues = [tagInfo.name, tagInfo.tagId];
-  let queryString = `UPDATE tags SET name = $1
-  WHERE tags.id = $2 RETURNING *;`;
+  let tagValues = [tagInfo.name, tagInfo.flashcardsId, tagInfo.tagId];
+  let queryString = `UPDATE tags SET name = $1, flashcards_id = $2
+  WHERE tags.id = $3 RETURNING *;`;
   return db
     .query(queryString, tagValues)
     .then((res) => res.rows[0])
