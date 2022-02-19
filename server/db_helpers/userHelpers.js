@@ -30,11 +30,18 @@ const getAllUsers = function(db) {
     .then(data => data.rows)
     .catch(console.error("Error running query to get all users from database"));
 };
-const deleteFlashcard = function(db, flashcardInfo) {
-  let flashcardValues = [flashcardInfo.title,  flashcardInfo.flashcardId];
-  let queryString = `DELETE FROM flashcards WHERE id = $1::integer;`;
+const deleteUserById = function(db, userInfo) {
+  let userValues = [userInfo.title,  userInfo.userId];
+  let queryString = `DELETE FROM users WHERE id = $1::integer;`;
   return db
-    .query(queryString, flashcardValues)
+    .query(queryString, userValues)
     .then(res => res.rows[0])
     .catch(err => console.log(err));
 };
+module.exports = {
+  getAllUsers,
+  getUserNameById,
+  getUserProfileById,
+  getUserEmailNameAndPasswordById,
+  deleteUserById
+}
