@@ -4,6 +4,7 @@
   "description": "server for flashnerds",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.26.0",
     "bindings": "^1.5.0",
     "chalk": "^5.0.0",
     "cors": "^2.8.5",
