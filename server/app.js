@@ -21,12 +21,7 @@ app.use(helmet());
 
 // ROUTES/ENDPOINTS
 // Homepage
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.use('/api', auth());
-
+app.use('/api/auth', auth());
 app.use("/api/flashcards", flashcardRoutes(db));
 app.use("/api/decks", deckRoutes(db));
 app.use("/api/users", userRoutes(db));
