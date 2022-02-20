@@ -17,8 +17,8 @@ function Login(props) {
         console.log(response);
         alert("login!");
         navigate("/");
-    }).catch(e => {
-        console.error(e); alert('login failed');
+    }).catch(error => {
+        alert('login failed: ' + error.message);
     });
   };
 
