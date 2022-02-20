@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middlewares/verifyToken");
-const SECRET = "test";
-const userRoutes = require("./routes/users");
+const SECRET = process.env.SECRET;
 const axios = require('axios')
+
 module.exports = (userInfo) => {
   router.post("/login", (request, response) => {
       const found = await axios.get("/api/users/find", {params: {userInfo}})
