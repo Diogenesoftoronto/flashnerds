@@ -65,6 +65,8 @@ const Comment = styled('div', {
 const Comments = () => {
   const [open, setOpen] = React.useState(false);
   return (
+    <div style={{width: '300px'}}>
+
     <Collapsible open={open} onOpenChange={setOpen}>
       <Flex css={{ alignItems: 'center', justifyContent: 'space-between' }}>
         {/* have a form for writing a comment */}
@@ -87,6 +89,7 @@ const Comments = () => {
       </Comment>
       </CollapsibleContent>
     </Collapsible>
+    </div>
   );
 };
 
