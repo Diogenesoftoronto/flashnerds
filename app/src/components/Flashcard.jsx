@@ -25,3 +25,5 @@ function Flashcard(props) {
     </ReactCardFlip>
   );
 }
+
+export default Flashcard;
