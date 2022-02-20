@@ -61,7 +61,7 @@ const getAllUsers = function(db) {
     .then(data => data.rows)
     .catch(console.error("Error running query to get all users from database"));
 };
-const deleteUserById = function(db, userInfo) {
+const deleteUser = function(db, userInfo) {
   let userValues = [userInfo.title,  userInfo.userId];
   let queryString = `DELETE FROM users WHERE id = $1;`;
   return db
@@ -76,5 +76,5 @@ module.exports = {
   addUser,
   editUser,
   getUserEmailNameAndPasswordById,
-  deleteUserById
+  deleteUser
 }

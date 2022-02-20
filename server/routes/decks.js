@@ -46,7 +46,7 @@ module.exports = (db) => {
       userId, name, image
     };
 
-    decksHelper.adddecks(db, deckInfo)
+    deckHelper.addDeck(db, deckInfo)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -67,7 +67,7 @@ module.exports = (db) => {
       userId, name, image, deckId
     };
 
-    decksHelper.editdecks(db, deckInfo)
+    deckHelper.editDeck(db, deckInfo)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -81,7 +81,7 @@ module.exports = (db) => {
 
   router.delete("/:id", (req, res) => {
     const deckId = req.params.id;
-    decksHelper.deletedeckById(db, deckId).then(() =>  res.json('Delete deck by id success,bro!!'));
+    deckHelper.deleteDeck(db, deckId).then(() =>  res.json('Delete deck by id success,bro!!'));
   });
 
   

@@ -1,67 +1,89 @@
 /*
- * All routes for Flags are defined here
- * Since this file is loaded in server.js into api/maps,
- *   these routes are mounted onto /users
+ * All routes for comments are defined here
+ * Since this file is loaded in server.js into api/comments,
+ *   these routes are mounted onto /comments
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
-const flagHelper = require('../db_service/db_helper');
+const commentHelper = require("../db_helpers/commentHelper");
+
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    flagHelper.getAllFlag(db)
-      .then(dbRes => {
-        res.render({ dbRes });
+    commentHelper
+      .getAllComments(db)
+      .then((dbRes) => {
+        res.json({ dbRes });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .render({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
-
-  router.post("/:mapId", (req, res) => {
-    const mapId = req.params.mapId;
-    const description = req.body.description;
-    const user_id = req.session.userId;
-    const editFlagInfo = {
-      user_id,
-      mapId,
-      description
-    };
-
-    flagHelper.addFlagByMapId(db, editFlagInfo)
-      .then(dbRes => {
-        res.render({ dbRes });
+  router.get("/:id", (req, res) => {
+    let commentId = req.params.id;
+    commentHelper
+      .getCommentByCommentId(db, commentId)
+      .then((dbRes) => {
+        res.json(dbRes);
       })
-      .catch(err => {
-        res
-          .status(500)
-          .render({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
+  // add comment route (register)
+  router.post("/", (req, res) => {
+    const content = req.session.content;
+    const timestamp = req.body.timestamp;
+    const flashcardId = req.body.flashcardId;
 
-  router.patch("/:mapId", (req, res) => {
-    const mapId = req.params.mapId;
-    const description = req.body.description;
-    const flagInfo = {
-      mapId,
-      description
+    const commentInfo = {
+      content,
+      timestamp,
+      flashcardId,
     };
 
-    flagHelper.editFlagByMapId(db, flagInfo)
-      .then(dbRes => {
-        res.render({ dbRes });
+    commentHelper
+      .addComment(db, commentInfo)
+      .then((dbRes) => {
+        res.json({ dbRes });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .render({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
+  });
+
+  router.put("/:id", (req, res) => {
+    const commentId = req.params.id;
+    const content = req.session.content;
+    const timestamp = req.body.timestamp;
+    const flashcardId = req.body.flashcardId;
+
+    const commentInfo = {
+      content,
+      timestamp,
+      flashcardId,
+      commentId,
+    };
+
+    commentHelper
+      .editComment(db, commentInfo)
+      .then((dbRes) => {
+        res.json({ dbRes });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  router.delete("/:id", (req, res) => {
+    const commentId = req.params.id;
+    commentHelper
+      .deleteComment(db, commentId)
+      .then(() => res.json("Delete comment by id success,bro!!"));
   });
 
   return router;
