@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-// const SECRET = process.env.SECRET;
-const SECRET = "test";
+const SECRET = process.env.SECRET;
+
 
 const verifyToken = (req, res, next) => {
   // Si el encabezado de autorización no existe, entonces retornamos con un mensaje de error
