@@ -1,9 +1,16 @@
+const getAllComments = function (db) {
+  return db
+    .query(`SELECT * FROM comments;`)
+    .then((data) => data.rows)
+    .catch(console.error("Error running query to get all comments from database"));
+};
+
 const getCommentsByFlashcardId = function (db, flashcardId) {
   let commentValues = [flashcardId];
   let queryString = `SELECT * FROM comments
                         WHERE flashcards_id = $1;`;
   return db
-    .query(queryString, flashcardValues)
+    .query(queryString, commentValues)
     .then((res) => {
       return res.rows;
     })
@@ -53,6 +60,8 @@ const deleteComment = function(db, commentId) {
     .catch(err => console.log(err));
 };
 module.exports = {
+  getAllComments,
+  getCommentsByFlashcardId,
   getCommentByCommentId,
   addComment,
   editComment,
