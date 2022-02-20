@@ -22,17 +22,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-// handle with pedros middleware
-  // router.get('/login/:id', (req, res) => {
-  //   // cookie-session middleware
-  //   req.session.userId = req.params.id;
-
-  //   // cookie-parser middleware
-  //   res.cookie('userId', req.params.id);
-
-  //   // json the user somewhere
-  //   res.redirect('/');
-  // });
 
   router.get("/:id", (req, res) => {
     let userId = req.params.id;
@@ -70,6 +59,23 @@ module.exports = (db) => {
         res
           .status(500)
           .json({ error: err.message });
+      });
+  });
+  router.get("/find", (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const userInfo = {
+      email,
+      password,
+    };
+    userHelper
+      .getUserByEmailPassword(db, userInfo)
+      .then((dbRes) => {
+        res.json(dbRes);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
   // add user route (register)
