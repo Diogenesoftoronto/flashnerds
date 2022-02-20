@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@modulz/radix-icons": "^4.0.0",
     "@radix-ui/react-collapsible": "^0.1.5",
     "@stitches/react": "^1.2.6",
     "@testing-library/jest-dom": "^5.16.2",
