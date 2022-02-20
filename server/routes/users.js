@@ -88,7 +88,7 @@ module.exports = (db) => {
       password
     };
 
-    usersHelper.addusers(db, userInfo)
+    userHelper.addUser(db, userInfo)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -115,7 +115,7 @@ module.exports = (db) => {
       description,
       password
     };
-    usersHelper.editUsers(db, userInfo)
+    userHelper.editUser(db, userInfo)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -129,7 +129,7 @@ module.exports = (db) => {
 
   router.delete("/:id", (req, res) => {
     const userId = req.params.id;
-    usersHelper.deleteUserById(db, userId).then(() =>  res.json('Delete user by id success,bro!!'));
+    userHelper.deleteUser(db, userId).then(() =>  res.json('Delete user by id success,bro!!'));
   });
 
   

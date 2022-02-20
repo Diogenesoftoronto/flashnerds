@@ -63,7 +63,7 @@ module.exports = (db) => {
     answer
     };
 
-    flashcardsHelper.addFlashcard(db, flashcardInfo)
+    flashcardHelper.addFlashcard(db, flashcardInfo)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -88,7 +88,7 @@ module.exports = (db) => {
     likes,
     flashcardId,
     };
-    flashcardsHelper.editFlashcard(db, flashcardInfo)
+    flashcardHelper.editFlashcard(db, flashcardInfo)
       .then(dbRes => {
         res.json({ dbRes });
       })
@@ -102,7 +102,7 @@ module.exports = (db) => {
 
   router.delete("/:id", (req, res) => {
     const flashcardId = req.params.id;
-    flashcardsHelper.deleteFlashcard(db, flashcardId).then(() =>  res.json('Delete flashcard by id success, bro!!'))
+    flashcardHelper.deleteFlashcard(db, flashcardId).then(() =>  res.json('Delete flashcard by id success, bro!!'))
     .catch(err => {
       res
         .status(500)
