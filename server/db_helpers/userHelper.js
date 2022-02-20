@@ -6,6 +6,16 @@ const getUserNameById = function(db, userInfo) {
     .then(res => res.rows[0])
     .catch(console.error("Error running query to get user name by id from database"));
 };
+
+const getUserByEmailPassword = (db, userInfo) => {
+  let userValues = [userInfo.id];
+  let queryString = `SELECT email, password FROM users WHERE  email = $1, password = $2;`;
+  return db
+    .query(queryString, userValues)
+    .then(res => res.rows[0])
+    .catch(console.error("Error running query to get user profile by id from database"));
+}
+
 const addUser = function (db, userInfo) {
   let userValues = [
     userInfo.name,
@@ -70,6 +80,7 @@ const deleteUser = function(db, userInfo) {
     .catch(err => console.log(err));
 };
 module.exports = {
+  getUserByEmailPassword,
   getAllUsers,
   getUserNameById,
   getUserProfileById,
