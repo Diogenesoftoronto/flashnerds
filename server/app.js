@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api', auth());
+app.use('/api', auth(db));
 
 app.use("/api/flashcards", flashcardRoutes(db));
 app.use("/api/decks", deckRoutes(db));
