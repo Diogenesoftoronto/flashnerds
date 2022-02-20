@@ -4,25 +4,29 @@ import ReactCardFlip from 'react-card-flip';
 function Flashcard(props) {
   const { question, answer } = props;
 
-  [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleClick = () => setIsFlipped(!isFlipped);
+  const handleClick = () => {
+    setIsFlipped(!isFlipped);
+  }
 
   return (
-    <ReactCardFlip isFlipped flipDirection="horizontal">
-      <div class="flashcard">
+    <div class="flashcard">
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+
         <div class="flashcard-content" id="front">
           <h2>Question</h2>
           {question}
-          <img src="./flip-arrow.png" onClick={handleClick}/>
+          <img src="./flip-arrow.png" onClick={handleClick} />
         </div>
+
         <div class="flashcard-content" id="back">
           <h2>Answer</h2>
           {answer}
-          <img src="./flip-arrow.png" onClick={handleClick}/>
+          <img src="./flip-arrow.png" onClick={handleClick} />
         </div>
-      </div>
-    </ReactCardFlip>
+      </ReactCardFlip>
+    </div>
   );
 }
 
