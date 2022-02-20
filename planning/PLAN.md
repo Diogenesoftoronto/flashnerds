@@ -149,11 +149,11 @@ This is an explanation of what each route does:
 Backend
 | BREAD  | comments               | users               | decks               | tags               | flashcards               |
 |--------|------------------------|---------------------|---------------------|--------------------|--------------------------|
-| Browse | GET api/comment        | GET api/user        | GET api/deck        | GET api/tag        | GET api/flashcard        |
-| Read   | GET api/comment/:id    | GET api/user/:id    | GET api/deck/:id    | GET api/tag/:id    | GET api/flashard/:id     |
-| edit   | PUT api/comment/:id    | PUT api/user/:id    | PUT api/deck/:id    | PUT api/tag:id     | PUT api/flashcard:id     |
-| add    | POST api/comment/:id   | POST api/user/:id   | POST api/deck/:id   | PATCH api/tag/:id  | PATCH api/flashcard/:id  |
-| delete | DELETE api/comment/:id | DELETE api/user/:id | DELETE api/deck/:id | DELETE api/tag/:id | DELETE api/flashcard/:id |
+| Browse | GET api/comment        | GET api/user        | GET /api/decks        | GET /api/tag        | GET /api/flashcards        |
+| Read   | GET api/comment/:id    | GET /api/user/:id    | GET /api/decks/:id    | GET /api/tags/:id    | GET /api/flashards/:id     |
+| edit   | PUT /api/comments/:id    | PUT /api/users/:id    | PUT /api/decks/:id    | PUT /api/tag:id     | PUT /api/flashcards/:id     |
+| add    | POST /api/comments/:id   | POST /api/users/:id   | POST /api/decks/:id   | PATCH /api/tags/:id  | PATCH /api/flashcards/:id  |
+| delete | DELETE /api/comment/:id | DELETE /api/users/:id | DELETE api/decks/:id | DELETE /api/tags/:id | DELETE /api/flashcards/:id |
 
 
 Frontend
