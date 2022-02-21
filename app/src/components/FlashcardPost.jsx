@@ -1,24 +1,35 @@
 import { useState } from "react";
-import Button from "./Button";
+import { Button } from "./Buttons/Button";
 import Flashcard from "./Flashcard";
+import CommentList from "./CommentList";
+import Likes from "./Likes";
 
 function FlashcardPost(props) {
 
-  const {question, answer, deck_id, likes } = props;
+  const {
+    question,
+    answer,
+    deck_id,
+    likes,
+    onBack,
+    onNext } = props;
 
 
 
   return (
     <article class="flashcard-post">
-      <Button action={() => {}} color={"grey"} label="Back"/>
+      <Button onClick={() => onBack()}>
+        Back
+      </Button>
       {/* flex display */}
       <div className="flashcard-content">
       <Flashcard question={question} answer={answer}/>
-      {/* pulldown menu for comments */}
-      {/* <Comments></Comments> */}
-      {/* like heart */}
+      <CommentList/>
+      <Likes likes={likes}/>
       </div>
-      <Button action={() => {}} color={"grey"} label="Next"/>
+      <Button onClick={() => onNext()}>
+        Next
+      </Button>
 
     </article>
   );
