@@ -67,11 +67,11 @@ const StyledDescription = styled(DialogPrimitive.Description, {
 
 // Exports
 const Dialog = DialogPrimitive.Root;
-const DialogTrigger = DialogPrimitive.Trigger;
+// const DialogTrigger = DialogPrimitive.Trigger;
 const DialogContent = Content;
 const DialogTitle = StyledTitle;
 const DialogDescription = StyledDescription;
-const DialogClose = DialogPrimitive.Close;
+// const DialogClose = DialogPrimitive.Close;
 
 // Your app...
 const Flex = styled('div', { display: 'flex' });
@@ -130,7 +130,7 @@ const IconButton = styled('button', {
   '&:focus': { boxShadow: `0 0 0 2px ${violet.violet7}` },
 });
 
-const Fieldset = styled('fieldset', {
+const Form = styled('form', {
   all: 'unset',
   display: 'flex',
   gap: 20,
@@ -163,12 +163,26 @@ const Input = styled('input', {
   '&:focus': { boxShadow: `0 0 0 2px ${violet.violet8}` },
 });
 
-const Dialog = (props) => {
+const EditDialog = (props) => {
 
+  const { content, onSubmit} = props;
+
+  // Controls open and close of dialog popup
   const [open, onOpenChange] = useState(false);
+
+
+  const [value, setValue] = useState(content);
+
   const toggleDialog = () => onOpenChange(!open);
 
-  function 
+  const cancel = () => {
+    onOpenChange(false);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(value);
+  }
 
 return  (
   <Dialog open={open ? 'open' : null} >
@@ -180,20 +194,24 @@ return  (
       <DialogDescription>
         Make changes to your comment
       </DialogDescription>
-      <Fieldset>
-        <Label htmlFor="comment">Name</Label>
-        <Input id="comment-stuff" defaultValue="TEXT FIELD" />
-      </Fieldset>
+      <Form>
+        <Label htmlFor="comment">Edit</Label>
+        <Input
+        id="comment-stuff"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        />
+      </Form>
 
       <Flex css={{ marginTop: 25, justifyContent: 'flex-end' }}>
         {/* <DialogClose asChild> */}
-          <Button onClick={toggleDialog} aria-label="Close" variant="green">
+          <Button onClick={handleSubmit} aria-label="Close" variant="green">
             Save changes
           </Button>
         {/* </DialogClose> */}
       </Flex>
       {/* <DialogClose asChild> */}
-        <IconButton onClick={toggleDialog}>
+        <IconButton onClick={cancel}>
           <Cross2Icon />
         </IconButton>
       {/* </DialogClose> */}
@@ -202,5 +220,5 @@ return  (
 );
 }
 
-export default Dialog;
+export default EditDialog;
 
