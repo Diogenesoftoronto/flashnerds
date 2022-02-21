@@ -28,7 +28,7 @@ function DeckCreate () {
   
   const navigate= useNavigate();
   const handleBtnCreateClick = () => {
-    const data = {imageUrl, name: deckTile}
+    const data = {imageUrl}
     axios.post('/api/image', data)
       .then(response => {
         console.log(response);
