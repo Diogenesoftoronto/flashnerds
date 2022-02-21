@@ -1,9 +1,11 @@
 import React from 'react';
+import DeckLists from '../components/Deck';
 
 function MyLibrary () {
   return (
     <div>
-      My Library
+      <h2>My Library</h2>
+      <DeckLists />
     </div>
   )
 }
