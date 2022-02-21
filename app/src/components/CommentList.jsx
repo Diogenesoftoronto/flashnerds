@@ -3,6 +3,7 @@ import { styled, keyframes } from '@stitches/react';
 import { violet, blackA } from '@radix-ui/colors';
 import { RowSpacingIcon, Cross2Icon } from '@modulz/radix-icons';
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
+// import { IconButton } from './Buttons/Button';
 
 
 const StyledCollapsible = CollapsiblePrimitive.Root;
@@ -76,7 +77,7 @@ const Comments = () => {
         </CollapsibleTrigger>
       </Flex>
 
-      <Comment><Text>Comments</Text></Comment>
+      Comments
       <CollapsibleContent>
       <Comment>
         <Text>Comment 1</Text>
