@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function DeckCreate () {
   const [imageUrl, setImageUrl] = useState("");
@@ -23,6 +25,27 @@ function DeckCreate () {
      .catch((err) => console.log(err));
    };
 
+  // conat [deckTitle, setDeckTitle] = useState();
+  // conat [image, setImage] = useState();
+ 
+  const navigate= useNavigate();
+  const handleBtnCreateClick = () => {
+    const file = new FormData()
+    file.append("Spanish");
+    file.append("../public/books.png");
+    axios
+      .post('', file, 
+      {
+        header: {
+          'content-type': 'multipart/form-data',
+        },
+      })
+      .then(response => {
+        console.log(response);
+      })
+    navigate("/mylibrary");
+  };
+
   return (
     <div>
       <h1>Create New Deck</h1>
@@ -35,6 +58,7 @@ function DeckCreate () {
         <img src={imageUrl} className="uploadedImg" alt="" />
         <button className="uploadButton" onClick={handleClick}>Upload</button>
       </div>
+      <button className="createButton" onClick={handleBtnCreateClick}>Create</button>
     </div>
   )
 }
