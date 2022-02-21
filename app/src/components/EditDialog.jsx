@@ -165,8 +165,9 @@ const Input = styled("input", {
 });
 
 const EditDialog = (props) => {
-  
   const { state, setState, content, onSubmit } = props;
+
+
 
   const [value, setValue] = useState(content);
 
@@ -182,11 +183,6 @@ const EditDialog = (props) => {
 
   return (
     <Dialog open={state === "EDIT" ? "open" : null}>
-      {/* <DialogTrigger asChild> */}
-      <Button onClick={() => setState("EDIT")} size="large">
-        Edit Comment
-      </Button>
-      {/* </DialogTrigger> */}
       <DialogContent>
         <DialogTitle>Edit</DialogTitle>
         <DialogDescription>Make changes to your comment</DialogDescription>
