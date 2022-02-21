@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -10,8 +11,10 @@ const flashcardRoutes = require("./routes/flashcard");
 const userRoutes = require("./routes/users");
 const deckRoutes = require("./routes/decks");
 
-// require('./db');
-
+const dbParams = require('./lib/db.js');
+const Client = require('pg').Client;
+const db = new Client(dbParams)
+db.connect()
 // SERVER SETTINGS + MIDDLEWARES
 app.use(cors());
 app.use(express.json());
@@ -21,7 +24,12 @@ app.use(helmet());
 
 // ROUTES/ENDPOINTS
 // Homepage
-app.use('/api/auth', auth());
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+
+app.use('/api', auth(db));
+
 app.use("/api/flashcards", flashcardRoutes(db));
 app.use("/api/decks", deckRoutes(db));
 app.use("/api/users", userRoutes(db));
