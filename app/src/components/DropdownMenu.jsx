@@ -147,7 +147,7 @@ const IconButton = styled('button', {
   '&:focus': { boxShadow: `0 0 0 2px black` },
 });
 
-export const DropdownMenu = (props) => {
+export default function DropdownMenu(props) {
 
   const { disabled, onEdit, onDelete } = props;
 
@@ -174,5 +174,4 @@ export const DropdownMenu = (props) => {
   );
 };
 
-export default DropdownMenu;
 
