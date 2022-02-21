@@ -196,17 +196,13 @@ const EditDialog = (props) => {
         </Form>
 
         <Flex css={{ marginTop: 25, justifyContent: "flex-end" }}>
-          {/* <DialogClose asChild> */}
           <Button onClick={handleSubmit} aria-label="Close" variant="green">
             Save changes
           </Button>
-          {/* </DialogClose> */}
         </Flex>
-        {/* <DialogClose asChild> */}
         <IconButton onClick={cancel}>
           <Cross2Icon />
         </IconButton>
-        {/* </DialogClose> */}
       </DialogContent>
     </Dialog>
   );
