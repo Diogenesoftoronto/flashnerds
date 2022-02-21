@@ -1,10 +1,13 @@
 import React from 'react';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function DeckCreate () {
   const [imageUrl, setImageUrl] = useState("");
   const cloud_name = "dbbnv85af";
   const upload_preset = "daxonv2q";
+  // to upload image onthe browser
   const handleClick = () => {
     const { files } = document.querySelector(".uploadInput");
     const formData = new FormData();
@@ -21,7 +24,17 @@ function DeckCreate () {
       setImageUrl(res.secure_url);
      })
      .catch((err) => console.log(err));
-   };
+   }
+  
+  const navigate= useNavigate();
+  const handleBtnCreateClick = () => {
+    const data = {imageUrl}
+    axios.post('/api/image', data)
+      .then(response => {
+        console.log(response);
+        navigate("/mylibrary");
+      })
+  };
 
   return (
     <div>
@@ -33,8 +46,9 @@ function DeckCreate () {
       <div className="imageUpload">
         <input type="file" className="uploadInput" />
         <img src={imageUrl} className="uploadedImg" alt="" />
-        <button className="uploadButton" onClick={handleClick}>Upload</button>
+        <button className="uploadButton" onClick={handleClick}>Save</button>
       </div>
+      <button className="createButton" onClick={handleBtnCreateClick}>Create</button>
     </div>
   )
 }
