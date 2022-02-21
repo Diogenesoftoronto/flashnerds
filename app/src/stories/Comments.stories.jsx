@@ -1,9 +1,9 @@
 import React from 'react';
-import Comments from '../components/Comments';
+import CommentListItem from '../components/Comments';
 
 export default {
   title: 'Comments',
-  component: Comments
+  component: CommentListItem
 }
 
-export const Primary = () => <Comments/>
+export const Primary = () => <CommentsListItem/>
