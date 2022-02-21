@@ -126,6 +126,7 @@ const EditDialog = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(value);
+    setState("DEFAULT");
   };
 
   return (
