@@ -56,6 +56,14 @@ const getUserProfileById = function(db, userInfo) {
     .then(res => res.rows[0])
     .catch(console.error("Error running query to get user profile by id from database"));
 };
+const getUserIdEmailNameAndPasswordByName = function(db, userInfo) {
+  let userValues = [userInfo.name];
+  let queryString = `SELECT id, name, email, password FROM users WHERE name = $1;`;
+  return db
+    .query(queryString, userValues)
+    .then(res => res.rows[0])
+    .catch(console.error("Error running query to get user profile by name from database"));
+};
 const getUserEmailNameAndPasswordById = function(db, userInfo) {
   let userValues = [userInfo.id];
   let queryString = `SELECT name, email, password FROM users WHERE id = $1;`;
@@ -86,6 +94,7 @@ module.exports = {
   getUserProfileById,
   addUser,
   editUser,
+  getUserIdEmailNameAndPasswordByName,
   getUserEmailNameAndPasswordById,
   deleteUser
 }

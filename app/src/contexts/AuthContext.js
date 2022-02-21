@@ -44,7 +44,7 @@ function AuthProvider({ children }) {
         setIsAuth(true)
         return decoded;
       })
-      .catch(error => { throw error });
+      .catch(({ response }) => { console.log(response.data.message); throw new Error(response.data.message) });
   }
 
   function logout(){
