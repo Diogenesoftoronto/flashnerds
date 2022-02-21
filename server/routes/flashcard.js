@@ -23,7 +23,7 @@ module.exports = (db) => {
       });
   });
   // which one you want deck or deck/:id??
-  router.get("/deck", (req, res) => {
+  router.get("/deck/:deck", (req, res) => {
     let deckId = req.params.deckId;
     flashcardHelper.getFlashcardsByDeckId(db, deckId)
       .then(dbRes => {
@@ -53,7 +53,7 @@ module.exports = (db) => {
  
   // add flashcard route (register)
   router.post("/", (req, res) => {
-    const deckId = req.session.deckId;
+    const deckId = req.body.deckId;
     const question = req.body.question;
     const answer = req.body.answer;
 
@@ -75,7 +75,7 @@ module.exports = (db) => {
   });
 
   router.put("/:id", (req, res) => {
-    const deckId = req.session.deckId;
+    const deckId = req.params.deckId;
     const question = req.body.question;
     const answer = req.body.answer;
     const likes = req.body.likes;

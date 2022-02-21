@@ -16,12 +16,12 @@ module.exports = (db) => {
         if (!user) {
           return response
             .status(400)
-            .send({ message: "User not exist" });
+            .send({ message: "User does not exist" });
         }
 
         const validPassword = user.password === password;
         if (!validPassword) {
-          return response.status(400).send({ message: "Wrong username or password" });
+          return response.status(400).send({ message: "Incorrect username or password" });
         }
 
         const payload = {
@@ -43,7 +43,7 @@ module.exports = (db) => {
   });
 
   router.post("/auth/test", verifyToken, (request, response) => {
-    response.json({ message: "u r authorized" });
+    response.json({ message: "You are authorized" });
   });
 
   return router;
