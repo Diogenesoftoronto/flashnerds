@@ -26,9 +26,9 @@ const runSchemaFiles = function () {
 };
 // run seed files
 const runSeedFiles = function () {
-  const seedFiles = fs.readdirSync('./db/seed');
+  const seedFiles = fs.readdirSync('./db/seeds');
   seedFiles.forEach(function (file) {
-    const sql = fs.readFileSync(`./db/seed/${file}`, 'utf8');
+    const sql = fs.readFileSync(`./db/seeds/${file}`, 'utf8');
     client.query(sql, function (err, result) {
       if (err) {
         console.log(chalk.red(err));
