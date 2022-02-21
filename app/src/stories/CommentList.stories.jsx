@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentList from '../components/Comments';
+import CommentList from '../components/CommentList';
 
 export default {
   title: 'CommentList',
