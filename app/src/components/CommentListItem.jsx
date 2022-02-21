@@ -1,5 +1,13 @@
 import React , { useState, useEffect } from 'react';
 import { format } from 'timeago.js';
+import Likes from './Likes';
+import EditDeleteMenu from './EditDeleteMenu';
+import EditDialog from './EditDialog';
+import AlertDelete from './AlertDelete';
+
+const EDIT = 'EDIT';
+const DELETE = 'DELETE';
+const DEFAULT = 'DEFAULT';
 
 export default function CommentListItem(props) {
   const {
@@ -7,11 +15,16 @@ export default function CommentListItem(props) {
     userName,
     content,
     timestamp,
-    likes
+    likes,
+    onRemove,
+    onEdit
   } = props;
 
+
+  const [contentValue, setContentValue] = useState(content);
+
   // we may need helper functions for processing timestamps between pg and js
-  const timeago = (date) => format(Date.now() - timestamp);
+  const timeago = () => format(timestamp);
 
   // state for timeago
   const [time, setTime] = useState(timeago(timestamp));
@@ -22,16 +35,41 @@ export default function CommentListItem(props) {
     setTime(timeago(timestamp));
   }, [isHover]);
 
+  const [state, setState] = useState(DEFAULT);
+
   return (
     <div className="comment" onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
       <header>
+        <div className="handle">
         <img src={avatar} />
         <h5>{userName}</h5>
+        </div>
+        <EditDeleteMenu
+          onEdit={() => setState(EDIT)}
+          onDelete={() => setState(DELETE)}
+        />
+        <EditDialog
+          state={state}
+          setState={setState}
+          content={content}
+          onSubmit={setContentValue}
+        />
+        <AlertDelete
+          state={state}
+          setState={setState}
+          onDelete={()=>{}}
+        />
       </header>
       <div className="comment-content">
-        {content}
+        {contentValue}
       </div>
-      <footer>{time}</footer>
+      <footer>
+        <span className='comment-time'>
+        {time}
+        </span>
+        <Likes likes={likes}/>
+        </footer>
+        
     </div>
   );
 }
