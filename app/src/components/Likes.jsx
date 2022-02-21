@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export default function Likes(props) {
   const { likes } = props;
 
@@ -16,7 +18,7 @@ export default function Likes(props) {
   return (
     <span className="likes-container">
       {/* flex */}
-    <a onClick={clickLike}></a>
+    <a onClick={clickLike}><FontAwesomeIcon icon="fa-solid fa-heart" /></a>
     <span className="like-counter">{likeCount}</span>
     </span>
   );
