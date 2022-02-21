@@ -10,4 +10,5 @@ if (process.env.DATABASE_URL) {
     database: process.env.DB_NAME,
   };
 }
+console.log(dbParams)
 module.exports = dbParams;
