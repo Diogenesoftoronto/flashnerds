@@ -10,7 +10,7 @@ const flashcardRoutes = require("./routes/flashcard");
 const userRoutes = require("./routes/users");
 const deckRoutes = require("./routes/decks");
 
-// require('./db');
+const db = require('./db');
 
 // SERVER SETTINGS + MIDDLEWARES
 app.use(cors());

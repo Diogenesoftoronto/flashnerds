@@ -5,7 +5,7 @@ const SECRET = process.env.SECRET;
 const axios = require('axios')
 
 module.exports = (userInfo) => {
-  router.post("/login", (request, response) => {
+  router.post("/login", async (request, response) => {
       const found = await axios.get("/api/users/find", {params: {userInfo}})
         // if user is not found then return "user not found, please register"
         if (!found.data)

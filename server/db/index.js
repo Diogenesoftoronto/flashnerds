@@ -2,7 +2,11 @@ require('dotenv').config();
 
 // other dependencies
 const fs = require('fs');
-const chalk = require('chalk');
+const chalk = {
+  red: console.log,
+  cyan: console.log,
+  green: console.log
+};
 const {Client} = require('pg');
 
 // PG connection setup
