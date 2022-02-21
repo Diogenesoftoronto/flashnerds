@@ -1,12 +1,13 @@
 import React , { useState, useEffect } from 'react';
 import { format } from 'timeago.js';
 
-export default function Comment(props) {
+export default function CommentListItem(props) {
   const {
     avatar,
     userName,
     content,
-    timestamp
+    timestamp,
+    likes
   } = props;
 
   // we may need helper functions for processing timestamps between pg and js
