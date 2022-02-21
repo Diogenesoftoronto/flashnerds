@@ -17,7 +17,7 @@ export default function Likes(props) {
   // TODO: add helpers for updating likes
 
   return (
-    <span className="likes-container">
+    <span className="likes-container" style={{color: 'pink'}} >
       {/* flex */}
     <a onClick={clickLike}>
     <i className="fa-solid fa-heart"></i>
