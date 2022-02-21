@@ -12,33 +12,39 @@ const client = new Client({ connectionString });
 
 // Loads the schema files from db/schema
 const runSchemaFiles = function () {
-  console.log(chalk.cyan(`-> Loading Schema Files ...`));
-  const schemaFilenames = fs.readdirSync('./db/schema');
-
-  for (const fn of schemaFilenames) {
-    const sql = fs.readFileSync(`./db/schema/${fn}`, 'utf8');
-    console.log(`\t-> Running ${chalk.green(fn)}`);
-    client.query(sql);
-  }
+  const schemaFiles = fs.readdirSync('./db/schema');
+  schemaFiles.forEach(function (file) {
+    const sql = fs.readFileSync(`./db/schema/${file}`, 'utf8');
+    client.query(sql, function (err, result) {
+      if (err) {
+        console.log(chalk.red(err));
+      } else {
+        console.log(chalk.green(`${file} loaded`));
+      }
+    });
+  });
 };
-
+// run seed files
 const runSeedFiles = function () {
-  console.log(chalk.cyan(`-> Loading Seeds ...`));
-  const schemaFilenames = fs.readdirSync('./db/seeds');
-
-  for (const fn of schemaFilenames) {
-    const sql = fs.readFileSync(`./db/seeds/${fn}`, 'utf8');
-    console.log(`\t-> Running ${chalk.green(fn)}`);
-    client.query(sql);
-  }
+  const seedFiles = fs.readdirSync('./db/seed');
+  seedFiles.forEach(function (file) {
+    const sql = fs.readFileSync(`./db/seed/${file}`, 'utf8');
+    client.query(sql, function (err, result) {
+      if (err) {
+        console.log(chalk.red(err));
+      } else {
+        console.log(chalk.green(`${file} loaded`));
+      }
+    });
+  });
 };
 
 try {
   console.log(`-> Connecting to PG using ${connectionString} ...`);
   client.connect();
-  // runSchemaFiles();
-  // runSeedFiles();
-  // client.end();
+  runSchemaFiles();
+  runSeedFiles();
+  client.end();
 } catch (err) {
   console.error((`Failed due to error: ${err}`));
   client.end();
