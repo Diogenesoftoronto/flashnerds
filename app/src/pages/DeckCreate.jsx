@@ -7,6 +7,7 @@ function DeckCreate () {
   const [imageUrl, setImageUrl] = useState("");
   const cloud_name = "dbbnv85af";
   const upload_preset = "daxonv2q";
+  // to upload image onthe browser
   const handleClick = () => {
     const { files } = document.querySelector(".uploadInput");
     const formData = new FormData();
@@ -23,27 +24,16 @@ function DeckCreate () {
       setImageUrl(res.secure_url);
      })
      .catch((err) => console.log(err));
-   };
-
-  // conat [deckTitle, setDeckTitle] = useState();
-  // conat [image, setImage] = useState();
- 
+   }
+  
   const navigate= useNavigate();
   const handleBtnCreateClick = () => {
-    const file = new FormData()
-    file.append("Spanish");
-    file.append("../public/books.png");
-    axios
-      .post('', file, 
-      {
-        header: {
-          'content-type': 'multipart/form-data',
-        },
-      })
+    const data = {imageUrl, name: deckTile}
+    axios.post('/api/image', data)
       .then(response => {
         console.log(response);
+        navigate("/mylibrary");
       })
-    navigate("/mylibrary");
   };
 
   return (
@@ -56,7 +46,7 @@ function DeckCreate () {
       <div className="imageUpload">
         <input type="file" className="uploadInput" />
         <img src={imageUrl} className="uploadedImg" alt="" />
-        <button className="uploadButton" onClick={handleClick}>Upload</button>
+        <button className="uploadButton" onClick={handleClick}>Save</button>
       </div>
       <button className="createButton" onClick={handleBtnCreateClick}>Create</button>
     </div>
