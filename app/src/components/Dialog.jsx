@@ -163,10 +163,12 @@ const Input = styled('input', {
   '&:focus': { boxShadow: `0 0 0 2px ${violet.violet8}` },
 });
 
-const DialogDemo = () => {
+const Dialog = (props) => {
 
   const [open, onOpenChange] = useState(false);
   const toggleDialog = () => onOpenChange(!open);
+
+  function 
 
 return  (
   <Dialog open={open ? 'open' : null} >
@@ -200,5 +202,5 @@ return  (
 );
 }
 
-export default DialogDemo;
+export default Dialog;
 
