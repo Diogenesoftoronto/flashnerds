@@ -3,6 +3,7 @@ import { Button } from "./Buttons/Button";
 import Flashcard from "./Flashcard";
 import CommentList from "./CommentList";
 import Likes from "./Likes";
+import { styled } from "@stitches/react";
 
 function FlashcardPost(props) {
 
@@ -18,7 +19,7 @@ function FlashcardPost(props) {
 
   return (
     <article class="flashcard-post">
-      <Button onClick={() => onBack()}>
+      <Button variant='violet' onClick={() => onBack()}>
         Back
       </Button>
       {/* flex display */}
@@ -27,7 +28,7 @@ function FlashcardPost(props) {
       <CommentList/>
       <Likes likes={likes}/>
       </div>
-      <Button onClick={() => onNext()}>
+      <Button variant='violet' onClick={() => onNext()}>
         Next
       </Button>
 
