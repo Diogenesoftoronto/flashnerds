@@ -1,19 +1,19 @@
 /*
- * All routes for comments are defined here
- * Since this file is loaded in server.js into api/comments,
- *   these routes are mounted onto /comments
+ * All routes for tags are defined here
+ * Since this file is loaded in server.js into api/tags,
+ *   these routes are mounted onto /tags
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
 const express = require("express");
 const router = express.Router();
 
-const commentHelper = require("../db_helpers/commentHelper");
+const tagHelper = require("../db_helpers/tagHelper");
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    commentHelper
-      .getAllComments(db)
+    tagHelper
+      .getAllTags(db)
       .then((dbRes) => {
         res.json({ dbRes });
       })
@@ -23,9 +23,9 @@ module.exports = (db) => {
   });
 
   router.get("/:id", (req, res) => {
-    let commentId = req.params.id;
-    commentHelper
-      .getCommentByCommentId(db, commentId)
+    let tagId = req.params.id;
+    tagHelper
+      .getTagByTagId(db, tagId)
       .then((dbRes) => {
         res.json(dbRes);
       })
@@ -33,21 +33,29 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
-
-  // add comment route (register)
+  router.get("/name/:name", (req, res) => {
+    let name = req.params.name;
+    tagHelper
+      .getTagsByName(db, name)
+      .then((dbRes) => {
+        res.json(dbRes);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+  // add tag route (register)
   router.post("/", (req, res) => {
-    const content = req.session.content;
-    const timestamp = req.body.timestamp;
+    const name = req.body.name;
     const flashcardId = req.body.flashcardId;
 
-    const commentInfo = {
-      content,
-      timestamp,
+    const tagInfo = {
+      name,
       flashcardId,
     };
 
-    commentHelper
-      .addComment(db, commentInfo)
+    tagHelper
+      .addtag(db, tagInfo)
       .then((dbRes) => {
         res.json({ dbRes });
       })
@@ -57,20 +65,18 @@ module.exports = (db) => {
   });
 
   router.put("/:id", (req, res) => {
-    const commentId = req.params.id;
-    const content = req.session.content;
-    const timestamp = req.body.timestamp;
+    const tagId = req.params.id;
+    const name = req.body.name;
     const flashcardId = req.body.flashcardId;
 
-    const commentInfo = {
-      content,
-      timestamp,
+    const tagInfo = {
+      name,
       flashcardId,
-      commentId,
+      tagId,
     };
 
-    commentHelper
-      .editComment(db, commentInfo)
+    tagHelper
+      .editTag(db, tagInfo)
       .then((dbRes) => {
         res.json({ dbRes });
       })
@@ -80,10 +86,10 @@ module.exports = (db) => {
   });
 
   router.delete("/:id", (req, res) => {
-    const commentId = req.params.id;
-    commentHelper
-      .deleteComment(db, commentId)
-      .then(() => res.json("Delete comment by id success,bro!!"));
+    const tagId = req.params.id;
+    tagHelper
+      .deleteTag(db, tagId)
+      .then(() => res.json("Delete tag by id success,bro!!"));
   });
 
   return router;
