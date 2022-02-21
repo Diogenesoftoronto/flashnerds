@@ -5,7 +5,7 @@ import { violet, blackA, mauve, green, red } from "@radix-ui/colors";
 
 /** 
  Button props:
- variant: default violet
+ variant: default violet(not working though)
 
  this controls the style of the button
 
