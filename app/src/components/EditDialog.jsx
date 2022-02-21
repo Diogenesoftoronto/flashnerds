@@ -4,7 +4,7 @@ import { violet, blackA, mauve, green } from "@radix-ui/colors";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useState } from "react";
-import { Button } from './Buttons/Button';
+import { Button, IconButton } from './Buttons/Button';
 
 const overlayShow = keyframes({
   "0%": { opacity: 0 },
@@ -80,23 +80,6 @@ const Flex = styled("div", { display: "flex" });
 const Box = styled("div", {});
 
 
-const IconButton = styled("button", {
-  all: "unset",
-  fontFamily: "inherit",
-  borderRadius: "100%",
-  height: 25,
-  width: 25,
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: violet.violet11,
-  position: "absolute",
-  top: 10,
-  right: 10,
-
-  "&:hover": { backgroundColor: violet.violet4 },
-  "&:focus": { boxShadow: `0 0 0 2px ${violet.violet7}` }
-});
 
 const Form = styled("form", {
   all: "unset",
