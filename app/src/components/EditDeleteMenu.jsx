@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { styled, keyframes } from '@stitches/react';
 import { violet, mauve, blackA } from '@radix-ui/colors';
-import { HamburgerMenuIcon, TrashIcon, Pencil1Icon } from '@radix-ui/react-icons';
+import { DotsVerticalIcon, TrashIcon, Pencil1Icon } from '@radix-ui/react-icons';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 const slideUpAndFade = keyframes({
@@ -157,7 +157,7 @@ export default function EditDeleteMenu(props) {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <IconButton aria-label="Customise options">
-            <HamburgerMenuIcon />
+            <DotsVerticalIcon />
           </IconButton>
         </DropdownMenuTrigger>
 
