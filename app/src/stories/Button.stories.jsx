@@ -7,4 +7,4 @@ export default {
   component: Button
 }
 
-export const Red = () => <Button variant='green' onClick={()=> alert('click')}> button</Button>
+export const Red = () => <Button variant='red' onClick={()=> alert('click')}> button</Button>
