@@ -10,8 +10,10 @@ const flashcardRoutes = require("./routes/flashcard");
 const userRoutes = require("./routes/users");
 const deckRoutes = require("./routes/decks");
 
-const db = require('./db');
-
+const dbParams = require('./lib/db.js');
+const Client = require('pg').Client;
+const db = new Client(dbParams)
+db.connect()
 // SERVER SETTINGS + MIDDLEWARES
 app.use(cors());
 app.use(express.json());
