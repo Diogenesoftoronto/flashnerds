@@ -63,7 +63,7 @@ const Comment = styled('div', {
   boxShadow: `0 2px 10px ${blackA.blackA7}`,
 });
 
-const Comments = () => {
+const CommentList = () => {
   const [open, setOpen] = React.useState(false);
   return (
     <div style={{width: '300px'}}>
@@ -94,4 +94,4 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+export default CommentList;
