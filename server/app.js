@@ -26,7 +26,7 @@ app.use(helmet());
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
-
+// ONLY ADMINS SHOULD BE ABLE TO DELETE AND ADD USERS. NO ONE ELSE. 
 app.use('/api', auth(db));
 
 app.use("/api/flashcards", flashcardRoutes(db));

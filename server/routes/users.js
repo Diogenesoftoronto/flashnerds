@@ -61,7 +61,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  router.get("/find", (req, res) => {
+  router.post("/find", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
@@ -80,7 +80,7 @@ module.exports = (db) => {
   });
   // add user route (register)
   router.post("/", (req, res) => {
-    const name = req.session.name;
+    const name = req.body.name;
     const email = req.body.email;
     const image = req.body.image;
     const description = req.body.description;
@@ -107,7 +107,7 @@ module.exports = (db) => {
 
   router.put("/:id", (req, res) => {
     const userId = req.params.id;
-    const name = req.session.name;
+    const name = req.body.name;
     const email = req.body.email;
     const image = req.body.image;
     const description = req.body.description;
