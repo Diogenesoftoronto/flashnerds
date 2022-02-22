@@ -20,9 +20,10 @@ export const TagSection = styled("div", {
 });
 
 export const TagList = (props) => {
-const {tags} = props;
-const tagMap = tags.map((tag) => {
-  return (<TagItem key={tag.id} tagId={tag.id} text={tag.text}/>)
+  const { tags } = props
+  console.log("tags", props.tags);
+  const tagMap = tags.map((tag) => {
+  return (<TagItem tagId={tag.tagId} text={tag.text}/>)
 });
   return(
     <TagSection variant="primary">

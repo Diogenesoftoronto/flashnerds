@@ -30,7 +30,7 @@ function FlashcardPost(props) {
       {/* flex display */}
       <div className="flashcard-content">
       <Flashcard question={question} answer={answer}/>
-      <TagList tagMap={tags}/>
+      <TagList tags={tags}/>
       <CommentList comments={comments}/>
       <Likes likes={likes}/>
       </div>
