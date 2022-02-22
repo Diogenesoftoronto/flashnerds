@@ -1,7 +1,7 @@
 import React from "react";
 
 import { styled } from "@stitches/react";
-import { violet, blackA, mauve, green, red } from "@radix-ui/colors";
+import { violet, blackA, mauve, green, red, pink } from "@radix-ui/colors";
 
 
 /** 
@@ -58,6 +58,12 @@ export const Button = styled("button", {
         color: mauve.mauve11,
         '&:hover': { backgroundColor: mauve.mauve5 },
         '&:focus': { boxShadow: `0 0 0 2px ${mauve.mauve7}` }
+      },
+      pink: {
+        backgroundColor: pink.pink4,
+        color: pink.mauve11,
+        '&:hover': { backgroundColor: pink.pink5 },
+        '&:focus': { boxShadow: `0 0 0 2px ${pink.pink7}` }
       }
     },
 
