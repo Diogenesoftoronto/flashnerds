@@ -61,7 +61,7 @@ export const Button = styled("button", {
       },
       pink: {
         backgroundColor: pink.pink4,
-        color: pink.mauve11,
+        color: pink.pink11,
         '&:hover': { backgroundColor: pink.pink5 },
         '&:focus': { boxShadow: `0 0 0 2px ${pink.pink7}` }
       }
