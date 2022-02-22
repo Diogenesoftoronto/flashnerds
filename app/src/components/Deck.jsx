@@ -1,4 +1,6 @@
-import { React } from "react";
+import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const deckLists = [
   {id: 0, name: "Spanish", image: "https://blog.collinsdictionary.com/wp-content/uploads/sites/39/2020/09/spanish-verbs-1303100365-711-e1623226406354-800x0-c-default.jpg"},
@@ -9,13 +11,40 @@ const deckLists = [
 ]
 
 const DeckLists = () => {
+  const navigate= useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  }
+
+  const [edit, setEdit] = useState(false);
+  const handleOnEdit = (value) => {
+    const
+
+
+
+  }
+
+  const [remove, setRemove] = useState();
+  const handleClickRemove = (i) => {
+    const newdeckLists = [...remove];
+    newdeckLists.splice(i, 1);
+    setRemove(newdeckLists);
+  }
+
   return (
     <div>
       {deckLists.map((deck) => {
         return (
-          <div>
-            <img src={ deck.image } alt={ deck.name }/>
-            <p>{ deck.name }</p>
+          <div className="deck">
+            <div className="deck-item" onClick={handleClick}>
+              <input type="text" value={ deck.name } onChange={(e) => e.preventDefault()}>
+              <img src={ deck.image } alt={ deck.name }/>
+            </div>
+            <div className="button">
+              <button onClick={handleOnEdit}>Edit</button>
+              <button onClick={handleClickRemove}>X</button>
+            </div>
           </div>
         )
       })}

@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function DeckCreate () {
   const [imageUrl, setImageUrl] = useState("");
+  const [name, setName] = useState("");
   const cloud_name = "dbbnv85af";
   const upload_preset = "daxonv2q";
   // to upload image onthe browser
@@ -28,12 +29,12 @@ function DeckCreate () {
   
   const navigate= useNavigate();
   const handleBtnCreateClick = () => {
-    const data = {imageUrl}
-    axios.post('/api/image', data)
-      .then(response => {
-        console.log(response);
+  //   const data = {imageUrl, name}
+  //   axios.post('/api/image', data)
+  //     .then(response => {
+  //       console.log(response);
         navigate("/mylibrary");
-      })
+      // })
   };
 
   return (
