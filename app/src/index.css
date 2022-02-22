@@ -15,7 +15,7 @@ code {
 @font-face {
   font-family: "ShizuruRegular";
   src: local("ShizuruRegular"),
-    url() format("truetype");
+    url("app/src/fonts/Shizuru/Shizuru-Regular.ttf") format("truetype");
   font-weight: 400;
 }
 /* import kufam */
