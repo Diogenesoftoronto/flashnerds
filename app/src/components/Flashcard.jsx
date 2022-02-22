@@ -4,6 +4,7 @@ import { Button } from "./Buttons/Button";
 import classNames from 'classnames';
 
 import './styles/Flashcard.scss';
+import { AnswerForm } from "./AnswerForm";
 
 function Flashcard(props) {
   const { question, answer } = props;
@@ -27,10 +28,12 @@ function Flashcard(props) {
       <ReactCardFlip className="flashcard-container" isFlipped={isFlipped} flipDirection="horizontal">
 
 {/* do not use id and remember to use className and not class*/}
+
         <div className="flashcard front">
           <header><h2>Question</h2></header>
           <span>
           {question}
+          <AnswerForm />
           </span>
           {/* <img src="./flip-arrow.png" alt="Flip Arrow" onClick={handleClick} /> */}
           <Button variant={'mauve'} onClick={handleClick} >Flip</Button>
