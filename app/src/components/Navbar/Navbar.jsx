@@ -1,15 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import './Navbar.scss';
 
 function Search() {
  return (
-  <header>
+  <header className="navbar">
     <nav>
-      <div>Flashnerds</div>
-      <ul>
+      <div className="navbar__title">Flashnerds</div>
+      <ul className='navbar__content'>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/mylibrary">My Library</NavLink></li>
-        <li><NavLink to="/decks/create">New</NavLink></li>
+        <li><NavLink to="/decks/create" className="navbar__content__button">New</NavLink></li>
       </ul>
     </nav>
   </header>

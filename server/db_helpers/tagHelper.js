@@ -1,12 +1,12 @@
 const getAllTags = (db) => {
   const queryString = `SELECT * FROM tags;`;
 return db
-.query(queryString, tagValues)
+.query(queryString)
 .then((res) => {
 return res.rows;
 })
 };
-const getTagsByName = (db, tagValues) => {
+const getTagsByName = (db, name) => {
   const tagValues = [name];
   const queryString = `SELECT * FROM tags
   WHERE name = $1;`;
