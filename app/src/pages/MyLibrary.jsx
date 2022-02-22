@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Deck from '../components/Deck';
 import '../App.css';
+import './MyLibrary.scss';
 import axios from "axios"
 
 const deckLists = [
@@ -12,14 +13,15 @@ const deckLists = [
 ]
 
 function MyLibrary () {
+  const [deckList, setDeckList] = useState([]);
   useEffect (() => {
       axios.get("http://localhost:3001/api/decks") 
       .then((response) => {
         console.log("hello", response);
         setDeckList(response.data.dbRes);
       })
-  })
-  const [deckList, setDeckList] = useState([]);
+  }, [])
+
   const deleteFromDeckLists = (id) => {
     let temp = [...deckList];
     const targetDeck = temp.filter(deck => deck.id === id)[0];
@@ -32,15 +34,25 @@ function MyLibrary () {
     }
   }
 
+  const goToPlayFlashcard = (id) => { 
+
+
+  }
+
   return (
-    <div>
+    <div className="deck-lists">
       <h2>My Library</h2>
-      {deckList.map(deck => 
-        <Deck key={deck.id}
-          id={deck.id} 
-          name={deck.name} 
-          image={deck.image}
-          onDeleteBtnClick={ deleteFromDeckLists } />)}
+      <div className="deck">
+        <div className="deck__content" onClick={goToPlayFlashcard}>
+          {deckList.map(deck => 
+            <Deck key={deck.id}
+              id={deck.id} 
+              name={deck.name} 
+              image={deck.image}
+              onDeleteBtnClick={ deleteFromDeckLists } 
+            />)}
+        </div>
+      </div>
     </div>
   )
 }
