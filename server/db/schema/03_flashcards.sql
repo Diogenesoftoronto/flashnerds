@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS decks CASCADE;
+DROP TABLE IF EXISTS flashcards CASCADE;
 create table flashcards (
 	id SERIAL PRIMARY KEY,
 	decks_id INTEGER REFERENCES decks(id),
