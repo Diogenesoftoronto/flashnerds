@@ -22,6 +22,7 @@ function App() {
     <AuthProvider>
     <Router>
       <Navbar />
+        <main>
       <Routes>
         <Route path="/" element={ <Home /> } />
         <Route path="/mylibrary" element={ <MyLibrary /> } />
@@ -30,6 +31,7 @@ function App() {
         <Route path="/authTest" element={ <AuthTest /> } />
         <Route path="/register" element={ <Register /> } />
       </Routes>
+        </main>
     </Router>
     </AuthProvider>
 

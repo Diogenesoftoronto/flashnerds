@@ -13,6 +13,12 @@ body {
     #c31432 0%,
     #240b36 100%
   );
+  /* display: flex;
+  align-items: flex-start;
+  justify-content: center; */
+}
+
+main {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -55,4 +61,8 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+.page-title {
+  color: white;
 }
