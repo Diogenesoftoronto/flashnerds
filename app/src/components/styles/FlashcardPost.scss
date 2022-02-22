@@ -1,9 +1,18 @@
 .flashcard-post {
+
+.top{
   display: flex;
   justify-content: center;
 
   > button {
     margin-top: auto;
     margin-bottom: auto;
+  }
+}
+
+footer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
   }
 }
