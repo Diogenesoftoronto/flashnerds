@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Deck from '../components/Deck';
+import '../App.css';
 
 const deckLists = [
   {id: 0, name: "Spanish", image: "https://blog.collinsdictionary.com/wp-content/uploads/sites/39/2020/09/spanish-verbs-1303100365-711-e1623226406354-800x0-c-default.jpg"},
@@ -9,6 +10,20 @@ const deckLists = [
   {id: 4, name: "Coffee", image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gh-how-to-make-coffee-at-home-1587673913.png?crop=1.00xw:0.997xh;0,0&resize=1200:*"}
 ]
 
+function MyLibrary () {
+  const [deckList, setDeckList] = useState(deckLists);
+  const deleteFromDeckLists = (id) => {
+    let temp = [...deckList];
+    const targetDeck = temp.filter(deck => deck.id === id)[0];
+    if (targetDeck) {
+      const index = temp.indexOf(targetDeck);
+      temp.splice(index, 1);
+      setDeckList(temp);
+    } else {
+      console.error('target deck is not found');
+    }
+  }
+
   return (
     <div>
       <h2>My Library</h2>
@@ -17,9 +32,9 @@ const deckLists = [
           id={deck.id} 
           name={deck.name} 
           image={deck.image}
-        />)}
+          onDeleteBtnClick={ deleteFromDeckLists } />)}
     </div>
   )
-
+}
 
 export default MyLibrary
