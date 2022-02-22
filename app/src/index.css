@@ -21,11 +21,11 @@ code {
 /* import kufam */
 @font-face {
   font-family: "KufamMedium";
-  src: local("KufamMedium"), url("../Kufam-VariableFont_wght.ttf") format("truetype");
+  src: local("KufamMedium"), url("./fonts/Kufam/Kufam-VariableFont_wght.ttf") format("truetype");
   font-weight: 500;
 }
 @font-face {
   font-family: "KufamSemi-Bold";
-  src: local("KufamSemi-Bold"), url("./fonts/kufam.semi-bold.ttf") format("truetype");
+  src: local("KufamSemi-Bold"), url("./fonts/Kufam/static/Kufam-SemiBold.ttf") format("truetype");
   font-weight: 600;
 }
