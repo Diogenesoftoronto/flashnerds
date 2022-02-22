@@ -33,8 +33,8 @@ function FlashcardPost(props) {
       </Button>
       </div>
     <footer>
-      <CommentList comments={comments}/>
       <Likes likes={likes}/>
+      <CommentList comments={comments}/>
     </footer>
     </article>
   );
