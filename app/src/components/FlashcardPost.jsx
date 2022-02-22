@@ -4,6 +4,7 @@ import Flashcard from "./Flashcard";
 import CommentList from "./CommentList";
 import Likes from "./Likes";
 import { styled } from "@stitches/react";
+import { TagList } from "./tag/tagList";
 
 function FlashcardPost(props) {
 
@@ -12,6 +13,7 @@ function FlashcardPost(props) {
     answer,
     deckId,
     likes,
+    tags,
     onBack,
     onNext,
     comments
@@ -25,6 +27,7 @@ function FlashcardPost(props) {
       {/* flex display */}
       <div className="flashcard-content">
       <Flashcard question={question} answer={answer}/>
+      <TagList tagMap={tags}/>
       <CommentList comments={comments}/>
       <Likes likes={likes}/>
       </div>
