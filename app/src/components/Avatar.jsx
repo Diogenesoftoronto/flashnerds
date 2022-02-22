@@ -45,7 +45,7 @@ export const AvatarFallback = StyledFallback;
 const Flex = styled('div', { display: 'flex' });
 
 const Avatar = (props) => {
-  const {name, img } = props
+  const {name, avatar } = props
 
  function nameToInitials() {
    const split = name.toUpperCase().split(" ");
@@ -61,7 +61,7 @@ const Avatar = (props) => {
   return (
     <AvatarContainer>
       <AvatarImage
-        // src={img}
+        src={avatar}
         alt={name}
       />
       <AvatarFallback delayMs={600}>{nameToInitials()}</AvatarFallback>
