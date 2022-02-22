@@ -41,7 +41,7 @@ function Home() {
   return (
     <div>
       <header className="page-title">
-        Home
+        <h1>Dashboard</h1>
       </header>
       <FlashcardPost
         question={question}
@@ -50,7 +50,7 @@ function Home() {
         onBack={() => alert("onBack")}
         onNext={() => alert("onNext")}
         comments={comments}
-      />
+        />
     </div>
   );
 
