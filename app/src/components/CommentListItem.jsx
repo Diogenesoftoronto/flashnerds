@@ -4,6 +4,7 @@ import Likes from './Likes';
 import EditDeleteMenu from './EditDeleteMenu';
 import EditDialog from './EditDialog';
 import AlertDelete from './AlertDelete';
+import { Avatar } from '@radix-ui/react-avatar';
 
 const EDIT = 'EDIT';
 const DELETE = 'DELETE';
@@ -37,11 +38,20 @@ export default function CommentListItem(props) {
 
   const [state, setState] = useState(DEFAULT);
 
+  const edit = () => {
+    setState(EDIT);
+    onEdit();
+  }
+
+  const remove = () => {
+    setState(DELETE);
+    onRemove();
+  }
   return (
     <div className="comment" onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
       <header>
         <div className="handle">
-        <img src={avatar} />
+        <Avatar name={userName} img={avatar}/>
         <h5>{userName}</h5>
         </div>
         <EditDeleteMenu
@@ -57,7 +67,7 @@ export default function CommentListItem(props) {
         <AlertDelete
           state={state}
           setState={setState}
-          onDelete={()=>{}}
+          onDelete={()=> onRemove()}
         />
       </header>
       <div className="comment-content">
