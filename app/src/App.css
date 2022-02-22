@@ -13,9 +13,8 @@ body {
     #c31432 0%,
     #240b36 100%
   );
-  /* display: flex;
-  align-items: flex-start;
-  justify-content: center; */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 main {
