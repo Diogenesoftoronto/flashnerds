@@ -1,8 +1,8 @@
-const auth = require('./routes/auth');
-const flashcardRoutes = require("./routes/flashcard");
-const userRoutes = require("./routes/users");
-const deckRoutes = require("./routes/decks");
-const tagRoutes = require("./routes/tags");
+const auth = require('./auth');
+const flashcardRoutes = require("./flashcard");
+const userRoutes = require("./users");
+const deckRoutes = require("./decks");
+const tagRoutes = require("./tags");
 
 module.exports = {
   auth,
