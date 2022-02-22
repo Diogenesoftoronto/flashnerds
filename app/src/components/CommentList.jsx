@@ -4,6 +4,7 @@ import { violet, blackA } from '@radix-ui/colors';
 import { RowSpacingIcon, Cross2Icon } from '@modulz/radix-icons';
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 // import { IconButton } from './Buttons/Button';
+import CommentListItem from './CommentListItem';
 
 
 const StyledCollapsible = CollapsiblePrimitive.Root;
@@ -63,33 +64,63 @@ const Comment = styled('div', {
   boxShadow: `0 2px 10px ${blackA.blackA7}`,
 });
 
-const CommentList = () => {
+const comments = [
+  {
+    id: 1,
+    avatar: "https://i.imgur.com/LpaY82x.png",
+    userName: "Bobby",
+    content: "This is a comment.",
+    likes: 20,
+    timestamp: 1645483654553
+  },
+  {
+    id: 2,
+    avatar: "https://i.imgur.com/LpaY82x.png",
+    userName: "Bobby's Twin",
+    content: "This is another comment.",
+    likes: 200,
+    timestamp: 1645483650000
+  }
+];
+
+const CommentList = (props) => {
+
+  const { comments } = props;
+
+  const commentItems = comments
+    .map((comment) => <CommentListItem
+      avatar={comment.avatar}
+      userName={comment.userName}
+      content={comment.content}
+      likes={comment.likes}
+      timestamp={comment.timestamp}
+    />);
+
   const [open, setOpen] = React.useState(false);
   return (
-    <div style={{width: '300px'}}>
+    <div style={{ width: '300px' }}>
 
-    <Collapsible open={open} onOpenChange={setOpen}>
-      <Flex css={{ alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* have a form for writing a comment */}
-        <Text css={{ color: 'white' }}>View Comments</Text>
-        <CollapsibleTrigger asChild>
-          <IconButton>{open ? <Cross2Icon /> : <RowSpacingIcon />}</IconButton>
-        </CollapsibleTrigger>
-      </Flex>
-
-      Comments
-      <CollapsibleContent>
-      <Comment>
-        <Text>Comment 1</Text>
-      </Comment>
-      <Comment>
-        <Text>Comment 2</Text>
-      </Comment>
-      <Comment>
-        <Text>Comment 3</Text>
-      </Comment>
-      </CollapsibleContent>
-    </Collapsible>
+      <Collapsible open={open} onOpenChange={setOpen}>
+        <Flex css={{ alignItems: 'center', justifyContent: 'space-between' }}>
+          {/* have a form for writing a comment */}
+          <Text>View Comments</Text>
+          <CollapsibleTrigger asChild>
+            <IconButton>{open ? <Cross2Icon /> : <RowSpacingIcon />}</IconButton>
+          </CollapsibleTrigger>
+        </Flex>
+        <CollapsibleContent>
+          {/* <Comment>
+            <Text>Comment 1</Text>
+          </Comment>
+          <Comment>
+            <Text>Comment 2</Text>
+          </Comment>
+          <Comment>
+            <Text>Comment 3</Text>
+          </Comment> */}
+          {commentItems}
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 };
