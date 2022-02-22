@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Button } from './Buttons/Button'
 
 
 export default function Likes(props) {
@@ -17,12 +18,12 @@ export default function Likes(props) {
   // TODO: add helpers for updating likes
 
   return (
-    <span className="likes-container" style={{color: 'pink'}} >
-      {/* flex */}
-    <a onClick={clickLike}>
+    <span className="likes-container" >
+    <Button variant='pink' onClick={clickLike}>
+    {likeCount}<br/>
     <i className="fa-solid fa-heart"></i>
-      </a>
-    <span className="like-counter">{likeCount}</span>
+      </Button>
+    <span className="like-counter"></span>
     </span>
   );
 }

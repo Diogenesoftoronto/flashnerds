@@ -5,6 +5,7 @@ import CommentList from "./CommentList";
 import Likes from "./Likes";
 import { styled } from "@stitches/react";
 import { TagList } from "./tag/tagList";
+import './styles/FlashcardPost.scss';
 
 function FlashcardPost(props) {
 
@@ -21,6 +22,8 @@ function FlashcardPost(props) {
 
   return (
     <article class="flashcard-post">
+      <div className="top">
+
       <Button variant='violet' onClick={() => onBack()}>
         Back
       </Button>
@@ -34,7 +37,11 @@ function FlashcardPost(props) {
       <Button variant='violet' onClick={() => onNext()}>
         Next
       </Button>
-
+      </div>
+    <footer>
+      <Likes likes={likes}/>
+      <CommentList comments={comments}/>
+    </footer>
     </article>
   );
 }
