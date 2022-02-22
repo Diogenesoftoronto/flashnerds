@@ -13,9 +13,9 @@ function FlashcardPost(props) {
     deck_id,
     likes,
     onBack,
-    onNext } = props;
-
-
+    onNext,
+    comments
+   } = props;
 
   return (
     <article class="flashcard-post">
@@ -25,7 +25,7 @@ function FlashcardPost(props) {
       {/* flex display */}
       <div className="flashcard-content">
       <Flashcard question={question} answer={answer}/>
-      <CommentList/>
+      <CommentList comments={comments}/>
       <Likes likes={likes}/>
       </div>
       <Button variant='violet' onClick={() => onNext()}>
