@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Deck from '../components/Deck';
 import '../App.css';
+import axios from "axios"
 
 const deckLists = [
   {id: 0, name: "Spanish", image: "https://blog.collinsdictionary.com/wp-content/uploads/sites/39/2020/09/spanish-verbs-1303100365-711-e1623226406354-800x0-c-default.jpg"},
@@ -11,7 +12,14 @@ const deckLists = [
 ]
 
 function MyLibrary () {
-  const [deckList, setDeckList] = useState(deckLists);
+  useEffect (() => {
+      axios.get("http://localhost:3001/api/decks") 
+      .then((response) => {
+        console.log("hello", response);
+        setDeckList(response.data.dbRes);
+      })
+  })
+  const [deckList, setDeckList] = useState([]);
   const deleteFromDeckLists = (id) => {
     let temp = [...deckList];
     const targetDeck = temp.filter(deck => deck.id === id)[0];
