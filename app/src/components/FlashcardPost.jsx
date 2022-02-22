@@ -10,7 +10,7 @@ function FlashcardPost(props) {
   const {
     question,
     answer,
-    deck_id,
+    deckId,
     likes,
     onBack,
     onNext,
