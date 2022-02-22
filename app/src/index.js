@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './fonts/assistant.regular.ttf'; 
+import './fonts/shizuru.regular.ttf'; // font-family: 'Shizuru', sans-serif;
+import './fonts/kufam.meduim.ttf'; // font-family: 'Kufam', sans-serif;
+import './fonts/kufam.semi-bold.ttf'; // font-family: 'Kufam', sans-serif;
 
 ReactDOM.render(
   <React.StrictMode>

@@ -21,6 +21,7 @@ function Flashcard(props) {
         <div className="flashcard-content back">
           <h2>Answer</h2>
           {answer}
+          {/* instead of flip arrow png change to svg or have button that changes state */}
           <img src="./flip-arrow.png" alt="Flip arrow" onClick={handleClick} />
         </div>
       </ReactCardFlip>
