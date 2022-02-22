@@ -84,6 +84,7 @@
 
 
 .flashcard{
+  position: relative;
   color: black;
   height: 300px;
   width: 300px;
@@ -91,6 +92,9 @@
   background-color: orange;
   padding: 1em;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   header{
     text-align: center;
@@ -98,6 +102,22 @@
         // position:absolute;
         // top:-0px;
         // left:10px;
+      }
+
+      span {
+        margin: auto;
+        height: 108px;
+        text-align: center;
+        padding-bottom: 1em;
+        // border-bottom: 4px solid #545149;
+        overflow-wrap: break-word;
+        block-size: fit-content
+      }
+
+      button {
+        margin-left: auto;
+        margin-right: auto;
+        width: 2em;
       }
 }
 

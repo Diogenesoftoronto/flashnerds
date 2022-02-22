@@ -33,7 +33,7 @@ function Flashcard(props) {
           {question}
           </span>
           {/* <img src="./flip-arrow.png" alt="Flip Arrow" onClick={handleClick} /> */}
-          <Button variant={'violet'} onClick={handleClick} >Flip</Button>
+          <Button variant={'mauve'} onClick={handleClick} >Flip</Button>
         </div>
 
         <div className="flashcard back">
