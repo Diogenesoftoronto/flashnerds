@@ -51,7 +51,7 @@ export default function CommentListItem(props) {
     <div className="comment" onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
       <header>
         <div className="handle">
-        <Avatar name={userName} img={avatar}/>
+        <Avatar name={userName} avatar={avatar}/>
         <h5>{userName}</h5>
         </div>
         <EditDeleteMenu
