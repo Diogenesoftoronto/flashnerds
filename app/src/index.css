@@ -1,13 +1,31 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "ShizuruRegular";
+  src: local("ShizuruRegular"),
+    url() format("truetype");
+  font-weight: 400;
+}
+/* import kufam */
+@font-face {
+  font-family: "KufamMedium";
+  src: local("KufamMedium"), url("./fonts/Kufam/Kufam-VariableFont_wght.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "KufamSemi-Bold";
+  src: local("KufamSemi-Bold"), url("./fonts/Kufam/static/Kufam-SemiBold.ttf") format("truetype");
+  font-weight: 600;
 }
