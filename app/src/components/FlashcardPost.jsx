@@ -3,7 +3,7 @@ import { Button } from "./Buttons/Button";
 import Flashcard from "./Flashcard";
 import CommentList from "./CommentList";
 import Likes from "./Likes";
-import { styled } from "@stitches/react";
+import './styles/FlashcardPost.scss';
 
 function FlashcardPost(props) {
 
