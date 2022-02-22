@@ -6,7 +6,7 @@ function Home () {
 
   return (
     <div>
-      Home: {currentUser.name}
+      Home: {currentUser && currentUser.name}
     </div>
   )
 }
