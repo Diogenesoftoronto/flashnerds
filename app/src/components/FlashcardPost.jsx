@@ -19,19 +19,23 @@ function FlashcardPost(props) {
 
   return (
     <article class="flashcard-post">
+      <div className="top">
+
       <Button variant='violet' onClick={() => onBack()}>
         Back
       </Button>
       {/* flex display */}
       <div className="flashcard-content">
       <Flashcard question={question} answer={answer}/>
-      <CommentList comments={comments}/>
-      <Likes likes={likes}/>
       </div>
       <Button variant='violet' onClick={() => onNext()}>
         Next
       </Button>
-
+      </div>
+    <footer>
+      <CommentList comments={comments}/>
+      <Likes likes={likes}/>
+    </footer>
     </article>
   );
 }
