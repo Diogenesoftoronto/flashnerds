@@ -12,11 +12,11 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      dark: "94d2bd",
-      light: "e9d8a6",
-      primary: "005f73",
-      secondary: "0a9396",
-      tertiary: "94d2bd",
+      dark: "#94d2bd",
+      light: "#e9d8a6",
+      primary: "#005f73",
+      secondary: "#0a9396",
+      tertiary: "#94d2bd",
       // find the full pallette here: https://coolors.co/u/the_k if you want to add more colors
 
     },
@@ -27,9 +27,9 @@ export const {
     }
   },
   media: {
-    bp1: "(min-width: 376px)",
-    bp2: "(min-width: 768px)",
-    bp3: "(min-width: 1024px)"
+    mobileSmall: "(min-width: 376px)",
+    tablet: "(min-width: 768px)",
+    desktop: "(min-width: 1024px)"
   },
   utils: {
     columnGap: (gap) => ({
