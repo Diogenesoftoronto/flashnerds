@@ -1,4 +1,5 @@
 import React from "react";
+
 import { styled } from "@stitches/react";
 import { violet, blackA, mauve, green, red } from "@radix-ui/colors";
 
@@ -26,6 +27,13 @@ export const Button = styled("button", {
 
   variants: {
     variant: {
+      primary: { 
+      backgroundColor: "#0a9396",
+      color: "005f73",
+      boxShadow: `0 2px 10px ${blackA.blackA7}`,
+      "&:hover": { backgroundColor: "#e9d8a6" },
+      "&:focus": { boxShadow: `0 0 0 2px black` }
+    },
       violet: {
         backgroundColor: "white",
         color: violet.violet11,
@@ -76,3 +84,11 @@ export const IconButton = styled("button", {
   "&:hover": { backgroundColor: violet.violet4 },
   "&:focus": { boxShadow: `0 0 0 2px ${violet.violet7}` }
 });
+export const cButton = (props) => {
+  const { theme, text, action} = props;
+    return (
+        <Button onClick={action} variant={theme}>
+          {text}
+        </Button>
+    );
+    }
