@@ -12,6 +12,7 @@ import AuthTest from "./pages/AuthTest";
 
 import MyLibrary from "./pages/MyLibrary";
 import DeckCreate from "./pages/DeckCreate";
+import PlayFlashcard from "./pages/PlayFlashcard";
 // import DeckUpdate from "./pages/DeckUpdate";
 // import FlashcardDetails from "./pages/FlashcardDetails";
 // import FlashcardUpdate from "./pages/FlashcardUpdate";
@@ -24,12 +25,13 @@ function App() {
       <Navbar />
         <main>
       <Routes>
-        <Route path="/" element={ <Home /> } />
+        <Route path="/login" element={ <Login /> } />
+        <Route path="/register" element={ <Register /> } />
+        <Route path="/authTest" element={ <AuthTest /> } />
         <Route path="/mylibrary" element={ <MyLibrary /> } />
         <Route path="/decks/create" element={ <DeckCreate /> } />
-        <Route path="/login" element={ <Login /> } />
-        <Route path="/authTest" element={ <AuthTest /> } />
-        <Route path="/register" element={ <Register /> } />
+        <Route path="/playflashcard/:id" element={ <PlayFlashcard /> } />
+        <Route path="/" element={ <Home /> } />
       </Routes>
         </main>
     </Router>
