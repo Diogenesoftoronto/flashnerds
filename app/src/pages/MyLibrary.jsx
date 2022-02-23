@@ -35,18 +35,27 @@ function MyLibrary () {
   }
 
   return (
-    <div className="deck-lists">
-      <h2>My Library</h2>
-      <div className="deck">
-        <div className="deck__content">
+    <div className="my-library">
+      <div className="my-library__header">
+        <h2>My Library</h2>
+      </div>
+      <div className="my-library__deck-lists">
+        <div className="my-library__deck-lists__title">
+          <h3>My Decks</h3>
+        </div>
+        <div className="my-library__deck-lists__content">
           {deckList.map(deck => 
             <Deck key={deck.id}
               id={deck.id} 
               name={deck.name} 
               image={deck.image}
-              onDeleteBtnClick={ deleteFromDeckLists }
-            />)}
+              onDeleteBtnClick={ deleteFromDeckLists }/>
+          )}
         </div>
+        {/* <div className="deck">
+          <div className="deck__content">
+          </div>
+        </div> */}
       </div>
     </div>
   )
