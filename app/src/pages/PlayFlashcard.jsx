@@ -34,13 +34,32 @@ function PlayFlashcard() {
   const { id } = useParams();
   // const { currentUser } = useAuth();
   const [flashcard, setFlashcard] = useState({});
+  const [deck, setDeck] = useState([]);
+
+  let cardIndex = 0;
+  
+  
   useEffect (() => {
-      axios.get(`http://localhost:3001/api/flashcards/deck/${id}`) 
-      .then((response) => {
-        // {id: 1, decks_id: 1, question: 'In sagittis dui vel nisl.', answer: 'scelerisque', likes: 1}
-        setFlashcard(response.data.dbRes[0]);
-      })
-  }, [])
+    axios.get(`http://localhost:3001/api/flashcards/deck/${id}`) 
+    .then((response) => {
+      // {id: 1, decks_id: 1, question: 'In sagittis dui vel nisl.', answer: 'scelerisque', likes: 1}
+      setDeck(response.data.dbRes);
+      console.log("deck", deck);
+    })
+  }, []);
+
+  const deckLength = deck.length;
+
+  const nextCard = () => {
+    cardIndex++;
+    setFlashcard(deck[cardIndex % deckLength]);
+  }
+
+  const backCard = () => {
+    cardIndex++;
+    setFlashcard(deck[cardIndex % deckLength]);
+  }
+
 
   return (
     <div>
@@ -49,8 +68,8 @@ function PlayFlashcard() {
         answer={flashcard.answer}
         likes={flashcard.likes}
         tags={tags}
-        onBack={() => alert("onBack")}
-        onNext={() => alert("onNext")}
+        onBack={backCard}
+        onNext={nextCard}
         comments={comments}
         />
     </div>
