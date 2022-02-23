@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import FlashcardPost from '../components/FlashcardPost';
 import { useParams } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 
 const comments = [
