@@ -20,7 +20,7 @@ const getDeckByDeckId = function (db, deckId) {
 const getDecksByUserId = function (db, userId) {
   let userValues = [userId];
   let queryString = `SELECT * FROM decks
-                        WHERE users.id = $1;`;
+                        WHERE users_id = $1;`;
   return db
     .query(queryString, userValues)
     .then((res) => {
