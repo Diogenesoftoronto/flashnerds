@@ -26,11 +26,15 @@ function FlashcardPost(props) {
 
    const nextCard = () => {
      setIsFlipped(false);
-     onNext()
+     setTimeout(() => {
+       onNext()
+     }, 1000)
    }
    const backCard = () => {
      setIsFlipped(false);
-     onBack()
+     setTimeout(() => {
+      onBack()
+    }, 1000)
    }
 
   return (
