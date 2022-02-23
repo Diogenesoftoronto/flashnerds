@@ -42,7 +42,7 @@ const Deck = (props) => {
         }
       </div>
       <div className="button">
-        <button onClick={() => props.onDeleteBtnClick(props.id)}>X</button>
+        <button onClick={(e) => { props.onDeleteBtnClick(props.id); e.stopPropagation();e.nativeEvnet.stopImmediatePropagation(); } }>X</button>
       </div>
     </div>
   )
