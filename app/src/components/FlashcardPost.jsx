@@ -22,21 +22,32 @@ function FlashcardPost(props) {
     comments
    } = props;
 
+   const [isFlipped, setIsFlipped] = useState(false);
+
+   const nextCard = () => {
+     setIsFlipped(false);
+     onNext()
+   }
+   const backCard = () => {
+     setIsFlipped(false);
+     onBack()
+   }
+
   return (
     <article class="flashcard-post">
       <div className="top">
 
-      <Button variant='violet' onClick={() => onBack()}>
+      <Button variant='violet' onClick={() => backCard()}>
         Back
       </Button>
       {/* flex display */}
       <div className="flashcard-content">
-      <Flashcard question={question} answer={answer}/>
+      <Flashcard question={question} answer={answer} isFlipped={isFlipped}/>
       <TagList tags={tags}/>
       <CommentList comments={comments}/>
       <Likes likes={likes}/>
       </div>
-      <Button variant='violet' onClick={() => onNext()}>
+      <Button variant='violet' onClick={() => nextCard()}>
         Next
       </Button>
       </div>

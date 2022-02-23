@@ -5,20 +5,17 @@ import classNames from "classnames";
 
 import "./styles/Flashcard.scss";
 import { AnswerForm } from "./AnswerForm";
-import { styled } from "../stitches.config";
+import { styled } from "@stitches/react";
 
 
 
 function Flashcard(props) {
-  const { question, answer } = props;
-  
-  const [isFlipped, setIsFlipped] = useState(false);
+  const { question, answer, isFlipped } = props;
+  const setIsFlipped = (val) => isFlipped = val;      
   const [answerState, setAnswerState] = useState("");
   function findAnswer(userAnswer, answer){
-    const regex = `/\b(${userAnswer})\b/g`
-    const found = answer.match(regex)
-    const arrResults = [...found]
-    if (!arrResults[0]) return false
+    const found = answer.includes(`${userAnswer}`)
+    if (!found) return false
     return true
   }
 
@@ -45,7 +42,7 @@ function Flashcard(props) {
      }
 });
 
-  const flashcardBack = (findAnswer(answerState, answer) ?  <Back variant="correct" className="flashcard back">
+  const flashcardBack = (findAnswer(answerState, answer) ?  (<div className="flashcard back" style={{backgroundColor: "green"}}>
   <header>
     <h2>Answer</h2>
   </header>
@@ -53,7 +50,9 @@ function Flashcard(props) {
   <Button variant={"mauve"} onClick={handleClick}>
     Flip
   </Button>
-</Back> : (<Back variant="incorrect" className="flashcard back">
+</div> ): (
+  <div className="flashcard back" style={{backgroundColor: "red"}}>
+{/* <Back variant="incorrect" > */}
   <header>
     <h2>Answer</h2>
     </header>
@@ -61,7 +60,8 @@ function Flashcard(props) {
     <Button variant={"mauve"} onClick={handleClick}>
       Flip
       </Button>
-      </Back>
+      {/* </Back> */}
+      </div>
       ));
   return (
     // <div className={flashcardClass}>
