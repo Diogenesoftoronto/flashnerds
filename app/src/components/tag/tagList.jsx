@@ -7,7 +7,7 @@ export const TagSection = styled("div", {
   display: "flex",
   justifyContent: "flex-start",
   alignContent: "flex-start",
-  padding: "10px",
+  margin: "10px",
   border: "0 0 1px solid",
   variant: {
     variant: {
@@ -25,9 +25,14 @@ export const TagList = (props) => {
   const tagMap = tags.map((tag) => {
   return (<TagItem tagId={tag.tagId} text={tag.text}/>)
 });
-  return(
+ if(tags) return(
     <TagSection variant="primary">
       {tagMap}
     </TagSection>
     )
+  else return(
+    <TagSection variant="primary">
+      No tags
+    </TagSection>
+  )
 };
