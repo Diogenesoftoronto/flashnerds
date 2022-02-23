@@ -23,8 +23,8 @@ module.exports = (db) => {
       });
   });
   // which one you want deck or deck/:id??
-  router.get("/deck/:deck", (req, res) => {
-    let deckId = req.params.deckId;
+  router.get("/deck/:deckId", (req, res) => {
+    const deckId = parseInt(req.params.deckId);
     flashcardHelper.getFlashcardsByDeckId(db, deckId)
       .then(dbRes => {
         res.json({ dbRes });
