@@ -37,7 +37,22 @@ function PlayFlashcard() {
   const [deck, setDeck] = useState([]);
 
   let cardIndex = 0;
-  
+
+  const shuffleDeck = (deck) => {
+    for (let i = deck.length - 1; i > 0; i--) {
+   
+      // Generate random number
+      let j = Math.floor(Math.random() * (i + 1));
+                  
+      let temp = deck[i];
+      deck[i] = deck[j];
+      deck[j] = temp;
+  }
+      
+  return deck;
+}
+
+  }
   
   useEffect (() => {
     axios.get(`http://localhost:3001/api/flashcards/deck/${id}`) 
