@@ -39,6 +39,7 @@ function MyLibrary () {
     } else {
       console.error('target deck is not found');
     }
+    axios.get(`http://localhost:3001/api/decks/${deck.id}`); 
   }
 
   return (
