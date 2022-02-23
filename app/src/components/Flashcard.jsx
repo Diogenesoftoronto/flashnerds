@@ -17,7 +17,7 @@ function Flashcard(props) {
   function findAnswer(userAnswer, answer){
     // const found = answer.includes(`${userAnswer}`)
     // if (!found) return false
-    return true
+    return answer === userAnswer;
   }
 
   const flashcardClass = classNames("flashcard-container", {
