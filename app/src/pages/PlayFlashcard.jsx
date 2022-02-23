@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTransition } from "react-use-transition";
 import { useAuth } from '../contexts/AuthContext';
 import FlashcardPost from '../components/FlashcardPost';
 import { useParams } from "react-router-dom";
@@ -31,6 +32,8 @@ const tags = ['tag1,', 'tag2'];
 
 
 function PlayFlashcard() {
+  // const [startTransition, isPending] = useTransition(,3000)
+
   const { id } = useParams();
   // const { currentUser } = useAuth();
   const [flashcard, setFlashcard] = useState({});
@@ -52,50 +55,49 @@ function PlayFlashcard() {
   }
 
 
-useEffect(() => {
-  axios.get(`http://localhost:3001/api/flashcards/deck/${id}`)
-    .then((response) => {
-      // {id: 1, decks_id: 1, question: 'In sagittis dui vel nisl.', answer: 'scelerisque', likes: 1}
-      const baseDeck = response.data.dbRes;
-      setDeck(shuffleDeck(baseDeck));
-      console.log("deck", deck);
+  useEffect(() => {
+    axios.get(`http://localhost:3001/api/flashcards/deck/${id}`)
+      .then((response) => {
+        // {id: 1, decks_id: 1, question: 'In sagittis dui vel nisl.', answer: 'scelerisque', likes: 1}
+        const baseDeck = response.data.dbRes;
+        setDeck(shuffleDeck(baseDeck));
+        console.log("deck", deck);
 
-      return baseDeck;
-    })
-    .then ((deck) => {
+        return baseDeck;
+      })
+      .then((deck) => {
+        setFlashcard(deck[cardIndex]);
+      });
+
+  }, []);
+
+  const deckLength = deck.length;
+  console.log('length', deckLength);
+
+  const nextCard = () => {
+      setCardIndex((cardIndex + 1) % deckLength);
       setFlashcard(deck[cardIndex]);
-    });
-    
-}, []);
+  }
 
-const deckLength = deck.length;
-console.log('length', deckLength);
-
-const nextCard = () => {
-  setCardIndex((cardIndex + 1) % deckLength);
-  setFlashcard(deck[cardIndex]); 
-}
-
-const backCard = () => {
-  setCardIndex((cardIndex - 1) % deckLength);
-  setFlashcard(deck[cardIndex % deckLength]);
-  
-}
+  const backCard = () => {
+      setCardIndex((cardIndex - 1) % deckLength);
+      setFlashcard(deck[cardIndex]);
+  }
 
 
-return (
-  <div>
-    <FlashcardPost
-      question={flashcard.question}
-      answer={flashcard.answer}
-      likes={flashcard.likes}
-      tags={tags}
-      onBack={backCard}
-      onNext={nextCard}
-      comments={comments}
-    />
-  </div>
-);
+  return (
+    <div>
+      <FlashcardPost
+        question={flashcard.question}
+        answer={flashcard.answer}
+        likes={flashcard.likes}
+        tags={tags}
+        onBack={backCard}
+        onNext={nextCard}
+        comments={comments}
+      />
+    </div>
+  );
 
 }
 
