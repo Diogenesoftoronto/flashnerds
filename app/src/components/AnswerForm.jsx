@@ -10,7 +10,7 @@ export const AnswerForm = () => {
   <form autoComplete="off" onSubmit={event => event.preventDefault()}>
     <input type="text" name="answer" placeholder="What's your guess nerd?"
     onChange={event => setAnswerState(event.target.value)}
-    vale={answerState} />
+    value={answerState} />
   </form>
   ) 
 } 

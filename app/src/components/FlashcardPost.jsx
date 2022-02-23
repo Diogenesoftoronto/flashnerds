@@ -7,13 +7,7 @@ import { styled } from "@stitches/react";
 import { TagList } from "./tag/tagList";
 import './styles/FlashcardPost.scss';
 
-function findAnswer(userAnswer, answer){
-  const regex = `/\b(${userAnswer})\b/g`
-  const found = answer.match(regex)
-  const arrResults = [...found]
-  if (!arrResults[0]) return false
-  return true
-}
+
 
 function FlashcardPost(props) {
 
