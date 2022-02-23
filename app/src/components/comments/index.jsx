@@ -25,10 +25,58 @@ const modes = {
   } = modes;
 
 const Comments = () => {
+
+const {comments, } = props
+const { mode, transition, back } = useVisualMode(comment ? SHOW : EMPTY);
 // create a save function
 //create delete function
 // create show, empty and saving components
-const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
+const save = async(name, commenter) => {
+    const comment = {
+        userId,
+        content,
+        post_time,
+        flashcardId
+    };
+    transition(SAVING);
+    postComment(comment)
+    .then(() => transition(SHOW))
+    .catch((error) => {
+      transition(ERROR, true);
+    });
+    
+    return;
+  };
+
+  const onDelete = () => {
+    transition(DELETE, true);
+    deleteComment(id)
+      .then(() => transition(EMPTY))
+      .catch((error) => {
+        transition(ERROR, true);
+      });
+  };
+
+const createComponent = (
+    <Form currentUser={currentUser} onSave={save} /> 
+)
+
+const errorComponent = (
+    <Error message="😱 ERROR! SOMETHING WENT WRONG WITH NERDY COMMENT 😱" onClose={() => back()}/>
+)
+
+const savingComponent = (
+    <Status message="🥸 Your Nerdy comment is being Saved...Unfortunately 🥸" />
+)
+
+
+const showComponent = (
+    <CommentList {...comments}/>
+)
+
+const emptyComponent = (
+    <DisplayComments onClick={() => transition(SHOW)}/>
+)
     return(mode === SHOW
         ? showComponent
         : mode === CREATE
