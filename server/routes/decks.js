@@ -23,6 +23,20 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/user/:id", (req, res) => {
+    let userId = req.params.id;
+    deckHelper.getDecksByUserId(db, userId)
+      .then((dbRes) => {
+        res.json(dbRes);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
   router.get("/:id", (req, res) => {
     let deckId = req.params.id;
     deckHelper.getDeckByDeckId(db, deckId)
