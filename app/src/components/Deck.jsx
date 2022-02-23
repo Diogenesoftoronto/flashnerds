@@ -22,8 +22,15 @@ const Deck = (props) => {
     setEditMode(false);
   }
   
+  const navigate = useNavigate();
+  const goToPlayFlashcard = (id) => { 
+    console.log(id);
+
+    navigate(`/PlayFlashcard/${id}`);
+  }
+
   return (
-    <div className="deck">
+    <div className="deck" onClick={() => goToPlayFlashcard(props.id)}>
       <div className="deck-item">
         <img src={ props.image } alt={ props.name }/>
         { isEditMode 

@@ -34,22 +34,17 @@ function MyLibrary () {
     }
   }
 
-  const goToPlayFlashcard = (id) => { 
-
-
-  }
-
   return (
     <div className="deck-lists">
       <h2>My Library</h2>
       <div className="deck">
-        <div className="deck__content" onClick={goToPlayFlashcard}>
+        <div className="deck__content">
           {deckList.map(deck => 
             <Deck key={deck.id}
               id={deck.id} 
               name={deck.name} 
               image={deck.image}
-              onDeleteBtnClick={ deleteFromDeckLists } 
+              onDeleteBtnClick={ deleteFromDeckLists }
             />)}
         </div>
       </div>
