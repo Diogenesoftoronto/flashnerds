@@ -22,7 +22,17 @@ export const Button = styled("button", {
         boxShadow: `0 2px 2px black`,
         "&:hover": { backgroundColor: "#e9d8a6", color: "#0a9396" },
         "&:focus": { boxShadow: `5 5 5 10px black` }
+      },
+      wide: {
+        padRL: 25
       }
+    },
+    utils: {
+      
+      padRL: (padding) => ({
+        paddingRight: padding,
+        paddingLeft: padding
+      }) 
     },
 
     defaultVariants: {
