@@ -1,7 +1,7 @@
 import { Button } from "../components/altButton"
 import React from "React"
 
-const ShowComments = () => {
+const DisplayComments = () => {
 const {onClick} = props 
     return(
         <Button variant="wide" onClick={onClick}>Show Comments</Button>
@@ -9,4 +9,4 @@ const {onClick} = props
 }
 
 
-export default ShowComments;
+export default DisplayComments;
