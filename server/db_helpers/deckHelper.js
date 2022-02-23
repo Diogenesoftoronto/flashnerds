@@ -17,6 +17,18 @@ const getDeckByDeckId = function (db, deckId) {
     .catch((err) => console.log(err));
 };
 
+const getDecksByUserId = function (db, userId) {
+  let userValues = [userId];
+  let queryString = `SELECT * FROM decks
+                        WHERE users.id = $1;`;
+  return db
+    .query(queryString, userValues)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
 const addDeck = function (db, deckInfo) {
   let deckValues = [deckInfo.userId, deckInfo.name, deckInfo.image];
   let queryString = `INSERT INTO decks (users_id, name, image)
@@ -55,4 +67,5 @@ module.exports = {
   addDeck,
   editDeck,
   deleteDeck,
+  getDecksByUserId
 };
