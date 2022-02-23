@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from "../contexts/AuthContext";
 import Deck from '../components/Deck';
 import '../App.css';
 import './MyLibrary.scss';
@@ -13,12 +14,15 @@ const deckLists = [
 ]
 
 function MyLibrary () {
+
+  const userId = useAuth().currentUser.id;
+
   const [deckList, setDeckList] = useState([]);
   useEffect (() => {
-      axios.get("http://localhost:3001/api/decks") 
+      axios.get(`http://localhost:3001/api/decks/user/${userId}`) 
       .then((response) => {
         console.log("hello", response);
-        setDeckList(response.data.dbRes);
+        setDeckList(response.data);
       })
   }, [])
 
