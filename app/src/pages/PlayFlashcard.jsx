@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useTransition } from "react-use-transition";
 import { useAuth } from '../contexts/AuthContext';
 import FlashcardPost from '../components/FlashcardPost';
 import { useParams } from "react-router-dom";
