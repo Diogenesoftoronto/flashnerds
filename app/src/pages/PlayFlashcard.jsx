@@ -25,6 +25,7 @@ const comments = [
 const question = "Question";
 const answer = "Answer";
 const likes = 0;
+const tags= ['tag1,', 'tag2'];
 
 
 function PlayFlashcard() {
@@ -47,6 +48,7 @@ function PlayFlashcard() {
         question={question}
         answer={answer}
         likes={likes}
+        tags={tags}
         onBack={() => alert("onBack")}
         onNext={() => alert("onNext")}
         comments={comments}
