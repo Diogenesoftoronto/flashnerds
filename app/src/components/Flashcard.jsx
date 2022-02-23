@@ -24,6 +24,18 @@ function Flashcard(props) {
     flipped: isFlipped,
   });
 
+  // if we want to implement classnames for back
+  // const back = classNames("back", {
+  //   'back--incorrect': !findAnswer(answerState, answer),
+  //   'back--correct': findAnswer(answerState, answer)
+  // })
+
+  const back = classNames("back", {
+    "flashcard": true,
+    "back--show": isFlipped,
+    "back--hide": !isFlipped
+  });
+
   const handleClick = () => {
     setIsFlipped(!isFlipped);
   };
@@ -43,7 +55,7 @@ function Flashcard(props) {
      }
 });
 
-  const flashcardBack = (findAnswer(answerState, answer) ?  (<div className="flashcard back" style={{backgroundColor: "green"}}>
+  const flashcardBack = (findAnswer(answerState, answer) ?  (<div className={back} style={{backgroundColor: "green"}}>
   <header>
     <h2>Answer</h2>
   </header>
@@ -52,7 +64,7 @@ function Flashcard(props) {
     Flip
   </Button>
 </div> ): (
-  <div className="flashcard back" style={{backgroundColor: "red"}}>
+  <div className={back} style={{backgroundColor: "red"}}>
 {/* <Back variant="incorrect" > */}
   <header>
     <h2>Answer</h2>
