@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import FlashcardPost from '../components/FlashcardPost';
 import { useParams } from "react-router-dom";
+import axios from "axios"
+
 
 const comments = [
   {
@@ -30,24 +32,22 @@ const tags= ['tag1,', 'tag2'];
 
 function PlayFlashcard() {
   const { id } = useParams();
-  console.log("hey", id);
   // const { currentUser } = useAuth();
-
-  // return (
-  //   <div>
-  //     Home: {currentUser.name}
-  //   </div>
-  // )
-
-
-
+  const [flashcard, setFlashcard] = useState({});
+  useEffect (() => {
+      axios.get(`http://localhost:3001/api/flashcards/deck/${id}`) 
+      .then((response) => {
+        // {id: 1, decks_id: 1, question: 'In sagittis dui vel nisl.', answer: 'scelerisque', likes: 1}
+        setFlashcard(response.data.dbRes[0]);
+      })
+  }, [])
 
   return (
     <div>
       <FlashcardPost
-        question={question}
-        answer={answer}
-        likes={likes}
+        question={flashcard.question}
+        answer={flashcard.answer}
+        likes={flashcard.likes}
         tags={tags}
         onBack={() => alert("onBack")}
         onNext={() => alert("onNext")}
