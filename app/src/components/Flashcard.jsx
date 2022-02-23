@@ -10,17 +10,30 @@ import { styled } from "@stitches/react";
 
 
 function Flashcard(props) {
-  const { question, answer, isFlipped } = props;
-  const setIsFlipped = (val) => isFlipped = val;      
+  const { question, answer, isFlipped, setIsFlipped} = props;
+  // const setState = (val) => state = val; 
+  // const [isFlipped, setIsFlipped] = useState(isFlipped);     
   const [answerState, setAnswerState] = useState("");
   function findAnswer(userAnswer, answer){
-    const found = answer.includes(`${userAnswer}`)
-    if (!found) return false
-    return true
+    // const found = answer.includes(`${userAnswer}`)
+    // if (!found) return false
+    return answer === userAnswer;
   }
 
   const flashcardClass = classNames("flashcard-container", {
     flipped: isFlipped,
+  });
+
+  // if we want to implement classnames for back
+  // const back = classNames("back", {
+  //   'back--incorrect': !findAnswer(answerState, answer),
+  //   'back--correct': findAnswer(answerState, answer)
+  // })
+
+  const back = classNames("back", {
+    "flashcard": true,
+    "back--show": isFlipped,
+    "back--hide": !isFlipped
   });
 
   const handleClick = () => {
@@ -42,7 +55,7 @@ function Flashcard(props) {
      }
 });
 
-  const flashcardBack = (findAnswer(answerState, answer) ?  (<div className="flashcard back" style={{backgroundColor: "green"}}>
+  const flashcardBack = (findAnswer(answerState, answer) ?  (<div className={back} style={{backgroundColor: "green"}}>
   <header>
     <h2>Answer</h2>
   </header>
@@ -51,7 +64,7 @@ function Flashcard(props) {
     Flip
   </Button>
 </div> ): (
-  <div className="flashcard back" style={{backgroundColor: "red"}}>
+  <div className={back} style={{backgroundColor: "red"}}>
 {/* <Back variant="incorrect" > */}
   <header>
     <h2>Answer</h2>
