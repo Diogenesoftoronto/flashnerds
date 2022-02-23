@@ -18,13 +18,16 @@ function MyLibrary () {
   const userId = useAuth().currentUser.id;
 
   const [deckList, setDeckList] = useState([]);
-  useEffect (() => {
+  
+  if (userId) {
+    useEffect (() => {
       axios.get(`http://localhost:3001/api/decks/user/${userId}`) 
       .then((response) => {
         console.log("hello", response);
         setDeckList(response.data);
       })
-  }, [])
+    }, [])
+  }
 
   const deleteFromDeckLists = (id) => {
     let temp = [...deckList];
