@@ -10,12 +10,13 @@ import { styled } from "@stitches/react";
 
 
 function Flashcard(props) {
-  const { question, answer, isFlipped } = props;
-  const setIsFlipped = (val) => isFlipped = val;      
+  const { question, answer, isFlipped, setIsFlipped} = props;
+  // const setState = (val) => state = val; 
+  // const [isFlipped, setIsFlipped] = useState(isFlipped);     
   const [answerState, setAnswerState] = useState("");
   function findAnswer(userAnswer, answer){
-    const found = answer.includes(`${userAnswer}`)
-    if (!found) return false
+    // const found = answer.includes(`${userAnswer}`)
+    // if (!found) return false
     return true
   }
 

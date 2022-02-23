@@ -42,7 +42,7 @@ function FlashcardPost(props) {
       </Button>
       {/* flex display */}
       <div className="flashcard-content">
-      <Flashcard question={question} answer={answer} isFlipped={isFlipped}/>
+      <Flashcard question={question} answer={answer} isFlipped={isFlipped} setIsFlipped={setIsFlipped}/>
       <TagList tags={tags}/>
       <CommentList comments={comments}/>
       <Likes likes={likes}/>
