@@ -86,5 +86,16 @@ module.exports = (db) => {
       .then(() => res.json("Delete comment by id success,bro!!"));
   });
 
+  router.get("/flashcard/:id", (req, res) => {
+    const flashcardId = req.params.id;
+    commentHelper
+      .getCommentsByFlashcardId(db, flashcardId)
+      .then((dbRes) => {
+        res.json({ dbRes });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  })
   return router;
 };
