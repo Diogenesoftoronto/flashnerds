@@ -3,6 +3,7 @@ const flashcardRoutes = require("./flashcard");
 const userRoutes = require("./users");
 const deckRoutes = require("./decks");
 const tagRoutes = require("./tags");
+const commentRoutes = require("./comments")
 
 module.exports = {
   auth,
@@ -10,4 +11,5 @@ module.exports = {
   userRoutes,
   deckRoutes,
   tagRoutes,
+  commentRoutes
 };
