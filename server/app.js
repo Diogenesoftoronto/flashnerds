@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
-const {auth, tagRoutes, flashcardRoutes, deckRoutes, userRoutes} = require('./routes');
+const {auth, tagRoutes, flashcardRoutes, deckRoutes, userRoutes, commentRoutes} = require('./routes');
 const {verifyToken} = require('./middlewares');
 
 
@@ -30,6 +30,8 @@ app.use("/api/tags", tagRoutes(db));
 app.use("/api/flashcards", flashcardRoutes(db));
 app.use("/api/decks", deckRoutes(db));
 app.use("/api/users", userRoutes(db));
+app.use("/api/comments", commentRoutes(db));
+
 
 // app.use("/api/tags", verifyToken, tagRoutes(db));
 // app.use("/api/flashcards", verifyToken, flashcardRoutes(db));
