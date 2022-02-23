@@ -20,7 +20,8 @@ const getCommentsByFlashcardId = function (db, flashcardId) {
 const getCommentByCommentId = function(db, commentId) {
   let commentValues = [commentId];
   let queryString = `SELECT * FROM comments
-                        WHERE comments.id = $1;`;
+                        WHERE comments.id = $1
+                        ORDER BY post_time;`;
   return (
     db
       .query(queryString, commentValues)
