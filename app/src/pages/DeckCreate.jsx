@@ -111,7 +111,7 @@ function DeckCreate() {
               axios.post('http://localhost:3001/api/flashcards', secondCard),
               axios.post('http://localhost:3001/api/flashcards', thirdCard)
             ])
-              .then(res => console.log('wow it worked'))
+              .then(all => console.log('wow it worked', all))
               .catch(err => console.log('oof'));
           })
       });
