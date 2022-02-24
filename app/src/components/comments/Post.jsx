@@ -56,10 +56,10 @@ const PostComment = (props) => {
     // };
     transition(SAVING);
     postComment(comment)
-      .then(() => transition(SHOW))
-      .catch((error) => {
-        transition(ERROR, true);
-      });
+      // .then(() => transition(SHOW))
+      // .catch((error) => {
+      //   transition(ERROR, true);
+      // });
 
     return;
   };
@@ -67,10 +67,10 @@ const PostComment = (props) => {
   const onDelete = () => {
     transition(DELETE, true);
     deleteComment()
-      .then(() => transition(EMPTY))
-      .catch((error) => {
-        transition(ERROR, true);
-      });
+      // .then(() => transition(EMPTY))
+      // .catch((error) => {
+      //   transition(ERROR, true);
+      // });
   };
 
   const postComponent = <PostComments onClick={() => transition(CREATE)}/>;

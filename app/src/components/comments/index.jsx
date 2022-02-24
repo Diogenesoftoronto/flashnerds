@@ -69,10 +69,10 @@ const Comment = (props) => {
   const onDelete = () => {
     transition(DELETE, true);
     deleteComment()
-      .then(() => transition(EMPTY))
-      .catch((error) => {
-        transition(ERROR, true);
-      });
+      // .then(() => transition(EMPTY))
+      // .catch((error) => {
+      //   transition(ERROR, true);
+      // });
   };
  
 
