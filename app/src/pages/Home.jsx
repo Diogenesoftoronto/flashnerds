@@ -160,10 +160,11 @@ function Home() {
       .then((response) => {
         // {id: 1, decks_id: 1, question: 'In sagittis dui vel nisl.', answer: 'scelerisque', likes: 1}
         const baseDeck = response.data.dbRes;
-        setDeck(shuffleDeck(baseDeck));
-        console.log("deck", deck);
-
+        console.log("deck", baseDeck);
+        
+        // return setDeck(shuffleDeck(baseDeck));
         return baseDeck;
+
       })
       .then((deck) => {
         setFlashcard(deck[cardIndex]);
@@ -171,16 +172,26 @@ function Home() {
 
   }, []);
 
+  console.log("deck", deck);
+  
   const deckLength = deck.length;
-  console.log('length', deckLength);
+  // console.log('length', deckLength);
 
   const nextCard = () => {
+    console.log('i', (cardIndex +1) % deckLength)
       setCardIndex((cardIndex + 1) % deckLength);
       setFlashcard(deck[cardIndex]);
   }
 
   const backCard = () => {
-      setCardIndex((cardIndex - 1) % deckLength);
+    let i = (cardIndex - 1) % deckLength;
+
+    if (i === -1) {
+      i = deckLength - 1;
+    }
+    console.log('i',i);
+      setCardIndex(i);
+      console.log('if i lose it all',deck[cardIndex])
       setFlashcard(deck[cardIndex]);
   }
 
