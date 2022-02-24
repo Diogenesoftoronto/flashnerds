@@ -23,3 +23,7 @@ insert into flashcards (id, decks_id, question, answer, likes) values (22, 22, '
 insert into flashcards (id, decks_id, question, answer, likes) values (23, 23, 'attitude-oriented', 'Public-key', 23);
 insert into flashcards (id, decks_id, question, answer, likes) values (24, 24, 'User-centric', 'intangible', 24);
 insert into flashcards (id, decks_id, question, answer, likes) values (25, 25, 'Fundamental', 'Team-oriented', 25);
+insert into flashcards (id, decks_id, question, answer, likes) values (26, 2, 'initiative', 'cohesive', 2);
+insert into flashcards (id, decks_id, question, answer, likes) values (27, 3, 'emulation', 'definition', 3);
+insert into flashcards (id, decks_id, question, answer, likes) values (28, 4, 'client-server', 'Synergistic', 4);
+insert into flashcards (id, decks_id, question, answer, likes) values (29, 5, 'interactive', 'throughput', 5);
