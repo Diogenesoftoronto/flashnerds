@@ -59,6 +59,11 @@ module.exports = (db) => {
     const name = req.body.name;
     const image = req.body.image;
 
+    // const userId = 1;
+
+    // const name = 'name';
+    // const image = 'https://i.imgflip.com/66dugn.jpg';
+
     const deckInfo = {
       userId, name, image
     };

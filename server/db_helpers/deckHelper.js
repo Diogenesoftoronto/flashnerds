@@ -30,7 +30,11 @@ const getDecksByUserId = function (db, userId) {
 };
 
 const addDeck = function (db, deckInfo) {
-  let deckValues = [deckInfo.userId, deckInfo.name, deckInfo.image];
+  let deckValues = [
+    deckInfo.userId, 
+    deckInfo.name,
+     deckInfo.image
+    ];
   let queryString = `INSERT INTO decks (users_id, name, image)
   VALUES ($1,$2,$3) RETURNING *;`;
   return db
