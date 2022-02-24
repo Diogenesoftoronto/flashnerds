@@ -5,7 +5,7 @@ import { RowSpacingIcon, Cross2Icon } from '@modulz/radix-icons';
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 // import { IconButton } from './Buttons/Button';
 import CommentListItem from './CommentListItem';
-
+import {useAuth} from '../contexts/AuthContext'
 
 const StyledCollapsible = CollapsiblePrimitive.Root;
 
@@ -84,8 +84,9 @@ const comments = [
 ];
 
 const CommentList = (props) => {
-
+const {currentUser} = useAuth();
   const { comments } = props;
+  console.log(currentUser);
 
   const commentItems = comments
     .map((comment) => <CommentListItem
