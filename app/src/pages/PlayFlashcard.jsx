@@ -44,7 +44,20 @@ const comments = [
 const question = "Question";
 const answer = "Answer";
 const likes = 0;
-const tags = ['tag1,', 'tag2'];
+const tags = [
+  {
+    tagId: 1,
+    text: "tag1",
+  },
+  {
+    tagId: 2,
+    text: "tag2",
+  },
+  {
+    tagId: 3,
+    text: "tag3",
+  },
+];
 
 
 function PlayFlashcard() {
