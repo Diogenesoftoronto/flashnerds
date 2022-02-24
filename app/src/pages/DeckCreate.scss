@@ -1,6 +1,13 @@
 .create-deck {
   color:white;
-  margin-top: 2em;
+  margin-top: 4em;
+  display: flex;
+  flex-direction: column;
+  .deck-data {
+    margin-bottom: 2em;
+  }
 
-  
+  .flashcard-single-data {
+    margin-top: 1em;
+  }
 }
