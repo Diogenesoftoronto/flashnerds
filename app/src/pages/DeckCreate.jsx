@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
+import './DeckCreate.scss'
 
 function DeckCreate() {
 
@@ -116,7 +117,7 @@ function DeckCreate() {
   }
 
   return (
-    <div>
+    <div className="create-deck">
       <h1>Create New Deck</h1>
       <div>
         <label for="deck-title">Deck Title:</label>
