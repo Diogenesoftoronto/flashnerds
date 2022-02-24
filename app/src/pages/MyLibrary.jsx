@@ -86,7 +86,7 @@ console.log('decks', deckList);
   return (
     <div className="my-library">
       <div className="my-library__header">
-        <h2>My Library</h2>
+        <h2>My Library📚</h2>
       </div>
       <div className="my-library__deck-lists">
         <div className="my-library__deck-lists__title">
