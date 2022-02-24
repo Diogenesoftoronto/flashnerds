@@ -8,15 +8,16 @@ import DisplayComments from "./DisplayComments";
 // import { currentUser } from "../../context/useAuth";
 // import { postComment, deleteComment } from "../../context/AppDataContext";
 import ShowComment from "./Show";
+import PostComments from "./PostComment";
 // define modes
 const currentUser = {
   userId: 1,
-  name: "",
-  avatar: ""
+  name: "Nerd",
+  avatar: "https://i.imgur.com/LpaY82x.png"
 }
 
 // make axios request from 
-const deleteComment = (props) => setTimeout(console.log("deleteCOmment", props), 5000)
+const deleteComment = (props) => setTimeout(console.log("deleteComment", props), 5000)
 const postComment = (props) => {setTimeout(console.log("postComment", props),  5000 )}
 const modes = {
   EMPTY: "EMPTY",
@@ -41,6 +42,7 @@ const {
 const Comment = (props) => {
   const { comment } = props;
   const { mode, transition, back } = useVisualMode(comment ? SHOW : EMPTY);
+  console.log(props)
   // const { userId, content, post_time, flashcardId } = comment;
   // create a save function
   //create delete function
@@ -70,6 +72,7 @@ const Comment = (props) => {
         transition(ERROR, true);
       });
   };
+ 
 
   const createComponent = <Form currentUser={currentUser} onSave={save} />;
 
@@ -87,7 +90,8 @@ const Comment = (props) => {
   const showComponent = <ShowComment comment={comment} user={currentUser}/>;
 
   const emptyComponent = <DisplayComments onClick={() => transition(SHOW)} />;
-  return mode === SHOW
+  return (
+    mode === SHOW
     ? showComponent
     : mode === CREATE
     ? createComponent
@@ -95,7 +99,7 @@ const Comment = (props) => {
     ? savingComponent
     : mode === EMPTY
     ? emptyComponent
-    : errorComponent;
+    : errorComponent);
 };
 
 export default Comment;
