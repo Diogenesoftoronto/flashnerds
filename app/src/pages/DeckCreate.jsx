@@ -2,16 +2,20 @@ import React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useAuth } from '../contexts/AuthContext';
 
 function DeckCreate() {
+
+  const { currentUser } = useAuth();
+
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [q1, setQ1] = useState();
   const [a1, setA1] = useState();
-  const [q1, setQ2] = useState();
-  const [a1, setA2] = useState();
-  const [q1, setQ3] = useState();
-  const [a1, setA3] = useState();
+  const [q2, setQ2] = useState();
+  const [a2, setA2] = useState();
+  const [q3, setQ3] = useState();
+  const [a3, setA3] = useState();
   // const cloud_name = "dbbnv85af";
   // const upload_preset = "daxonv2q";
   // to upload image onthe browser
@@ -35,14 +39,52 @@ function DeckCreate() {
 
 
   const navigate = useNavigate();
+
+  if (!currentUser) {
+    navigate('/login')
+  }
+
+  const userId = currentUser ? 1 : currentUser.id; 
+
+
   const handleBtnCreateClick = () => {
-    // 
-    //   const data = {imageUrl, name}
-    //   axios.post('/api/image', data)
-    //     .then(response => {
-    //       console.log(response);
-    navigate("/mylibrary");
-    // })
+
+    const data = { image, name, userId }
+    axios.post('http://localhost:3001/api/decks/', data)
+      .then((response) => {
+        // console.log(response);
+        // navigate("/mylibrary");
+        const decks = [...response.data.dbRes];
+        const deckId = decks.pop().id;
+        return deckId;
+      })
+      .then((deckId) => {
+        const firstCard = {
+          deckId,
+          question: q1,
+          answer: a1
+        }
+        const secondCard = {
+          deckId,
+          question: q2,
+          answer: a2
+        }
+        const thirdCard = {
+          deckId,
+          question: q3,
+          answer: a3
+        }
+        Promise.all([
+          axios.post('http://localhost:3001/api/flashcards', firstCard),
+          axios.post('http://localhost:3001/api/flashcards', secondCard),
+          axios.post('http://localhost:3001/api/flashcards', thirdCard)
+        ])
+        .then(res => console.log('wow it worked'))
+        .catch(err => console.log('oof'));
+
+        
+
+      })
   };
 
   return (
@@ -124,16 +166,16 @@ function DeckCreate() {
                 id="answer3" />
             </div>
           </article>
-          </div>
         </div>
-        {/* <div className="imageUpload">
+      </div>
+      {/* <div className="imageUpload">
         <input type="file" className="uploadInput" />
         <img src={imageUrl} className="uploadedImg" alt="" />
         <button className="uploadButton" onClick={() => {}}>Save</button>
       </div> */}
-        <button className="createButton" onClick={handleBtnCreateClick}>Create</button>
-      </div>
-      )
+      <button className="createButton" onClick={handleBtnCreateClick}>Create</button>
+    </div>
+  )
 }
 
-      export default DeckCreate
+export default DeckCreate
