@@ -4,10 +4,10 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'comment.css'
 // maybe have something a context or send that user has liked to the database???
 
-const Comment = (props) => {
+const ShowComment = (props) => {
 const {
 user,
-commment,
+comment,
 } = props
 const {avatar, name, userId} = user;
 const {content, post_time, commentId} = comment;
@@ -48,4 +48,4 @@ const nameTag = (userName) => {
     )
 }
 
-export default Comment;
+export default ShowComment;
