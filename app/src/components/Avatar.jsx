@@ -74,7 +74,7 @@ const Avatar = (props) => {
       <AvatarFallback delayMs={600}>{nameToInitials()}</AvatarFallback>
     </AvatarContainer>
   );
-  return { render };
+  return ( render );
 };
 
 export default Avatar;
