@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "./Buttons/Button";
 import Flashcard from "./Flashcard";
-import Comments from "./comments/Comments";
+import CommentList from "./CommentList";
 import Likes from "./Likes";
 import { styled } from "@stitches/react";
 import { TagList } from "./tag/tagList";
@@ -48,7 +48,7 @@ function FlashcardPost(props) {
       <div className="flashcard-content">
       <Flashcard question={question} answer={answer} isFlipped={isFlipped} setIsFlipped={setIsFlipped}/>
       <TagList tags={tags}/>
-      <Comments comments={comments}/>
+      <CommentList comments={comments}/>
       <Likes likes={likes}/>
       </div>
       <Button variant='violet' onClick={() => nextCard()}>
@@ -57,7 +57,7 @@ function FlashcardPost(props) {
       </div>
     <footer>
       <Likes likes={likes}/>
-      <Comments comments={comments}/>
+      <CommentList comments={comments}/>
     </footer>
     </article>
   );
