@@ -53,7 +53,9 @@ module.exports = (db) => {
 
   // add deck route (register)
   router.post("/", (req, res) => {
-    const userId = req.session.userId;
+    // const userId = req.session.userId;
+    const userId = req.body.userId;
+
     const name = req.body.name;
     const image = req.body.image;
 
