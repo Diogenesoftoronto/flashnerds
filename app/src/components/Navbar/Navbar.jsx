@@ -10,6 +10,7 @@ function Search() {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/mylibrary">My Library</NavLink></li>
         <li><NavLink to="/decks/create" className="navbar__content__button">New</NavLink></li>
+        <li><NavLink to="/login" className="navbar__content__button">Login</NavLink></li>
       </ul>
     </nav>
   </header>
