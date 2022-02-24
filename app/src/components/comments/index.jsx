@@ -1,12 +1,12 @@
 import React from "React";
 import useVisualMode from "../../hooks/useVisualMode";
 import Form from "./Form";
-import Error from "./Error";
+import ErrorComponent from "./Error";
 import Status from "./Status";
 // import CommentList from "./CommentList";
 import DisplayComments from "./DisplayComments";
 import { currentUser } from "../../context/useAuth";
-import {postComment, deleteComment } from "../../context/AppDataContext"
+import { postComment, deleteComment } from "../../context/AppDataContext";
 import ShowComment from "./Show";
 // define modes
 const modes = {
@@ -68,7 +68,7 @@ const Comment = (props) => {
   const createComponent = <Form currentUser={currentUser} onSave={save} />;
 
   const errorComponent = (
-    <Error
+    <ErrorComponent
       message="😱 ERROR! SOMETHING WENT WRONG WITH NERDY COMMENT 😱"
       onClose={() => back()}
     />
@@ -89,8 +89,7 @@ const Comment = (props) => {
     ? savingComponent
     : mode === EMPTY
     ? emptyComponent
-    : // : mode === ERROR
-      errorComponent;
+    : errorComponent;
 };
 
 export default Comment;
