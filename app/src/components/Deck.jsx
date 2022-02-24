@@ -26,7 +26,8 @@ const Deck = (props) => {
   const goToPlayFlashcard = (id) => { 
     console.log(id);
 
-    navigate(`/PlayFlashcard/${id}`);
+    id ? navigate(`/PlayFlashcard/${id}`) :
+    navigate(`/`);
   }
 
   return (
