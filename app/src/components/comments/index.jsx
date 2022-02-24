@@ -85,8 +85,8 @@ const emptyComponent = (
         ? savingComponent
         : mode === EMPTY
         ? emptyComponent
-        : mode === ERROR
-        : errorComponent})
+        // : mode === ERROR
+        : errorComponent)
 
 }
 
