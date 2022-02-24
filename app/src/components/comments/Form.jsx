@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "./altButton";
+import { Button } from "../altButton";
 import { styled } from "@stitches/react";
 import { currentUser } from "../../contexts/AuthContext";
 // could add font family and other styles here. decided to make it simple
