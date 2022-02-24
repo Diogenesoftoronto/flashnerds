@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import './DeckCreate.scss'
+import { Button } from '../components/Buttons/Button';
 
 function DeckCreate() {
 
@@ -119,7 +120,7 @@ function DeckCreate() {
   return (
     <div className="create-deck">
       <h1>Create New Deck</h1>
-      <div className='deck-data'>
+      <div>
         <label for="deck-title">Deck Title: </label>
         <input type="text"
           name="deck-title"
@@ -127,7 +128,7 @@ function DeckCreate() {
           onChange={(event) => setName(event.target.value)}
           id="deck-title" />
       </div>
-      <div>
+      <div className='deck-data'>
         <label for="Image-Url">Image URL: </label>
         <input type="text"
           name="image"
@@ -202,7 +203,7 @@ function DeckCreate() {
         <img src={imageUrl} className="uploadedImg" alt="" />
         <button className="uploadButton" onClick={() => {}}>Save</button>
       </div> */}
-      <button className="createButton" onClick={handleBtnCreateClick}>Create</button>
+      <Button variant="green"className="createButton" onClick={handleBtnCreateClick}>Create</Button>
     </div>
   )
 }
