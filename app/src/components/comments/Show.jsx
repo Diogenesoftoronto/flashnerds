@@ -1,7 +1,8 @@
-import React from "React";
-import { Avatar } from "../../components/Avatar";
+import React from "react";
+// import { Avatar } from "../../components/Avatar";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "comment.css";
+import "./comment.css";
+import Avatar from "../Avatar";
 // maybe have something a context or send that user has liked to the database???
 
 const ShowComment = (props) => {
