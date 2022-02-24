@@ -95,7 +95,12 @@ module.exports = (db) => {
 
   router.delete("/:id", (req, res) => {
     const deckId = req.params.id;
-    deckHelper.deleteDeck(db, deckId).then(() =>  res.json('Delete deck by id success,bro!!'));
+    deckHelper.deleteDeck(db, deckId).then(() =>  res.json('Delete deck by id success,bro!!'))
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   });
 
   
