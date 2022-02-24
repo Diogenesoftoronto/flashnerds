@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import useVisualMode from "../../hooks/useVisualMode";
 import Form from "./Form";
 import ErrorComponent from "./Error";
@@ -16,8 +16,8 @@ const currentUser = {
 }
 
 // make axios request from 
-const deleteComment = (props) => setTimeout(console.log("deleteCOmment", props), 1000)
-const postComment = (props) => {setTimeout(console.log("postComment", props),  1000 )}
+const deleteComment = (props) => setTimeout(console.log("deleteCOmment", props), 5000)
+const postComment = (props) => {setTimeout(console.log("postComment", props),  5000 )}
 const modes = {
   EMPTY: "EMPTY",
   SHOW: "SHOW",
