@@ -3,47 +3,44 @@ import React from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./comment.css";
 import Avatar from "../Avatar";
+import Likes from "../Likes";
+
 // maybe have something a context or send that user has liked to the database???
 
 const ShowComment = (props) => {
   const { user, comment } = props;
+  console.log(user, comment);
   const { avatar, name, userId } = user;
-  const { content, post_time, commentId } = comment;
-
+  const { content, post_time, commentId, likes } = comment;
   const nameTag = (userName) => {
     const result = userName.split(" ");
     return "@" + result[0];
   };
   return (
-    <article class="comment">
-      <div class="comment-header">
-        <div class="comment-header-left">
-          {/* <img class='profile' src={avatar} /> */}
-          <Avatar className="profile" avatar={avatar} />
+    <article className="comment">
+      <div className="comment-header">
+        <div className="comment-header-left">
+          {/* <img className='profile' src={avatar} /> */}
+          <Avatar className="profile" name={name} avatar={avatar} />
           <h3>{name}</h3>
         </div>
-        <div class="comment-header-right">
+        <div className="comment-header-right">
           <h4>{nameTag(name)}</h4>
         </div>
       </div>
-      <div class="comment-body">
+      <div className="comment-body">
         <p>{content}</p>
       </div>
-      <div class="comment-footer">
-        <div class="comment-footer-left">
+      <div className="comment-footer">
+        <div className="comment-footer-left">
           <h4>{post_time}</h4>
         </div>
-        <div class="comment-footer-right">
+        <div className="comment-footer-right">
           <div>
-            <a class="comment-icon" href="/">
-              <i class="fas fa-flag"></i>
-            </a>
-            <a class="comment-icon" href="/">
-              <i class="fas fa-recomment"></i>
-            </a>
-            <a class="comment-icon" href="/">
-              <i class="fas fa-heart"></i>
-            </a>
+            <Likes likes={likes}/>
+            {/* <a className="comment-icon" href="/">
+              <i className="fas fa-heart"></i>
+            </a> */}
           </div>
         </div>
       </div>
