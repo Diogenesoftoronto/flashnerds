@@ -23,19 +23,19 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <img src="/books.png" alt="logo" />
+    <div className="login">
+      <img src="/FlashNerds.png" alt="logo" />
       <form onSubmit={handleSubmit} method="post">
       <div>
-          <label for="userName">Username: </label>
+          <label for="userName">🤓</label>
           <input type="text" name="userName" id="userName" 
-            defaultValue={userName} 
+            defaultValue={userName} placeholder="Username"
             onChange={(e) => setUserName(e.currentTarget.value)} />
         </div>
         <div>
-        <label for="password">Password: </label>
+        <label for="password">🔐</label>
           <input type="password" name="password" id="password" 
-            defaultValue={password} 
+            defaultValue={password} placeholder="Password"
             onChange={(e) => setPassword(e.currentTarget.value)} />
         </div>
         <button type="submit">Login</button>
