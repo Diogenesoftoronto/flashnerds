@@ -20,12 +20,9 @@ import Comment from "./Show";
 
 // ]
 const CommentList = (props) => {
-const {comments} =  props
-const CommentMap = comments.map((comment) => <Comment {...comment} />)
-    return(
-        {CommentMap}
-    )
-}
+  const { comments } = props;
+  const CommentMap = comments.map((comment) => <Comment {...comment} />);
+  return { CommentMap };
+};
 
-
-export default CommentList
+export default CommentList;
