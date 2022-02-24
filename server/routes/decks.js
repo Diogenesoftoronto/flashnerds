@@ -6,9 +6,10 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 const deckHelper = require('../db_helpers/deckHelper');
+const flashcardHelper = require('../db_helpers/flashcardHelper');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -95,15 +96,25 @@ module.exports = (db) => {
 
   router.delete("/:id", (req, res) => {
     const deckId = req.params.id;
-    deckHelper.deleteDeck(db, deckId).then(() =>  res.json('Delete deck by id success,bro!!'))
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+    let qString = `
+    UPDATE flashcards
+    SET decks_id = NULL 
+    WHERE decks_id = $1
+    `;
+    db.query(qString, [deckId])
+      .then(() => {
+        deckHelper.deleteDeck(db, deckId).then(() => res.json('Delete deck by id success,bro!!'))
+          .catch(err => {
+            res
+              .status(500)
+              .json({ error: err.message });
+          });
+      })
+
+
   });
 
-  
+
 
   return router;
 };
