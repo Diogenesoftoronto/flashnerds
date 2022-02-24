@@ -1,7 +1,7 @@
 import React from "React";
-import { styled } from "@stitches/react";
+// import { styled } from "@stitches/react";
 
-const ErrorDiv = styled("div", {});
+// const ErrorDiv = styled("div", {});
 
 const ErrorComponent = (props) => {
   const { message, onClose } = props;
