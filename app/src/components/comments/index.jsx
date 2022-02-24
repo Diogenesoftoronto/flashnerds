@@ -1,5 +1,5 @@
 import React from "React";
-
+import useVisualMode from './useVisualMode'
 // define modes
 const modes = {
     EMPTY: "EMPTY",
@@ -31,7 +31,7 @@ const { mode, transition, back } = useVisualMode(comment ? SHOW : EMPTY);
 // create a save function
 //create delete function
 // create show, empty and saving components
-const save = async(name, commenter) => {
+const save = (name, commenter) => {
     const comment = {
         userId,
         content,
