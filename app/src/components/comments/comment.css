@@ -1,0 +1,42 @@
+#comment-text {
+    margin: 1em;
+    width: 75%;
+    height: 3.1em;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom: 3px solid;
+    border-bottom-color: #3638b8;
+    background-color: transparent;
+  }
+  .comment {
+    border: 2px solid black;
+    width: 60%;
+    margin: 2em;
+    padding: 1em;
+    word-break: break-all;
+  
+  }
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .comment-header-left {
+    display: flex;
+  }
+  
+  .comment-footer-left {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .profile {
+    width: 4em;
+  }
+  
+  .comment-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
