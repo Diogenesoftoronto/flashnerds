@@ -17,11 +17,25 @@ const Comment = styled('div', {
     }
   }
 });
+const currentUser = {
+    userId: 1
+}
+
 export const createComment = () => {
   const [contentState, setContentState] = useState("");
+  const {onSave, currentUser} = props
+  const [error, setError] = useState("");
+  function validate() {
+    if (!contentState) {
+      setError("Nerdy comments aren't blank!");
+      return;
+    }
+    setError("");
+    onSave(contentState);
+  }
   // need to be able to keep values, i think comments could really useTransition as they are identical to comment except that they are even simpler
   return (
-    <Comment variant="primary" className="comment__card comment__card--create">
+    <Comment value={currentUser.userId} variant="primary" className="comment__card comment__card--create">
         <section className="comment__card-left">
         <h2>Create Comment</h2>
     <form onSubmit={(event) => event.preventDefault()}>
@@ -34,7 +48,7 @@ export const createComment = () => {
       />
     </form>
         </section>
-    <Button variant="primary" onClick={}>Post</Button>
+    <Button variant="primary" onClick={() => validate()}>Post</Button>
     </Comment>
   );
 };

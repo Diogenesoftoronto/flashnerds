@@ -1,13 +1,13 @@
 import React from "React"
 import { avatar } from "./components/avatar"
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import 'comment.css'
 // maybe have something a context or send that user has liked to the database???
 
 const Comment = (props) => {
 const {
 user,
-commment
+commment,
 } = props
 const {avatar, name, userId} = user;
 const {content, post_time, commentId} = comment;
@@ -17,7 +17,6 @@ const nameTag = (userName) => {
     return "@" + result[0]
 }
     return (
-        <section class="comment-container">
         <article class="comment">
           
           <div class='comment-header'>
@@ -46,7 +45,6 @@ const nameTag = (userName) => {
                 </div>
               </div>
             </article>
-          </section>
     )
 }
 

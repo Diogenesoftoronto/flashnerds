@@ -1,5 +1,5 @@
 import Comments from "./components/Comments/error"
-import { action } from "stories"
+// import { action } from "stories"
 
 export default {
     title: "Error",
@@ -12,4 +12,6 @@ const props = {
     onClose: alert()
 }
 
-export const Primary = (prop) => <Error {...props}></Error>
+export const Primary = () => <Comments {...props} />
+
+// export const Secondary = () => <Comments {} />
