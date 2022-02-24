@@ -82,7 +82,7 @@ const CommentForm = (props) => {
     </Comment>
   );
 
-  return { render };
+  return ( render );
 };
 
 export default CommentForm;
