@@ -18,7 +18,6 @@ const currentUser = {
 
 // make axios request from 
 const deleteComment = (props) => setTimeout(console.log("deleteComment", props), 5000)
-const postComment = (props) => {setTimeout(console.log("postComment", props),  5000 )}
 const modes = {
   EMPTY: "EMPTY",
   SHOW: "SHOW",
@@ -43,6 +42,9 @@ const Comment = (props) => {
   const { comment } = props;
   const { mode, transition, back } = useVisualMode(comment ? SHOW : EMPTY);
   console.log(props)
+  const postComment = (props) => {setTimeout(()=> {
+    transition(SHOW)
+    console.log("postComment", props)},  5000 )}
   // const { userId, content, post_time, flashcardId } = comment;
   // create a save function
   //create delete function
@@ -56,10 +58,10 @@ const Comment = (props) => {
     // };
     transition(SAVING);
     postComment(comment)
-      .then(() => transition(SHOW))
-      .catch((error) => {
-        transition(ERROR, true);
-      });
+      // .then(() => transition(SHOW))
+      // .catch((error) => {
+      //   transition(ERROR, true);
+      // });
 
     return;
   };
