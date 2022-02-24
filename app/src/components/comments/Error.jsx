@@ -3,7 +3,7 @@ import { styled } from "@stitches/react";
 
 const ErrorDiv = styled("div", {});
 
-export default ErrorComponent = (props) => {
+const ErrorComponent = (props) => {
   const { message, onClose } = props;
   return (
     <main className="comment__card comment__card--error">
@@ -20,3 +20,4 @@ export default ErrorComponent = (props) => {
     </main>
   );
 };
+export default ErrorComponent;
