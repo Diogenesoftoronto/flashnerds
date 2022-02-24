@@ -120,7 +120,7 @@ function DeckCreate() {
     <div className="create-deck">
       <h1>Create New Deck</h1>
       <div>
-        <label for="deck-title">Deck Title:</label>
+        <label for="deck-title">Deck Title: </label>
         <input type="text"
           name="deck-title"
           value={name}
