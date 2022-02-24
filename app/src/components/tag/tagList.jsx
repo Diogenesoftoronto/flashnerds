@@ -22,17 +22,26 @@ export const TagSection = styled("div", {
 export const TagList = (props) => {
   const { tags } = props
   console.log("tags", props.tags);
+
+  if (!Array.isArray(tags)) {
+    return (
+      <TagSection variant="primary">
+        <TagItem tagId={-1} text={'No Tags'}/>
+      </TagSection>
+    )
+  }
+
   const tagMap = tags.map((tag) => {
-  return (<TagItem tagId={tag.tagId} text={tag.text}/>)
-});
- if(tags) return(
+    return (<TagItem tagId={tag.tagId} text={tag.text} />)
+  });
+  return (
     <TagSection variant="primary">
       {tagMap}
     </TagSection>
-    )
-  else return(
-    <TagSection variant="primary">
-      No tags
-    </TagSection>
   )
+  // else return(
+  //   <TagSection variant="primary">
+  //     No tags
+  //   </TagSection>
+  // )
 };
