@@ -56,7 +56,7 @@ const Comment = (props) => {
     //     post_time,
     //     flashcardId
     // };
-    transition(SAVING);
+    transition(SHOW);
     postComment(comment)
       // .then(() => transition(SHOW))
       // .catch((error) => {
