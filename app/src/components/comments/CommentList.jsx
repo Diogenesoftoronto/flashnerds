@@ -18,7 +18,8 @@ import Comment from "./index";
 const CommentList = (props) => {
   const { comments } = props;
   const CommentMap = comments.map((comment) => <Comment {...comment} />);
-  return { CommentMap };
+  let render = !comments ? (<img src="%PUBLIC_URL%/nocomments.jpg" alt="no comments???">🤮</img>) : CommentMap
+  return { render };
 };
 
 export default CommentList;
