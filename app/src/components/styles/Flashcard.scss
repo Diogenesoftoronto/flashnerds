@@ -13,21 +13,33 @@
 .flashcard{
   position: relative;
   color: black;
-  height: 300px;
-  width: 300px;
+  height: 30vw;
+  width: 30vw;
   margin: 30px;
   padding: 1em;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  // position: fixed;
+  // top: 50%;
+  // left: 50%;
+  // width: max-content;
+  // transform: translate(-50%, -50%);
 
   header{
     text-align: center;
         font-size:20px;
       }
 
+      input {
+        margin-top: 3em;
+        background:transparent;
+        border-color: purple;
+      }
+
       span {
+        font-size: 15px;
         margin: auto;
         height: 108px;
         text-align: center;
