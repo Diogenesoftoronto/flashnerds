@@ -37,6 +37,37 @@ function DeckCreate() {
   //    .catch((err) => console.log(err));
   //  }
 
+  // .catch(()=> console.log(a1,q2))
+
+  // })
+  // .then((deckId) => {
+  //   const firstCard = {
+  //     deckId,
+  //     question: q1,
+  //     answer: a1
+  //   }
+  //   const secondCard = {
+  //     deckId,
+  //     question: q2,
+  //     answer: a2
+  //   }
+  //   const thirdCard = {
+  //     deckId,
+  //     question: q3,
+  //     answer: a3
+  //   }
+  //   Promise.all([
+  //     axios.post('http://localhost:3001/api/flashcards', firstCard),
+  //     axios.post('http://localhost:3001/api/flashcards', secondCard),
+  //     axios.post('http://localhost:3001/api/flashcards', thirdCard)
+  //   ])
+  //   .then(res => console.log('wow it worked'))
+  //   .catch(err => console.log('oof'));
+
+
+
+  // })
+  // .catch(()=> console.log(a1,q2))
 
   const navigate = useNavigate();
 
@@ -44,48 +75,45 @@ function DeckCreate() {
     navigate('/login')
   }
 
-  const userId = currentUser ? 1 : currentUser.id; 
+  const userId = currentUser ? currentUser.id : 1;
 
 
   const handleBtnCreateClick = () => {
-
+    // let deckId = 1;
     const data = { image, name, userId }
     axios.post('http://localhost:3001/api/decks/', data)
       .then((response) => {
-        // console.log(response);
-        // navigate("/mylibrary");
-        const decks = [...response.data.dbRes];
-        const deckId = decks.pop().id;
-        return deckId;
-      })
-      .then((deckId) => {
-        const firstCard = {
-          deckId,
-          question: q1,
-          answer: a1
-        }
-        const secondCard = {
-          deckId,
-          question: q2,
-          answer: a2
-        }
-        const thirdCard = {
-          deckId,
-          question: q3,
-          answer: a3
-        }
-        Promise.all([
-          axios.post('http://localhost:3001/api/flashcards', firstCard),
-          axios.post('http://localhost:3001/api/flashcards', secondCard),
-          axios.post('http://localhost:3001/api/flashcards', thirdCard)
-        ])
-        .then(res => console.log('wow it worked'))
-        .catch(err => console.log('oof'));
-
-        
-
-      })
-  };
+        axios.get('http://localhost:3001/api/decks/')
+        .then((res) => {
+            console.log('res', res.data.dbRes);
+            return res.data.dbRes.length;
+          })
+          .then((deckId) => {
+            const firstCard = {
+              deckId,
+              question: q1,
+              answer: a1
+            }
+            const secondCard = {
+              deckId,
+              question: q2,
+              answer: a2
+            }
+            const thirdCard = {
+              deckId,
+              question: q3,
+              answer: a3
+            }
+            Promise.all([
+              axios.post('http://localhost:3001/api/flashcards', firstCard),
+              axios.post('http://localhost:3001/api/flashcards', secondCard),
+              axios.post('http://localhost:3001/api/flashcards', thirdCard)
+            ])
+              .then(res => console.log('wow it worked'))
+              .catch(err => console.log('oof'));
+          })
+      });
+  }
 
   return (
     <div>
