@@ -27,14 +27,14 @@ const comments = [
   {
     id: 1,
     avatar: "https://i.imgur.com/LpaY82x.png",
-    userName: "Bobby",
+    name: "Bobby",
     content: "This is a comment.",
     likes: 20,
-    timestamp: '2021-03-18 21:50:39'
+    post_time: '2021-03-18 21:50:39'
   },
   {
     id: 2,
-    userName: "Bobby's Twin",
+    name: "Bobby's Twin",
     content: "This is another comment.",
     likes: 200,
     timestamp: '2021-03-05 02:29:08'
