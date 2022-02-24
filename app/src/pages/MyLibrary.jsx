@@ -15,22 +15,30 @@ const deckLists = [
 
 function MyLibrary () {
 
-  const userId = useAuth().currentUser.id;
+  // const userId = useAuth().currentUser.id;
+  const userId = 1;
+
+
+
+  console.log(useAuth());
 
   const [deckList, setDeckList] = useState([]);
   
-  if (userId) {
     useEffect (() => {
       axios.get(`http://localhost:3001/api/decks/user/${userId}`) 
       .then((response) => {
         console.log("hello", response);
         setDeckList(response.data);
       })
+      .catch((err) => console.err('invalid request'))
     }, [])
-  }
+  
 
   const deleteFromDeckLists = (id) => {
     let temp = [...deckList];
+    console.log('hi2')
+    if (temp.length === 0) return;
+    console.log('hi')
     const targetDeck = temp.filter(deck => deck.id === id)[0];
     if (targetDeck) {
       const index = temp.indexOf(targetDeck);
@@ -39,8 +47,40 @@ function MyLibrary () {
     } else {
       console.error('target deck is not found');
     }
-    axios.get(`http://localhost:3001/api/decks/${deck.id}`); 
+
+    axios.get(`http://localhost:3001/api/decks/${id}`); 
   }
+  const isEmpty = deckList.length === 0;
+  // let deckComponents = <Deck
+  // key={0}
+  // name={'Create new deck'}
+  // image={"https://i.imgflip.com/66d0at.jpg"}
+  // onDeleteBtnClick={() => {}}
+  // />;
+
+let deckComponents;
+console.log('decks', deckList);
+
+  if (isEmpty) {
+    deckComponents = <Deck
+    key={0}
+    id={0}
+    name={'Create new deck'}
+    image={"https://i.imgflip.com/66d0at.jpg"}
+    onDeleteBtnClick={() => {}}
+    />
+  } else{
+
+    deckComponents = deckList.map(deck => 
+      <Deck key={deck.id}
+      id={deck.id} 
+      name={deck.name} 
+      image={deck.image}
+      onDeleteBtnClick={ deleteFromDeckLists }/>);
+    }
+
+
+      
 
   return (
     <div className="my-library">
@@ -52,13 +92,7 @@ function MyLibrary () {
           <h3>My Decks</h3>
         </div>
         <div className="my-library__deck-lists__content">
-          {deckList.map(deck => 
-            <Deck key={deck.id}
-              id={deck.id} 
-              name={deck.name} 
-              image={deck.image}
-              onDeleteBtnClick={ deleteFromDeckLists }/>
-          )}
+          {deckComponents}
         </div>
         {/* <div className="deck">
           <div className="deck__content">
