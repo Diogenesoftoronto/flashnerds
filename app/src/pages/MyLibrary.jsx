@@ -48,7 +48,8 @@ function MyLibrary () {
       console.error('target deck is not found');
     }
 
-    axios.get(`http://localhost:3001/api/decks/${id}`); 
+    axios.delete(`http://localhost:3001/api/decks/${id}`)
+    .then(()=> console.log('successful delete',id)); 
   }
   const isEmpty = deckList.length === 0;
   // let deckComponents = <Deck
@@ -61,15 +62,7 @@ function MyLibrary () {
 let deckComponents;
 console.log('decks', deckList);
 
-  if (isEmpty) {
-    deckComponents = <Deck
-    key={0}
-    id={0}
-    name={'Create new deck'}
-    image={"https://i.imgflip.com/66d0at.jpg"}
-    onDeleteBtnClick={() => {}}
-    />
-  } else{
+  if (!isEmpty) {
 
     deckComponents = deckList.map(deck => 
       <Deck key={deck.id}
@@ -77,6 +70,14 @@ console.log('decks', deckList);
       name={deck.name} 
       image={deck.image}
       onDeleteBtnClick={ deleteFromDeckLists }/>);
+  } else{
+      deckComponents = <Deck
+      key={-1}
+      id={0}
+      name={'No decks???'}
+      image={"https://i.imgflip.com/66d0at.jpg"}
+      onDeleteBtnClick={() => {}}
+      />
     }
 
 

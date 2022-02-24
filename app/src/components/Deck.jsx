@@ -21,29 +21,35 @@ const Deck = (props) => {
     }
     setEditMode(false);
   }
-  
+
   const navigate = useNavigate();
-  const goToPlayFlashcard = (id) => { 
+  const goToPlayFlashcard = (id) => {
     console.log(id);
 
     id ? navigate(`/PlayFlashcard/${id}`) :
-    navigate(`/`);
+      navigate(`/`);
   }
 
   return (
     <div className="deck" onClick={() => goToPlayFlashcard(props.id)}>
       <div className="deck-item">
-        <img src={ props.image } alt={ props.name }/>
-        { isEditMode 
+        <img src={props.image} alt={props.name} />
+        {isEditMode
           ? [
             <input ref={input} type="text" defaultValue={name} onChange={(e) => e.preventDefault()} />,
             <button onClick={confirm}>confirm</button>
           ]
-          : <p onClick={ enableEditMode }>{ name }</p>
+          : <p onClick={enableEditMode}>{name}</p>
         }
       </div>
       <div className="button">
-        <button onClick={(e) => { props.onDeleteBtnClick(props.id); e.stopPropagation();e.nativeEvnet.stopImmediatePropagation(); } }>X</button>
+        <button onClick={(e) => {
+          if (props.id > 0) {
+            props.onDeleteBtnClick(props.id);
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+          }
+        }}>X</button>
       </div>
     </div>
   )
