@@ -75,7 +75,7 @@ console.log('decks', deckList);
       key={-1}
       id={0}
       name={'No decks???'}
-      image={"https://i.imgflip.com/66d0at.jpg"}
+      image={"https://i.imgflip.com/66dujf.jpg"}
       onDeleteBtnClick={() => {}}
       />
     }
