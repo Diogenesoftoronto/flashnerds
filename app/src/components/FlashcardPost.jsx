@@ -1,12 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "./Buttons/Button";
 import Flashcard from "./Flashcard";
-import CommentList from "./CommentList";
+// import CommentList from "./CommentList";
 import Comments from "./comments";
 import Likes from "./Likes";
 import { styled } from "@stitches/react";
 import { TagList } from "./tag/tagList";
 import './styles/FlashcardPost.scss';
+import CommentList from "./comments/CommentList";
+import Comment from "./comments";
+import PostComment from './comments/Post';
 
 
 
@@ -16,7 +19,6 @@ function FlashcardPost(props) {
     question,
     answer,
     deckId,
-    likes,
     tags,
     onBack,
     onNext,
@@ -39,7 +41,7 @@ function FlashcardPost(props) {
    }
 
   return (
-    <article class="flashcard-post">
+    <article className="flashcard-post">
       <div className="top">
 
       <Button variant='violet' onClick={() => backCard()}>
@@ -49,17 +51,18 @@ function FlashcardPost(props) {
       <div className="flashcard-content">
       <Flashcard question={question} answer={answer} isFlipped={isFlipped} setIsFlipped={setIsFlipped}/>
       <TagList tags={tags}/>
-      <Comments comments={comments}/>
-      <Likes likes={likes}/>
+      <PostComment />
+      <CommentList comments={comments}/>
+      {/* <Likes likes={likes}/> */}
       </div>
       <Button variant='violet' onClick={() => nextCard()}>
         Next
       </Button>
       </div>
-    <footer>
+    {/* <footer>
       <Likes likes={likes}/>
-      <Comments comments={comments}/>
-    </footer>
+      <CommentList comments={comments}/>
+    </footer> */}
     </article>
   );
 }
