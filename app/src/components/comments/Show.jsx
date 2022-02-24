@@ -1,5 +1,5 @@
 import React from "React"
-import { avatar } from "./components/avatar"
+import { Avatar } from "../../components/Avatar"
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'comment.css'
 // maybe have something a context or send that user has liked to the database???
